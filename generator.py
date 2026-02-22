@@ -63,6 +63,17 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         </header>
         
         <section class="section">
+            <h2 class="section-title">🌏 地缘政治分析</h2>
+            <div class="highlight-box">
+                <p><strong>【最新动态】</strong></p>
+                {geopolitics_news}
+                <br>
+                <p><strong>【深度解读】</strong></p>
+                <p>{geopolitics_analysis}</p>
+            </div>
+        </section>
+        
+        <section class="section">
             <h2 class="section-title">🌍 国际热点</h2>
             <ul class="news-list">{international}</ul>
         </section>
@@ -128,6 +139,12 @@ def generate_brief():
     # 示例数据（实际应从API获取）
     data = {
         "date": date_str,
+        "geopolitics_news": [
+            "• 美伊局势持续紧张，美军在伊朗周边集结兵力，霍尔木兹海峡航运风险上升",
+            "• 特朗普宣布对全球加征10-15%关税，中美贸易摩擦升级担忧再起",
+            "• 俄乌冲突进入新阶段，能源供应链重构加速"
+        ],
+        "geopolitics_analysis": "当前地缘政治风险主要集中在三大热点：中东局势（美伊对峙）、贸易摩擦（美国关税政策）、以及俄乌冲突的长期化。这些风险对全球供应链、能源价格和资本市场都将产生深远影响。建议投资者关注黄金、原油等避险资产，同时留意国产替代、军工等受益板块。",
         "international": [
             "特朗普关税新方案今天可能公布，美国继续对全球商品加税10-15%。对A股影响：出口链承压，国产替代概念或受益。",
             "美伊局势紧张，油价上涨到66美元/桶，国内油价可能上调。",
@@ -174,9 +191,12 @@ def generate_html(data):
     tech = "\n".join([f'<li class="news-item">{item}</li>' for item in data["tech"]])
     other_markets = "\n".join([f'<li class="news-item">{item}</li>' for item in data["other_markets"]])
     today_focus = "\n".join([f'<li class="news-item">{item}</li>' for item in data["today_focus"]])
+    geopolitics_news = "\n".join([f'<p>{item}</p>' for item in data["geopolitics_news"]])
     
     html = HTML_TEMPLATE.format(
         date=data["date"],
+        geopolitics_news=geopolitics_news,
+        geopolitics_analysis=data["geopolitics_analysis"],
         international=international,
         domestic=domestic,
         tech=tech,
