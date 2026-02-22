@@ -10,7 +10,7 @@ from datetime import datetime, timedelta
 from pathlib import Path
 
 # NewsAPI 配置（免费版：100请求/天）
-NEWS_API_KEY = "pub_1234567890abcdef"  # 需要替换为真实API Key
+NEWS_API_KEY = "e4df27bf57ae46da8b71d2ac762c4d35"  # 用户提供的API Key
 
 def fetch_ai_news():
     """从API获取实时AI新闻"""
