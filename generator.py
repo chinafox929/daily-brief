@@ -63,6 +63,17 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         </header>
         
         <section class="section">
+            <h2 class="section-title">🤖 AI 专区</h2>
+            <div class="highlight-box">
+                <p><strong>【AI 快讯】</strong></p>
+                {ai_news}
+                <br>
+                <p><strong>【AI 投资风向】</strong></p>
+                <p>{ai_analysis}</p>
+            </div>
+        </section>
+        
+        <section class="section">
             <h2 class="section-title">🌏 地缘政治分析</h2>
             <div class="highlight-box">
                 <p><strong>【最新动态】</strong></p>
@@ -139,6 +150,13 @@ def generate_brief():
     # 示例数据（实际应从API获取）
     data = {
         "date": date_str,
+        "ai_news": [
+            "• OpenAI 发布 GPT-5 预览版，推理能力大幅提升，代码生成准确率达 95%",
+            "• 谷歌 Gemini 2.0 正式上线，多模态能力领先，支持视频理解",
+            "• 国产大模型 DeepSeek-V3 开源，性能接近 GPT-4，成本降低 90%",
+            "• 英伟达市值突破 3 万亿美元，AI 芯片需求持续火爆"
+        ],
+        "ai_analysis": "AI 板块持续高热，建议关注三条主线：1）算力基建（英伟达、AMD、国产芯片）；2）大模型应用（微软、谷歌、百度、阿里）；3）AI 赋能传统行业（医疗、教育、金融）。风险提示：估值偏高，注意回调风险。",
         "geopolitics_news": [
             "• 美伊局势持续紧张，美军在伊朗周边集结兵力，霍尔木兹海峡航运风险上升",
             "• 特朗普宣布对全球加征10-15%关税，中美贸易摩擦升级担忧再起",
@@ -192,9 +210,12 @@ def generate_html(data):
     other_markets = "\n".join([f'<li class="news-item">{item}</li>' for item in data["other_markets"]])
     today_focus = "\n".join([f'<li class="news-item">{item}</li>' for item in data["today_focus"]])
     geopolitics_news = "\n".join([f'<p>{item}</p>' for item in data["geopolitics_news"]])
+    ai_news = "\n".join([f'<p>{item}</p>' for item in data["ai_news"]])
     
     html = HTML_TEMPLATE.format(
         date=data["date"],
+        ai_news=ai_news,
+        ai_analysis=data["ai_analysis"],
         geopolitics_news=geopolitics_news,
         geopolitics_analysis=data["geopolitics_analysis"],
         international=international,
