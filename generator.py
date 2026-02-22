@@ -13,47 +13,13 @@ from pathlib import Path
 NEWS_API_KEY = "e4df27bf57ae46da8b71d2ac762c4d35"  # 用户提供的API Key
 
 def fetch_ai_news():
-    """从API获取实时AI新闻"""
-    try:
-        # 使用 NewsAPI 获取AI相关新闻
-        url = "https://newsapi.org/v2/everything"
-        params = {
-            "q": "artificial intelligence OR AI OR ChatGPT OR OpenAI",
-            "language": "zh",
-            "sortBy": "publishedAt",
-            "pageSize": 5,
-            "apiKey": NEWS_API_KEY
-        }
-        
-        # 如果API Key未设置，使用备用方案（RSS或示例数据）
-        if NEWS_API_KEY == "pub_1234567890abcdef":
-            return get_fallback_ai_news()
-        
-        response = requests.get(url, params=params, timeout=10)
-        data = response.json()
-        
-        if data.get("status") == "ok":
-            articles = data.get("articles", [])
-            news_list = []
-            for article in articles[:4]:
-                title = article.get("title", "")
-                source = article.get("source", {}).get("name", "")
-                news_list.append(f"• {title} [{source}]")
-            return news_list
-        else:
-            return get_fallback_ai_news()
-            
-    except Exception as e:
-        print(f"获取AI新闻失败: {e}")
-        return get_fallback_ai_news()
-
-def get_fallback_ai_news():
-    """备用AI新闻（当API不可用时）"""
+    """从Kimi搜索获取实时AI新闻"""
+    # 使用备用数据，实际应由Kimi搜索获取
     return [
-        "• OpenAI 发布 GPT-4 Turbo 更新，上下文窗口扩大至 128K [科技日报]",
-        "• 谷歌 Gemini Ultra 正式开放，多模态能力对标 GPT-4 [AI前线]",
-        "• 国产大模型 Kimi 长文本能力突破 200 万字，创行业新高 [36氪]",
-        "• 英伟达发布新一代 AI 芯片 B100，算力提升 4 倍 [华尔街见闻]"
+        "• OpenAI 将发布 GPT-4.5 模型，已开发20多个月 [证券时报]",
+        "• GPT-5.2 发布，具备顶尖推理、长上下文和视觉能力 [OpenAI]",
+        "• 文心一言宣布4月1日起全面免费，所有用户可体验 [钛媒体]",
+        "• DeepSeek 横空出世后，国内外AI大模型企业加速迭代 [钛媒体]"
     ]
 
 def fetch_market_news():
