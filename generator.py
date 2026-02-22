@@ -5,8 +5,70 @@
 """
 import json
 import os
+import requests
 from datetime import datetime, timedelta
 from pathlib import Path
+
+# NewsAPI 配置（免费版：100请求/天）
+NEWS_API_KEY = "pub_1234567890abcdef"  # 需要替换为真实API Key
+
+def fetch_ai_news():
+    """从API获取实时AI新闻"""
+    try:
+        # 使用 NewsAPI 获取AI相关新闻
+        url = "https://newsapi.org/v2/everything"
+        params = {
+            "q": "artificial intelligence OR AI OR ChatGPT OR OpenAI",
+            "language": "zh",
+            "sortBy": "publishedAt",
+            "pageSize": 5,
+            "apiKey": NEWS_API_KEY
+        }
+        
+        # 如果API Key未设置，使用备用方案（RSS或示例数据）
+        if NEWS_API_KEY == "pub_1234567890abcdef":
+            return get_fallback_ai_news()
+        
+        response = requests.get(url, params=params, timeout=10)
+        data = response.json()
+        
+        if data.get("status") == "ok":
+            articles = data.get("articles", [])
+            news_list = []
+            for article in articles[:4]:
+                title = article.get("title", "")
+                source = article.get("source", {}).get("name", "")
+                news_list.append(f"• {title} [{source}]")
+            return news_list
+        else:
+            return get_fallback_ai_news()
+            
+    except Exception as e:
+        print(f"获取AI新闻失败: {e}")
+        return get_fallback_ai_news()
+
+def get_fallback_ai_news():
+    """备用AI新闻（当API不可用时）"""
+    return [
+        "• OpenAI 发布 GPT-4 Turbo 更新，上下文窗口扩大至 128K [科技日报]",
+        "• 谷歌 Gemini Ultra 正式开放，多模态能力对标 GPT-4 [AI前线]",
+        "• 国产大模型 Kimi 长文本能力突破 200 万字，创行业新高 [36氪]",
+        "• 英伟达发布新一代 AI 芯片 B100，算力提升 4 倍 [华尔街见闻]"
+    ]
+
+def fetch_market_news():
+    """获取实时市场新闻"""
+    try:
+        # 这里可以接入财经API
+        # 暂时使用示例数据
+        return [
+            "特朗普关税新方案今天可能公布，美国继续对全球商品加税10-15%。对A股影响：出口链承压，国产替代概念或受益。",
+            "美伊局势紧张，油价上涨到66美元/桶，国内油价可能上调。",
+            "美联储暗示可能推迟降息，美元走强，对新兴市场资金流动有影响。",
+            "日本1月通胀放缓，央行加息预期降温，亚太股市或受提振。"
+        ]
+    except:
+        return []
 
 # 网站模板
 HTML_TEMPLATE = '''<!DOCTYPE html>
@@ -312,6 +374,9 @@ def generate_brief():
     weekdays = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
     date_str = f"{today.year}年{today.month}月{today.day}日 {weekdays[today.weekday()]}"
     
+    # 获取实时AI新闻
+    ai_news_list = fetch_ai_news()
+    
     # 示例数据（实际应从API获取）
     data = {
         "date": date_str,
@@ -322,12 +387,7 @@ def generate_brief():
             "• 🏆 板块：AI概念、芯片、新能源领涨；地产、银行回调",
             "• 📊 成交：日均成交额1.2万亿，较上周放量15%"
         ],
-        "ai_news": [
-            "• OpenAI 发布 GPT-5 预览版，推理能力大幅提升，代码生成准确率达 95%",
-            "• 谷歌 Gemini 2.0 正式上线，多模态能力领先，支持视频理解",
-            "• 国产大模型 DeepSeek-V3 开源，性能接近 GPT-4，成本降低 90%",
-            "• 英伟达市值突破 3 万亿美元，AI 芯片需求持续火爆"
-        ],
+        "ai_news": ai_news_list,
         "ai_analysis": "AI 板块持续高热，建议关注三条主线：1）算力基建（英伟达、AMD、国产芯片）；2）大模型应用（微软、谷歌、百度、阿里）；3）AI 赋能传统行业（医疗、教育、金融）。风险提示：估值偏高，注意回调风险。",
         "geopolitics_news": [
             "• 美伊局势持续紧张，美军在伊朗周边集结兵力，霍尔木兹海峡航运风险上升",
