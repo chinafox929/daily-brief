@@ -63,6 +63,14 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         </header>
         
         <section class="section">
+            <h2 class="section-title">📅 每周回顾</h2>
+            <div class="highlight-box">
+                <p><strong>【上周市场回顾】</strong></p>
+                {weekly_review}
+            </div>
+        </section>
+        
+        <section class="section">
             <h2 class="section-title">🤖 AI 专区</h2>
             <div class="highlight-box">
                 <p><strong>【AI 快讯】</strong></p>
@@ -150,6 +158,13 @@ def generate_brief():
     # 示例数据（实际应从API获取）
     data = {
         "date": date_str,
+        "weekly_review": [
+            "• 📈 A股：上证指数周涨2.3%，深成指涨1.8%，创业板指涨3.1%",
+            "• 🌍 国际：道指创新高，纳指涨4.2%，欧股普涨",
+            "• 💰 汇率：人民币兑美元升值0.5%，外资净流入超200亿",
+            "• 🏆 板块：AI概念、芯片、新能源领涨；地产、银行回调",
+            "• 📊 成交：日均成交额1.2万亿，较上周放量15%"
+        ],
         "ai_news": [
             "• OpenAI 发布 GPT-5 预览版，推理能力大幅提升，代码生成准确率达 95%",
             "• 谷歌 Gemini 2.0 正式上线，多模态能力领先，支持视频理解",
@@ -211,9 +226,11 @@ def generate_html(data):
     today_focus = "\n".join([f'<li class="news-item">{item}</li>' for item in data["today_focus"]])
     geopolitics_news = "\n".join([f'<p>{item}</p>' for item in data["geopolitics_news"]])
     ai_news = "\n".join([f'<p>{item}</p>' for item in data["ai_news"]])
+    weekly_review = "\n".join([f'<p>{item}</p>' for item in data["weekly_review"]])
     
     html = HTML_TEMPLATE.format(
         date=data["date"],
+        weekly_review=weekly_review,
         ai_news=ai_news,
         ai_analysis=data["ai_analysis"],
         geopolitics_news=geopolitics_news,
