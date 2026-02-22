@@ -33,6 +33,80 @@
         .nav { text-align: center; margin-bottom: 30px; }
         .nav a { color: #8b7355; text-decoration: none; margin: 0 15px; font-size: 14px; }
         .nav a:hover { color: #5a4a3a; }
+        
+        /* 滚动渐显动画 */
+        .section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 鼠标光标效果 - 电脑端 */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #c4a882;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+        .cursor.active {
+            opacity: 1;
+            transform: scale(1.5);
+            background: rgba(196, 168, 130, 0.1);
+        }
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background: #c4a882;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .cursor-dot.active {
+            opacity: 1;
+        }
+        
+        /* 悬停效果 */
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        
+        /* 移动端触摸优化 */
+        @media (hover: none) {
+            .cursor, .cursor-dot { display: none; }
+            .section { 
+                opacity: 1;
+                transform: none;
+                transition: transform 0.3s ease;
+            }
+        }
+        
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 加载动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .header {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
         @media (max-width: 600px) { .title { font-size: 24px; letter-spacing: 4px; } .section { padding: 20px; } }
     </style>
 </head>
@@ -154,5 +228,88 @@
             <p style="margin-top: 10px; opacity: 0.6;">禅意 · 简约 · 专注</p>
         </footer>
     </div>
+    
+    <!-- 鼠标光标效果 -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    
+    <script>
+        // 检测是否为触摸设备
+        const isTouchDevice = window.matchMedia('(hover: none)').matches;
+        
+        if (!isTouchDevice) {
+            // 电脑端 - 鼠标光标效果
+            const cursor = document.querySelector('.cursor');
+            const cursorDot = document.querySelector('.cursor-dot');
+            let mouseX = 0, mouseY = 0;
+            let cursorX = 0, cursorY = 0;
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursorDot.style.left = mouseX - 3 + 'px';
+                cursorDot.style.top = mouseY - 3 + 'px';
+                cursor.classList.add('active');
+                cursorDot.classList.add('active');
+            });
+            
+            document.addEventListener('mouseleave', () => {
+                cursor.classList.remove('active');
+                cursorDot.classList.remove('active');
+            });
+            
+            // 光标跟随动画
+            function animateCursor() {
+                cursorX += (mouseX - cursorX) * 0.1;
+                cursorY += (mouseY - cursorY) * 0.1;
+                cursor.style.left = cursorX - 10 + 'px';
+                cursor.style.top = cursorY - 10 + 'px';
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+            
+            // 悬停效果
+            document.querySelectorAll('a, .section').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(2)';
+                    cursor.style.borderColor = '#8b7355';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                    cursor.style.borderColor = '#c4a882';
+                });
+            });
+        }
+        
+        // 滚动渐显动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // 移动端触摸反馈
+        if (isTouchDevice) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.addEventListener('touchstart', () => {
+                    section.style.transform = 'scale(0.98)';
+                });
+                section.addEventListener('touchend', () => {
+                    section.style.transform = 'scale(1)';
+                });
+            });
+        }
+    </script>
 </body>
 </html>
