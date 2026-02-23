@@ -169,6 +169,9 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             <div class="highlight-box">
                 <p><strong>【上周市场回顾】</strong></p>
                 {weekly_review}
+                <br><br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>{weekly_thought}</em></p>
             </div>
         </section>
         
@@ -180,6 +183,9 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
                 <br>
                 <p><strong>【AI 投资风向】</strong></p>
                 <p>{ai_analysis}</p>
+                <br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>{ai_thought}</em></p>
             </div>
         </section>
         
@@ -191,32 +197,52 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
                 <br>
                 <p><strong>【深度解读】</strong></p>
                 <p>{geopolitics_analysis}</p>
+                <br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>{geopolitics_thought}</em></p>
             </div>
         </section>
         
         <section class="section">
             <h2 class="section-title">🌍 国际热点</h2>
             <ul class="news-list">{international}</ul>
+            <br>
+            <p><strong>💭 深度思考</strong></p>
+            <p><em>{international_thought}</em></p>
         </section>
         
         <section class="section">
             <h2 class="section-title">🇨🇳 国内动态</h2>
             <ul class="news-list">{domestic}</ul>
+            <br>
+            <p><strong>💭 深度思考</strong></p>
+            <p><em>{domestic_thought}</em></p>
         </section>
         
         <section class="section">
             <h2 class="section-title">💡 科技新鲜事</h2>
             <ul class="news-list">{tech}</ul>
+            <br>
+            <p><strong>💭 深度思考</strong></p>
+            <p><em>{tech_thought}</em></p>
         </section>
         
         <section class="section">
             <h2 class="section-title">🔥 A股重点</h2>
-            <div class="highlight-box">{stock}</div>
+            <div class="highlight-box">
+                <p>{stock}</p>
+                <br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>{stock_thought}</em></p>
+            </div>
         </section>
         
         <section class="section">
             <h2 class="section-title">📊 其他市场</h2>
             <ul class="news-list">{other_markets}</ul>
+            <br>
+            <p><strong>💭 深度思考</strong></p>
+            <p><em>{other_thought}</em></p>
         </section>
         
         <section class="section">
@@ -227,6 +253,9 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
                 <br>
                 <p><strong>【趋势分析】</strong></p>
                 <p>{crypto_analysis}</p>
+                <br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>{crypto_thought}</em></p>
             </div>
         </section>
         
@@ -238,6 +267,9 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
                 <p>{art_content}</p>
                 <br>
                 <p><em>💡 {art_insight}</em></p>
+                <br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>{art_thought}</em></p>
             </div>
         </section>
         
@@ -249,12 +281,18 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
                 <p>{psych_content}</p>
                 <br>
                 <p><strong>{psych_tip}</strong></p>
+                <br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>{psych_thought}</em></p>
             </div>
         </section>
         
         <section class="section">
             <h2 class="section-title">👀 今日看点</h2>
             <ul class="news-list">{today_focus}</ul>
+            <br>
+            <p><strong>💭 深度思考</strong></p>
+            <p><em>{today_thought}</em></p>
         </section>
         
         <section class="section">
@@ -412,20 +450,24 @@ def generate_brief():
             "• 🏆 板块：AI概念、芯片、新能源领涨；地产、银行回调",
             "• 📊 成交：日均成交额1.2万亿，较上周放量15%"
         ],
+        "weekly_thought": "市场永远在奖励那些能看穿噪音的人。当所有人都在讨论AI泡沫时，真正赚钱的是那些看懂AI基础设施需求的人——算力、电力、数据中心。投资不是追逐热点，而是理解热点的底层逻辑。",
         "ai_news": ai_news_list,
         "ai_analysis": "AI 板块持续高热，建议关注三条主线：1）算力基建（英伟达、AMD、国产芯片）；2）大模型应用（微软、谷歌、百度、阿里）；3）AI 赋能传统行业（医疗、教育、金融）。风险提示：估值偏高，注意回调风险。",
+        "ai_thought": "我们正处于一个奇怪的时代：AI能写出完美的商业计划书，却不懂为什么要创业；能诊断疾病，却感受不到病人的恐惧。技术的边界越来越清晰，人类的边界却越来越模糊。也许真正的机会不在于AI能做什么，而在于AI不能做但人们依然愿意为之付费的事情——陪伴、理解、意义感。",
         "geopolitics_news": [
             "• 美伊局势持续紧张，美军在伊朗周边集结兵力，霍尔木兹海峡航运风险上升",
             "• 特朗普宣布对全球加征10-15%关税，中美贸易摩擦升级担忧再起",
             "• 俄乌冲突进入新阶段，能源供应链重构加速"
         ],
         "geopolitics_analysis": "当前地缘政治风险主要集中在三大热点：中东局势（美伊对峙）、贸易摩擦（美国关税政策）、以及俄乌冲突的长期化。这些风险对全球供应链、能源价格和资本市场都将产生深远影响。建议投资者关注黄金、原油等避险资产，同时留意国产替代、军工等受益板块。",
+        "geopolitics_thought": "历史不会重复，但会押韵。1930年代的贸易战最终导向了什么，历史书上有答案。但今天不同的是，全球供应链的纠缠比任何时候都深。脱钩不是开关，而是手术——疼的是双方。普通人能做什么？保持流动性，不押注单一货币、单一市场、单一叙事。",
         "international": [
             "特朗普关税新方案今天可能公布，美国继续对全球商品加税10-15%。对A股影响：出口链承压，国产替代概念或受益。",
             "美伊局势紧张，油价上涨到66美元/桶，国内油价可能上调。",
             "美联储暗示可能推迟降息，美元走强，对新兴市场资金流动有影响。",
             "日本1月通胀放缓，央行加息预期降温，亚太股市或受提振。"
         ],
+        "international_thought": "特朗普的关税政策像一场即兴爵士乐——没人知道下一个音符是什么。但市场讨厌不确定性。这种环境下，'预测'变得无用，'适应'变得关键。与其猜测政策走向，不如构建无论哪种情况都能生存的仓位结构。",
         "domestic": [
             "明天A股春节后首个交易日，历史数据显示春节后第一周上涨概率约70%，'开门红'可期。",
             "央行近期可能降准降息，资金面有望更宽松，利好股市。",
@@ -433,17 +475,21 @@ def generate_brief():
             "春节假期消费数据亮眼，旅游、电影、餐饮收入超预期，消费复苏概念值得关注。",
             "多地出台房地产支持政策，房贷利率下调，地产链或迎修复。"
         ],
+        "domestic_thought": "政策底和市场底往往不是同一个底。政策可以托住经济不往下掉，但托不出牛市。牛市需要信心，而信心来自赚钱效应，赚钱效应来自基本面改善。这个传导链条很长，需要耐心。现在是什么阶段？政策底已现，市场底在磨，业绩底未到。",
         "tech": [
             "国产AI公司智谱股价暴涨42%，市值破3000亿，AI应用概念持续火热。",
             "小红书内测AI剪辑工具，对着手机说句话就能剪视频。",
             "比亚迪发布新车型，价格再创新低，新能源车竞争白热化。"
         ],
+        "tech_thought": "技术扩散遵循一个规律：先被嘲笑，后被恐惧，最后被忽视。AI现在处于'被恐惧'阶段。但历史告诉我们，真正改变世界的技术，最终都会变得像水电一样——无处不在，却无人谈论。投资的关键是找到那个从'被恐惧'到'被忽视'的转折点。",
         "stock": "上周五（节前）A股集体收跌，上证指数跌1.26%报4082点，深成指跌1.28%，创业板指跌1.57%。成交额2万亿，较前日缩量7%。板块方面，海洋捕捞、半导体设备逆势上涨；通信线缆、稀土、有色金属跌幅居前。技术面看，沪指跌破4100点整数关口，短期支撑在4050点附近，压力在4150点。明日节后开市，关注能否'开门红'，建议控制仓位，重点关注AI应用、国产替代、消费复苏三大主线。",
+        "stock_thought": "技术分析的本质是什么？是寻找市场参与者行为的规律。支撑和压力之所以存在，是因为人们记得那个价格。当足够多人相信某个价位有意义，它就有了意义。这是一种集体幻觉，但幻觉也能赚钱——只要你比大多数人早一步意识到幻觉的存在。",
         "other_markets": [
             "美股：道指逼近5万点，科技股领涨",
             "港股：AI概念强势，腾讯阿里承压",
             "比特币：约6.8万美元"
         ],
+        "other_thought": "全球市场的联动性越来越强，但相关性不是因果性。美股涨，A股不一定跟；美股跌，A股不一定跌。真正重要的是理解每个市场背后的驱动因素。美股的驱动是流动性，A股的驱动是政策预期，港股的驱动是南向资金。搞清楚谁在买、为什么买，比看K线重要。",
         "crypto_news": [
             "• 📉 比特币现报$67,200，24小时跌幅2.3%，测试6.7万美元关键支撑",
             "• 📉 以太坊失守$1,950，较历史高点回撤超60%，ETF持续流出",
@@ -453,20 +499,26 @@ def generate_brief():
             "• 📊 市场情绪：社交媒体情绪跌至2025年大涨前水平，散户恐慌抛售"
         ],
         "crypto_analysis": "市场正处于深度调整期，情绪极度悲观。BTC在6.6-7万美元区间震荡整理，ETH跌破2000美元后走势脆弱。但恐惧指数14已进入历史买入区域，巨鲸持续累积是积极信号。短期观望为主，中长期投资者可考虑分批布局。风险提示：监管政策不确定性、宏观流动性收紧。",
+        "crypto_thought": "加密货币市场是一面镜子，照出人性的贪婪与恐惧。当恐惧指数14时，意味着市场参与者已经恐慌到了极点——而这往往是反向指标。但反人性的地方在于：你知道应该买，但你不敢。为什么？因为'这次不一样'的念头会占据你的大脑。每次危机，人们都会说'这次不一样'，但历史总是惊人地相似。",
         "art_title": "《星月夜》——梵高的疯狂与浪漫",
         "art_content": "这幅创作于1889年的油画，是梵高在圣雷米精神病院期间的作品。画面中旋转的星云像巨大的漩涡，明亮的星星闪烁着耀眼的光芒，一弯新月悬挂天际。起伏的山峦如波涛般涌动，仿佛能感受到艺术家内心的躁动与不安。那棵黑色的柏树像火焰般直冲云霄，而宁静的村庄则在夜色中沉睡，教堂的尖顶指向天空。梵高用夸张的线条和浓烈的色彩——深蓝、明黄、翠绿——将内心的情感直接倾泻在画布上。这不是我们肉眼所见的夜空，而是梵高灵魂深处的宇宙。",
         "art_insight": "艺术不是复制现实，而是表达内心。梵高教会我们：即使身处黑暗，也要仰望星空。那些看似疯狂旋转的笔触，恰恰是对生命最炽热的爱。",
+        "art_thought": "为什么我们在130年后依然被这幅画打动？因为梵高画出了人类共通的情感——孤独、渴望、对超越性的追求。技术会过时，但情感不会。在AI能画出'完美'图像的今天，梵高的'不完美'反而更显珍贵。这提醒我们：价值不在于效率，而在于独特性；不在于精确，而在于真诚。",
         "psych_title": "AI时代的'存在感焦虑'",
         "psych_content": "当AI能写诗、画画、写代码，甚至通过律师考试时，很多人开始问：'我还能做什么？'这种存在感焦虑正在蔓延。社会学研究发现，技术革命期人们会经历'能力贬值恐慌'——不是你真的没价值，而是衡量价值的标准在变化。历史上，汽车取代马车时，马夫们也曾恐慌，但驾驶员、汽修工、交通规划师等新职业应运而生。AI不会取代人，但会用AI的人会取代不会用的人。",
         "psych_tip": "💡 今日心法：与其焦虑被AI替代，不如思考如何让AI成为你的'外接大脑'。人类的创造力、同理心、价值判断，依然是不可替代的核心竞争力。",
+        "psych_thought": "更深层的焦虑或许不是'AI会取代我'，而是'我不知道自己是谁'。当工作、技能、甚至创造力都被技术重新定义，人们被迫面对一个古老的问题：如果我不是我的职业，那我是谁？这种存在主义的危机，也许正是这个时代送给我们的礼物——逼我们找到比工作更深层的自我认同。",
         "today_focus": [
             "A股春节后首个交易日，关注'开门红'",
             "1月LPR数据公布，关注利率动向",
             "特朗普关税细节公布，关注市场反应"
         ],
+        "today_thought": "关注什么，决定了你看到什么。市场每天产生无数信息，但大部分只是噪音。真正的信号往往藏在被忽视的地方——成交量的异常、板块轮动的节奏、资金流向的变化。训练自己过滤噪音的能力，比获取更多信息的渠道更重要。",
         "learn_title": "支撑位和压力位",
         "learn_content": "就像楼梯的台阶，股价跌到某个位置跌不动了叫支撑（有人买），涨到某个位置涨不动了叫压力（有人卖）。突破压力可能继续上涨，跌破支撑可能继续下跌。",
-        "reminder": "节后开盘别急着追高，先看半小时盘面再决定。祝投资顺利！"
+        "learn_thought": "支撑和压力的深层逻辑是什么？是记忆的集体固化。当足够多的人在某个价位有过交易行为，这个价格就被'记住'了。下次价格接近时，那些记忆被激活——套牢盘想解套，获利盘想落袋。技术分析的本质是心理学，是群体行为的规律总结。",
+        "reminder": "节后开盘别急着追高，先看半小时盘面再决定。祝投资顺利！",
+        "reminder_thought": "为什么我们总是急着行动？因为'做点什么'能缓解焦虑，即使做的是错的。投资中，不操作往往是最难的操作。学会等待，学会在信息不完整时保持观望，是成熟投资者的标志。记住：错过一次机会不可怕，可怕的是为了不错过而抓住每一个陷阱。"
     }
     
     return data
@@ -489,24 +541,36 @@ def generate_html(data):
     html = HTML_TEMPLATE.format(
         date=data["date"],
         weekly_review=weekly_review,
+        weekly_thought=data.get("weekly_thought", "市场永远在变化，保持学习和适应的能力。"),
         ai_news=ai_news,
         ai_analysis=data["ai_analysis"],
+        ai_thought=data.get("ai_thought", "AI正在改变我们的工作和生活方式。"),
         geopolitics_news=geopolitics_news,
         geopolitics_analysis=data["geopolitics_analysis"],
+        geopolitics_thought=data.get("geopolitics_thought", "地缘政治风险需要持续关注。"),
         international=international,
+        international_thought=data.get("international_thought", "国际市场相互关联，需要全局视角。"),
         domestic=domestic,
+        domestic_thought=data.get("domestic_thought", "政策导向对市场有重要影响。"),
         tech=tech,
+        tech_thought=data.get("tech_thought", "技术创新是推动社会进步的核心动力。"),
         stock=data["stock"],
+        stock_thought=data.get("stock_thought", "投资需要理性和耐心。"),
         other_markets=other_markets,
+        other_thought=data.get("other_thought", "多元化投资可以分散风险。"),
         crypto_news=crypto_news,
         crypto_analysis=data.get("crypto_analysis", "加密市场波动较大，投资需谨慎。"),
+        crypto_thought=data.get("crypto_thought", "加密市场反映了人性的贪婪与恐惧。"),
         art_title=data.get("art_title", "今日艺术赏析"),
         art_content=data.get("art_content", "艺术是人类情感的表达。"),
         art_insight=data.get("art_insight", "用心感受艺术之美。"),
+        art_thought=data.get("art_thought", "艺术的价值在于触动人心。"),
         psych_title=data.get("psych_title", "投资心理"),
         psych_content=data.get("psych_content", "保持理性，控制情绪。"),
         psych_tip=data.get("psych_tip", "💡 今日心法：冷静思考，理性决策。"),
+        psych_thought=data.get("psych_thought", "理解自己的心理是投资成功的关键。"),
         today_focus=today_focus,
+        today_thought=data.get("today_thought", "关注重要信息，过滤市场噪音。"),
         learn_title=data["learn_title"],
         learn_content=data["learn_content"],
         reminder=data["reminder"]
