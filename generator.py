@@ -288,6 +288,20 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         </section>
         
         <section class="section">
+            <h2 class="section-title">❤️ 情感驿站</h2>
+            <div class="highlight-box">
+                <p><strong>【今日话题】</strong> {emotion_title}</p>
+                <br>
+                <p>{emotion_content}</p>
+                <br>
+                <p><em>{emotion_poem}</em></p>
+                <br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>{emotion_thought}</em></p>
+            </div>
+        </section>
+        
+        <section class="section">
             <h2 class="section-title">👀 今日看点</h2>
             <ul class="news-list">{today_focus}</ul>
             <br>
@@ -508,6 +522,10 @@ def generate_brief():
         "psych_content": "当AI能写诗、画画、写代码，甚至通过律师考试时，很多人开始问：'我还能做什么？'这种存在感焦虑正在蔓延。社会学研究发现，技术革命期人们会经历'能力贬值恐慌'——不是你真的没价值，而是衡量价值的标准在变化。历史上，汽车取代马车时，马夫们也曾恐慌，但驾驶员、汽修工、交通规划师等新职业应运而生。AI不会取代人，但会用AI的人会取代不会用的人。",
         "psych_tip": "💡 今日心法：与其焦虑被AI替代，不如思考如何让AI成为你的'外接大脑'。人类的创造力、同理心、价值判断，依然是不可替代的核心竞争力。",
         "psych_thought": "更深层的焦虑或许不是'AI会取代我'，而是'我不知道自己是谁'。当工作、技能、甚至创造力都被技术重新定义，人们被迫面对一个古老的问题：如果我不是我的职业，那我是谁？这种存在主义的危机，也许正是这个时代送给我们的礼物——逼我们找到比工作更深层的自我认同。",
+        "emotion_title": "成年人的'情绪劳动'",
+        "emotion_content": "你有没有发现，上班时即使再累也要保持微笑，面对客户的无理要求也要耐心解释，同事甩锅时还要装作大度？这叫'情绪劳动'——为了工作和社交，我们不得不管理、压抑甚至伪装自己的情绪。社会学研究发现，情绪劳动比体力劳动更消耗人。因为它没有下班时间，你回家后可能还在回味白天那句没怼回去的话。",
+        "emotion_poem": "📝 今日短句：'成年人的崩溃，是从计算'再忍忍就下班了'开始的。'",
+        "emotion_thought": "为什么我们越来越累？因为除了完成工作本身，我们还要'表演'一个情绪稳定的成年人。这种表演没有片酬，却耗费心力。也许真正的自我关怀，不是买包买鞋，而是允许自己偶尔'情绪不稳定'——在不伤害他人的前提下，诚实面对自己的感受。",
         "today_focus": [
             "A股春节后首个交易日，关注'开门红'",
             "1月LPR数据公布，关注利率动向",
@@ -569,6 +587,10 @@ def generate_html(data):
         psych_content=data.get("psych_content", "保持理性，控制情绪。"),
         psych_tip=data.get("psych_tip", "💡 今日心法：冷静思考，理性决策。"),
         psych_thought=data.get("psych_thought", "理解自己的心理是投资成功的关键。"),
+        emotion_title=data.get("emotion_title", "今日情感话题"),
+        emotion_content=data.get("emotion_content", "关注自己的情感需求。"),
+        emotion_poem=data.get("emotion_poem", "📝 今日短句：善待自己。"),
+        emotion_thought=data.get("emotion_thought", "情感是人类最真实的体验。"),
         today_focus=today_focus,
         today_thought=data.get("today_thought", "关注重要信息，过滤市场噪音。"),
         learn_title=data["learn_title"],
