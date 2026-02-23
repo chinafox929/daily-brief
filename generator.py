@@ -332,6 +332,24 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
 </html>'''
 
 
+def load_content_from_json():
+    """从content.json加载内容，如果不存在则使用默认数据"""
+    content_file = Path("/root/.openclaw/workspace/daily-brief/content.json")
+    
+    if content_file.exists():
+        try:
+            with open(content_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                print(f"✅ 已从 content.json 加载内容")
+                return data
+        except Exception as e:
+            print(f"⚠️ 读取 content.json 失败: {e}，使用默认数据")
+    else:
+        print(f"ℹ️ content.json 不存在，使用默认数据")
+    
+    return None
+
+
 def generate_brief():
     """生成每日简报内容"""
     
@@ -340,10 +358,18 @@ def generate_brief():
     weekdays = ["周一", "周二", "周三", "周四", "周五", "周六", "周日"]
     date_str = f"{today.year}年{today.month}月{today.day}日 {weekdays[today.weekday()]}"
     
+    # 尝试从content.json加载内容
+    external_data = load_content_from_json()
+    
+    if external_data:
+        # 使用外部数据，但确保日期是今天的
+        external_data["date"] = date_str
+        return external_data
+    
     # 获取实时AI新闻
     ai_news_list = fetch_ai_news()
     
-    # 示例数据（实际应从API获取）
+    # 默认数据（当content.json不存在时使用）
     data = {
         "date": date_str,
         "weekly_review": [
