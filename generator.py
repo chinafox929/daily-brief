@@ -432,6 +432,141 @@ def generate_html(data):
     return html
 
 
+def update_archive_index(date_str):
+    """更新归档页面"""
+    output_dir = Path("/root/.openclaw/workspace/daily-brief")
+    archive_html = output_dir / "archive.html"
+    
+    # 读取现有内容
+    if archive_html.exists():
+        with open(archive_html, "r", encoding="utf-8") as f:
+            content = f.read()
+    else:
+        # 创建基础模板
+        content = '''<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>归档 | 每日简报</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif; background: linear-gradient(135deg, #f5f0e8 0%, #e8e0d5 100%); min-height: 100vh; color: #3a3a3a; line-height: 1.8; }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .header { text-align: center; padding: 60px 0 40px; border-bottom: 1px solid #d4c9b8; margin-bottom: 40px; }
+        .title { font-size: 32px; font-weight: 300; color: #2c2c2c; letter-spacing: 8px; }
+        .archive-list { max-width: 600px; margin: 0 auto; }
+        .archive-item { display: flex; justify-content: space-between; align-items: center; padding: 15px 20px; margin-bottom: 10px; background: rgba(255,255,255,0.6); border-radius: 8px; border: 1px solid rgba(212,201,184,0.3); }
+        .archive-date { color: #5a4a3a; font-size: 16px; }
+        .archive-link { color: #8b7355; text-decoration: none; padding: 5px 15px; border: 1px solid #c4b8a8; border-radius: 4px; transition: all 0.3s; }
+        .archive-link:hover { background: #c4b8a8; color: white; }
+        .footer { text-align: center; padding: 40px 0; color: #a09080; font-size: 12px; letter-spacing: 2px; margin-top: 40px; border-top: 1px solid #d4c9b8; }
+        .nav { text-align: center; margin-bottom: 30px; }
+        .nav a { color: #8b7355; text-decoration: none; margin: 0 15px; font-size: 14px; }
+        .nav a:hover { color: #5a4a3a; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="nav">
+            <a href="index.html">今日简报</a>
+            <a href="about.html">关于</a>
+        </nav>
+        
+        <header class="header">
+            <h1 class="title">📚 历史归档</h1>
+        </header>
+        
+        <div class="archive-list">
+            <!-- ARCHIVE_ITEMS -->
+        </div>
+        
+        <footer class="footer">
+            <p>每日简报 · 记录每一天</p>
+        </footer>
+    </div>
+</body>
+</html>'''
+    
+    # 解析日期 (格式: "2026年2月23日 周一")
+    try:
+        # 提取日期部分
+        date_part = date_str.split()[0]  # "2026年2月23日"
+        date_obj = datetime.strptime(date_part, "%Y年%m月%d日")
+    except:
+        # 如果解析失败，使用今天
+        date_obj = datetime.now()
+    
+    # 创建新的归档条目
+    file_date = date_obj.strftime("%Y-%m-%d")
+    new_item = f'''            <div class="archive-item">
+                <span class="archive-date">{date_str}</span>
+                <a href="archive/{file_date}.html" class="archive-link">查看</a>
+            </div>
+'''
+    
+    # 插入到归档列表中（替换标记或插入到开头）
+    if '<!-- ARCHIVE_ITEMS -->' in content:
+        content = content.replace('<!-- ARCHIVE_ITEMS -->', new_item + '<!-- ARCHIVE_ITEMS -->')
+    elif '<div class="archive-list">' in content:
+        # 在archive-list div后插入
+        insert_pos = content.find('<div class="archive-list">') + len('<div class="archive-list">')
+        content = content[:insert_pos] + '\n' + new_item + content[insert_pos:]
+    
+    with open(archive_html, "w", encoding="utf-8") as f:
+        f.write(content)
+    
+    print(f"📂 归档页面已更新: {archive_html}")
+
+
+def git_commit_and_push():
+    """提交并推送到GitHub"""
+    import subprocess
+    import os
+    
+    output_dir = Path("/root/.openclaw/workspace/daily-brief")
+    os.chdir(output_dir)
+    
+    try:
+        # 配置git（如果还没配置）
+        subprocess.run(["git", "config", "user.email", "bot@dailybrief.ai"], check=False, capture_output=True)
+        subprocess.run(["git", "config", "user.name", "Daily Brief Bot"], check=False, capture_output=True)
+        
+        # 添加所有更改
+        result = subprocess.run(["git", "add", "-A"], capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"⚠️ git add 警告: {result.stderr}")
+        
+        # 检查是否有更改要提交
+        result = subprocess.run(["git", "status", "--porcelain"], capture_output=True, text=True)
+        if not result.stdout.strip():
+            print("ℹ️ 没有更改需要提交")
+            return True
+        
+        # 提交
+        today_str = datetime.now().strftime("%Y-%m-%d")
+        result = subprocess.run(["git", "commit", "-m", f"Update daily brief for {today_str}"], 
+                               capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"❌ git commit 失败: {result.stderr}")
+            return False
+        
+        print(f"✅ git commit 成功: {today_str}")
+        
+        # 推送
+        result = subprocess.run(["git", "push", "origin", "main"], capture_output=True, text=True)
+        if result.returncode != 0:
+            print(f"❌ git push 失败: {result.stderr}")
+            return False
+        
+        print("✅ git push 成功")
+        return True
+        
+    except Exception as e:
+        print(f"❌ git 操作失败: {e}")
+        return False
+
+
 def save_brief():
     """保存每日简报"""
     data = generate_brief()
@@ -455,6 +590,13 @@ def save_brief():
     print(f"✅ 每日简报已生成: {data['date']}")
     print(f"📁 文件位置: {output_dir}/index.html")
     print(f"📂 归档位置: {archive_dir}/{today_str}.html")
+    
+    # 更新归档页面
+    update_archive_index(data['date'])
+    
+    # 提交到GitHub
+    print("\n🚀 正在推送到GitHub...")
+    git_commit_and_push()
     
     return data['date']
 
