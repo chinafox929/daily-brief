@@ -220,6 +220,28 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         </section>
         
         <section class="section">
+            <h2 class="section-title">₿ 加密货币专栏</h2>
+            <div class="highlight-box">
+                <p><strong>【市场动态】</strong></p>
+                {crypto_news}
+                <br>
+                <p><strong>【趋势分析】</strong></p>
+                <p>{crypto_analysis}</p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">🎨 艺术鉴赏</h2>
+            <div class="highlight-box">
+                <p><strong>【今日赏析】</strong> {art_title}</p>
+                <br>
+                <p>{art_content}</p>
+                <br>
+                <p><em>💡 {art_insight}</em></p>
+            </div>
+        </section>
+        
+        <section class="section">
             <h2 class="section-title">👀 今日看点</h2>
             <ul class="news-list">{today_focus}</ul>
         </section>
@@ -411,6 +433,15 @@ def generate_brief():
             "港股：AI概念强势，腾讯阿里承压",
             "比特币：约6.8万美元"
         ],
+        "crypto_news": [
+            "• 比特币跌破6.5万美元，24小时跌幅超5%",
+            "• 以太坊失守2000美元关口，山寨币普遍回调",
+            "• 恐惧与贪婪指数降至14，市场进入极度恐慌区间"
+        ],
+        "crypto_analysis": "加密市场短期承压，BTC测试6.2万美元关键支撑。机构资金持续流出，但长期持有者仍在累积。建议观望为主，等待企稳信号。",
+        "art_title": "《星月夜》——梵高的疯狂与浪漫",
+        "art_content": "这幅创作于1889年的油画，是梵高在圣雷米精神病院期间的作品。画面中旋转的星云、起伏的山峦，仿佛能感受到艺术家内心的躁动与不安。那棵黑色的柏树像火焰般直冲云霄，而宁静的村庄则在夜色中沉睡。梵高用夸张的线条和浓烈的色彩，将内心的情感直接倾泻在画布上。",
+        "art_insight": "艺术不是复制现实，而是表达内心。梵高教会我们：即使身处黑暗，也要仰望星空。",
         "today_focus": [
             "A股春节后首个交易日，关注'开门红'",
             "1月LPR数据公布，关注利率动向",
@@ -436,6 +467,7 @@ def generate_html(data):
     geopolitics_news = "\n".join([f'<p>{item}</p>' for item in data["geopolitics_news"]])
     ai_news = "\n".join([f'<p>{item}</p>' for item in data["ai_news"]])
     weekly_review = "\n".join([f'<p>{item}</p>' for item in data["weekly_review"]])
+    crypto_news = "\n".join([f'<p>{item}</p>' for item in data.get("crypto_news", [])])
     
     html = HTML_TEMPLATE.format(
         date=data["date"],
@@ -449,6 +481,11 @@ def generate_html(data):
         tech=tech,
         stock=data["stock"],
         other_markets=other_markets,
+        crypto_news=crypto_news,
+        crypto_analysis=data.get("crypto_analysis", "加密市场波动较大，投资需谨慎。"),
+        art_title=data.get("art_title", "今日艺术赏析"),
+        art_content=data.get("art_content", "艺术是人类情感的表达。"),
+        art_insight=data.get("art_insight", "用心感受艺术之美。"),
         today_focus=today_focus,
         learn_title=data["learn_title"],
         learn_content=data["learn_content"],
