@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日早报 | 每日简报</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+            background: linear-gradient(135deg, #f5f0e8 0%, #e8e0d5 100%);
+            min-height: 100vh;
+            color: #3a3a3a;
+            line-height: 1.8;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        
+        .header { text-align: center; padding: 40px 0 30px; border-bottom: 1px solid #d4c9b8; margin-bottom: 30px; }
+        .date { font-size: 14px; color: #8b7355; letter-spacing: 3px; margin-bottom: 10px; }
+        .title { font-size: 28px; font-weight: 300; color: #2c2c2c; letter-spacing: 6px; }
+        
+        .nav { text-align: center; margin-bottom: 30px; padding: 15px 0; background: rgba(255,255,255,0.4); border-radius: 30px; }
+        .nav a { color: #5a4a3a; text-decoration: none; margin: 0 12px; font-size: 14px; padding: 6px 14px; border-radius: 15px; transition: all 0.3s; }
+        .nav a:hover, .nav a.active { background: #c4a882; color: white; }
+        
+        /* 早报内容样式 */
+        .brief-intro { 
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f2ed 100%); 
+            padding: 25px; 
+            border-radius: 12px; 
+            margin-bottom: 30px;
+            text-align: center;
+            border-left: 4px solid #c4a882;
+        }
+        .brief-intro p { font-size: 15px; color: #5a4a3a; }
+        
+        .section { background: rgba(255,255,255,0.6); border-radius: 12px; padding: 30px; margin-bottom: 25px; box-shadow: 0 2px 15px rgba(0,0,0,0.03); }
+        .section-title { 
+            font-size: 18px; 
+            color: #5a4a3a; 
+            margin-bottom: 20px; 
+            padding-bottom: 12px; 
+            border-bottom: 2px solid #c4a882;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .news-item { 
+            padding: 20px 0; 
+            border-bottom: 1px dashed #e0d8cd; 
+        }
+        .news-item:last-child { border-bottom: none; }
+        .news-num { 
+            display: inline-block; 
+            width: 24px; 
+            height: 24px; 
+            background: #c4a882; 
+            color: white; 
+            border-radius: 50%; 
+            text-align: center; 
+            line-height: 24px; 
+            font-size: 12px; 
+            margin-right: 10px;
+        }
+        .news-title { font-size: 16px; color: #2c2c2c; margin-bottom: 10px; font-weight: 500; }
+        .news-content { font-size: 14px; color: #555; line-height: 1.9; margin-bottom: 10px; }
+        .news-impact { 
+            background: #f9f7f4; 
+            padding: 12px 15px; 
+            border-radius: 8px; 
+            font-size: 13px; 
+            color: #8b7355; 
+            border-left: 3px solid #c4a882;
+        }
+        
+        /* 特殊板块样式 */
+        .stock-box { background: #faf8f5; padding: 20px; border-radius: 10px; margin: 15px 0; }
+        .stock-title { font-size: 14px; color: #c4a882; margin-bottom: 10px; font-weight: 500; }
+        .stock-list { list-style: none; }
+        .stock-list li { padding: 6px 0; font-size: 14px; color: #555; }
+        .stock-list li::before { content: "•"; color: #c4a882; margin-right: 8px; }
+        
+        .learn-box { background: linear-gradient(135deg, #f5f0e8 0%, #ebe5dc 100%); padding: 25px; border-radius: 12px; margin: 20px 0; }
+        .learn-title { font-size: 16px; color: #5a4a3a; margin-bottom: 15px; font-weight: 500; }
+        .learn-content { font-size: 14px; color: #555; line-height: 2; }
+        .learn-example { background: white; padding: 15px; border-radius: 8px; margin-top: 15px; font-size: 13px; color: #666; }
+        
+        .reminder-box { 
+            background: linear-gradient(135deg, #c4a882 0%, #a89070 100%); 
+            color: white; 
+            padding: 25px; 
+            border-radius: 12px; 
+            text-align: center;
+            margin: 30px 0;
+        }
+        .reminder-box .emoji { font-size: 32px; margin-bottom: 10px; }
+        .reminder-box p { font-size: 15px; line-height: 1.8; }
+        
+        .insight-box { 
+            background: linear-gradient(135deg, #faf8f5 0%, #f5f2ed 100%); 
+            border-left: 4px solid #c4a882; 
+            padding: 20px; 
+            margin: 20px 0; 
+            border-radius: 0 8px 8px 0;
+        }
+        .insight-box p { font-size: 14px; color: #5a4a3a; line-height: 1.9; font-style: italic; }
+        
+        .divider { 
+            text-align: center; 
+            margin: 30px 0; 
+            color: #c4b8a8; 
+            letter-spacing: 10px;
+            font-size: 14px;
+        }
+        
+        .footer { text-align: center; padding: 40px 0; color: #a09080; font-size: 12px; letter-spacing: 2px; border-top: 1px solid #d4c9b8; margin-top: 40px; }
+        
+        @media (max-width: 600px) { 
+            .title { font-size: 24px; }
+            .section { padding: 20px; }
+            .nav a { margin: 0 6px; font-size: 12px; padding: 5px 10px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="date">2026年2月24日 周二</div>
+            <h1 class="title">📰 每日新闻早报</h1>
+        </header>
+        
+        <nav class="nav">
+            <a href="index.html">首页</a>
+            <a href="today.html" class="active">今日早报</a>
+            <a href="columns.html">全部专栏</a>
+            <a href="archive.html">历史归档</a>
+            <a href="about.html">关于</a>
+        </nav>
+        
+        <div class="brief-intro">
+            <p>☀️ 早上好！新的一天开始啦，来看看今天有啥值得关注的事儿</p>
+        </div>
+        
+        <!-- 国际热点 -->
+        <div class="section">
+            <h2 class="section-title">🌍 国际热点</h2>
+            
+            <div class="news-item">
+                <div class="news-title"><span class="news-num">1</span>俄乌冲突满三周年，和平谈判有新动静</div>
+                <div class="news-content">
+                    特朗普政府跟俄方直接对话，想尽快结束这场仗。但乌克兰和欧洲盟友有点不高兴——谈判桌上没叫他们。这事儿对A股影响：军工、黄金板块可能波动，但整体对我们市场影响有限，不用太担心。
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-title"><span class="news-num">2</span>特朗普又要加关税，美股昨晚大跌</div>
+                <div class="news-content">
+                    美国最高法院刚否了他的对等关税，特朗普立马发话要把全球关税从10%提到15%。道指昨晚跌了800多点，科技股也承压。对咱们A股来说，出口企业可能受影响，但国内政策对冲力度大，不用慌。
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-title"><span class="news-num">3</span>黄金价格创新高</div>
+                <div class="news-content">
+                    避险情绪升温，黄金现货涨了约2%。手里有黄金ETF的朋友可以偷着乐了～
+                </div>
+            </div>
+            
+            <div class="insight-box">
+                <p>💭 深度思考：特朗普的关税政策像一场即兴爵士乐——没人知道下一个音符是什么。但市场讨厌不确定性。这种环境下，'预测'变得无用，'适应'变得关键。与其猜测政策走向，不如构建无论哪种情况都能生存的仓位结构。</p>
+            </div>
+        </div>
+        
+        <div class="divider">━━━━━━━━━━━━━━</div>
+        
+        <!-- 国内动态 -->
+        <div class="section">
+            <h2 class="section-title">🇨🇳 国内动态</h2>
+            
+            <div class="news-item">
+                <div class="news-title"><span class="news-num">1</span>2025年中央一号文件发布，聚焦智慧农业</div>
+                <div class="news-content">
+                    文件提出要发展农业新质生产力，用AI技术改造农业，还明确禁止城镇居民买农房和宅基地。
+                </div>
+                <div class="news-impact">💡 影响：利好农业科技股，比如无人机、智能农机相关企业</div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-title"><span class="news-num">2</span>A股成交额创历史新高，外资疯狂买入</div>
+                <div class="news-content">
+                    昨天A股成交额突破2.6万亿元！外资净流入超100亿美元，汇丰、高盛、摩根士丹利集体唱多中国股市。这说明啥？老外看好咱们的科技企业和市场前景！
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-title"><span class="news-num">3</span>国务院通过新能源汽车动力电池回收方案</div>
+                <div class="news-content">
+                    以后电动车旧电池怎么处理有规矩了。利好格林美这些电池回收龙头，长期看新能源产业链更完善了。
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-title"><span class="news-num">4</span>国资委启动央企AI+专项行动</div>
+                <div class="news-content">
+                    要求把人工智能纳入十五五规划，推动高价值场景落地。AI+国企改革的组合拳，相关概念股值得关注。
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-title"><span class="news-num">5</span>深圳向民间资本推介2000亿+重大项目</div>
+                <div class="news-content">
+                    深圳继续优化营商环境，还上线了AI辅助境外投资备案系统。大湾区投资机会多，关注深圳本地股。
+                </div>
+            </div>
+            
+            <div class="insight-box">
+                <p>💭 深度思考：政策底和市场底往往不是同一个底。政策可以托住经济不往下掉，但托不出牛市。牛市需要信心，而信心来自赚钱效应，赚钱效应来自基本面改善。这个传导链条很长，需要耐心。现在是什么阶段？政策底已现，市场底在磨，业绩底未到。</p>
+            </div>
+        </div>
+        
+        <div class="divider">━━━━━━━━━━━━━━</div>
+        
+        <!-- 科技新鲜事 -->
+        <div class="section">
+            <h2 class="section-title">🤖 科技新鲜事</h2>
+            
+            <div class="news-item">
+                <div class="news-title"><span class="news-num">1</span>智平方完成B轮超10亿融资，估值破百亿</div>
+                <div class="news-content">
+                    这家做通用智能机器人的公司，被叫做最像特斯拉的中国机器人公司。投资方包括百度战投、中车资本等。机器人赛道越来越热，小米、小鹏、蔚来等18家车企都切入了。
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-title"><span class="news-num">2</span>宇树科技推出9.9万元人形机器人G1</div>
+                <div class="news-content">
+                    人形机器人开始卷价格了！9.9万就能买个人形机器人回家，虽然可能也就是个高级玩具，但说明技术成本在快速下降。
+                </div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-title"><span class="news-num">3</span>DeepSeek大模型持续火爆</div>
+                <div class="news-content">
+                    开源大模型技术突破成焦点，上海AI产业规模已突破4500亿元。AI应用落地加速，从聊天机器人到编程助手，越来越融入日常生活。
+                </div>
+            </div>
+            
+            <div class="insight-box">
+                <p>💭 深度思考：技术扩散遵循一个规律：先被嘲笑，后被恐惧，最后被忽视。AI现在处于'被恐惧'阶段。但历史告诉我们，真正改变世界的技术，最终都会变得像水电一样——无处不在，却无人谈论。投资的关键是找到那个从'被恐惧'到'被忽视'的转折点。</p>
+            </div>
+        </div>
+        
+        <div class="divider">━━━━━━━━━━━━━━</div>
+        
+        <!-- A股重点 -->
+        <div class="section">
+            <h2 class="section-title">🔥 A股重点</h2>
+            
+            <div class="stock-box">
+                <div class="stock-title">📊 昨日大盘回顾</div>
+                <ul class="stock-list">
+                    <li>上证指数：震荡整理，成交额创近期新高</li>
+                    <li>深证成指、创业板指：涨跌互现，科技股分化</li>
+                    <li>成交量：突破2.6万亿元，市场活跃度极高</li>
+                    <li>资金流向：外资净流入超100亿美元，主力资金有分歧（出逃320亿元）</li>
+                </ul>
+            </div>
+            
+            <div class="stock-box">
+                <div class="stock-title">🔥 热点板块</div>
+                <ul class="stock-list">
+                    <li>AI算力链（液冷服务器、CPO、光通信）：持续强势，液冷服务器板块自2025年11月以来已涨超20%</li>
+                    <li>半导体/存储芯片：1月底回调后重新启动反弹</li>
+                    <li>消费电子/苹果概念：2月中旬创新高，累计涨幅超20%</li>
+                    <li>机器人概念：受融资利好刺激，板块活跃</li>
+                    <li>新能源/固态电池：政策利好加持</li>
+                </ul>
+            </div>
+            
+            <div class="stock-box">
+                <div class="stock-title">📈 技术面简析</div>
+                <ul class="stock-list">
+                    <li>支撑位：沪指3300点附近有较强支撑</li>
+                    <li>压力位：3400点关口需要放量突破</li>
+                    <li>成交量：2万亿以上是健康水平，目前量能充足</li>
+                </ul>
+            </div>
+            
+            <div class="stock-box">
+                <div class="stock-title">💡 今日操作建议</div>
+                <ul class="stock-list">
+                    <li><strong>短期：</strong>关注外资持续流入的科技、消费龙头，但回避涨幅过高且无业绩支撑的概念股</li>
+                    <li><strong>中长期：</strong>布局政策驱动的AI+、机器人、新能源产业链，以及低估值国企改革标的</li>
+                    <li><strong>风险提示：</strong>注意科技股短期回调压力，关注即将披露的2025年年报业绩</li>
+                </ul>
+            </div>
+            
+            <div class="insight-box">
+                <p>💭 深度思考：技术分析的本质是什么？是寻找市场参与者行为的规律。支撑和压力之所以存在，是因为人们记得那个价格。当足够多人相信某个价位有意义，它就有了意义。这是一种集体幻觉，但幻觉也能赚钱——只要你比大多数人早一步意识到幻觉的存在。</p>
+            </div>
+        </div>
+        
+        <div class="divider">━━━━━━━━━━━━━━</div>
+        
+        <!-- 其他市场 -->
+        <div class="section">
+            <h2 class="section-title">💹 其他市场</h2>
+            
+            <div class="news-item">
+                <div class="news-title">🇺🇸 美股</div>
+                <div class="news-content">昨晚道指跌1.66%，纳指跌1.13%，标普500跌1.04%。特朗普关税言论打压市场情绪，IBM因AI竞争担忧重挫13%。</div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-title">🇭🇰 港股</div>
+                <div class="news-content">恒生指数、恒生科技指数近期高开高走，与A股形成联动，科技股表现活跃。</div>
+            </div>
+            
+            <div class="news-item">
+                <div class="news-title">₿ 加密市场</div>
+                <div class="news-content">比特币跌破65000美元，跌幅超4%，超13万人爆仓。加密货币整体承压，避险情绪明显。</div>
+            </div>
+        </div>
+        
+        <div class="divider">━━━━━━━━━━━━━━</div>
+        
+        <!-- 今日看点 -->
+        <div class="section">
+            <h2 class="section-title">📅 今日看点</h2>
+            <ul class="stock-list">
+                <li>十四届全国人大常委会第十四次会议（2月24-25日）：关注是否有新的经济政策出台</li>
+                <li>A股上市公司2025年年报披露窗口期开启：盛美上海、德明利、顺络电子等率先披露</li>
+                <li>美国PMI数据本周五公布：影响美联储降息预期</li>
+            </ul>
+        </div>
+        
+        <div class="divider">━━━━━━━━━━━━━━</div>
+        
+        <!-- 每日财经学习 -->
+        <div class="section">
+            <h2 class="section-title">📚 每日财经学习</h2>
+            
+            <div class="learn-box">
+                <div class="learn-title">💡 今天聊聊：什么是复利？</div>                
+                <div class="learn-content">
+                    复利说白了就是利滚利。比如你存100块，年利率10%，一年后是110块。第二年不是按100块算利息，而是按110块算，变成121块。看起来差的不多，但时间越长差距越大。
+                </div>
+                
+                <div class="learn-example">
+                    <strong>举个例子：</strong><br>
+                    20岁开始每月定投500块，年化收益8%，到60岁能有约<strong>174万</strong>；<br>
+                    但如果30岁才开始，同样条件到60岁只有约<strong>74万</strong>。<br><br>
+                    晚10年，少了100万！这就是复利的威力——<strong>时间是最好的朋友，越早开始越轻松。</strong>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 每日一提醒 -->
+        <div class="reminder-box">
+            <div class="emoji">🎯</div>
+            <p><strong>不要把所有鸡蛋放在一个篮子里</strong>——分散投资是控制风险最简单有效的方法。</p>
+            <p style="margin-top: 15px;">建议把资金分配到不同行业、不同资产类型，比如股票、债券、黄金、现金都配一点。这样即使某个板块大跌，整体也不会伤筋动骨。</p>
+            <p style="margin-top: 15px; font-size: 13px; opacity: 0.9;">投资是马拉松，不是百米冲刺，活得久比跑得快更重要！</p>
+        </div>
+        
+        <footer class="footer">
+            <p>好啦，今天的早报就到这里！祝大家投资顺利，心情愉快～有问题随时聊！☀️</p>
+            <p style="margin-top: 15px; opacity: 0.6;">专属信息网 · 每日更新 · 禅意 · 简约 · 专注</p>
+        </footer>
+    </div>
+</body>
+</html>

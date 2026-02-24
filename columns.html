@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全部专栏 | 每日简报</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+            background: linear-gradient(135deg, #f5f0e8 0%, #e8e0d5 100%);
+            min-height: 100vh;
+            color: #3a3a3a;
+            line-height: 1.8;
+        }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        
+        .header { text-align: center; padding: 40px 0 30px; border-bottom: 1px solid #d4c9b8; margin-bottom: 30px; }
+        .title { font-size: 28px; font-weight: 300; color: #2c2c2c; letter-spacing: 6px; }
+        
+        .nav { text-align: center; margin-bottom: 40px; padding: 15px 0; background: rgba(255,255,255,0.4); border-radius: 30px; }
+        .nav a { color: #5a4a3a; text-decoration: none; margin: 0 12px; font-size: 14px; padding: 6px 14px; border-radius: 15px; transition: all 0.3s; }
+        .nav a:hover, .nav a.active { background: #c4a882; color: white; }
+        
+        .section-title { 
+            font-size: 20px; 
+            color: #5a4a3a; 
+            margin: 40px 0 25px;
+            padding-left: 15px;
+            border-left: 4px solid #c4a882;
+        }
+        
+        .column-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
+        
+        .column-card {
+            background: rgba(255,255,255,0.7);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+            border: 1px solid rgba(212,201,184,0.3);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .column-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+        
+        .column-header { display: flex; align-items: center; gap: 15px; margin-bottom: 15px; }
+        .column-icon { font-size: 36px; }
+        .column-info { flex: 1; }
+        .column-name { font-size: 18px; color: #2c2c2c; font-weight: 500; }
+        .column-tag { 
+            display: inline-block; 
+            font-size: 11px; 
+            color: white; 
+            background: #c4a882; 
+            padding: 2px 8px; 
+            border-radius: 10px; 
+            margin-top: 5px;
+        }
+        .column-tag.daily { background: #e74c3c; }
+        .column-tag.weekly { background: #3498db; }
+        .column-tag.realtime { background: #27ae60; }
+        
+        .column-desc { font-size: 14px; color: #666; line-height: 1.7; margin-bottom: 15px; }
+        
+        .column-meta { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px dashed #e0d8cd;
+            font-size: 12px;
+            color: #8b7355;
+        }
+        
+        .footer { text-align: center; padding: 40px 0; color: #a09080; font-size: 12px; letter-spacing: 2px; border-top: 1px solid #d4c9b8; margin-top: 40px; }
+        
+        @media (max-width: 600px) { 
+            .title { font-size: 24px; }
+            .column-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">📚 全部专栏</h1>
+        </header>
+        
+        <nav class="nav">
+            <a href="index.html">首页</a>
+            <a href="today.html">今日早报</a>
+            <a href="columns.html" class="active">全部专栏</a>
+            <a href="archive.html">历史归档</a>
+            <a href="about.html">关于</a>
+        </nav>
+        
+        <h2 class="section-title">📰 新闻资讯类（每日更新）</h2>
+        <div class="column-grid">
+            <a href="columns/international.html" class="column-card">
+                <div class="column-header">
+                    <div class="column-icon">🌍</div>
+                    <div class="column-info">
+                        <div class="column-name">国际热点</div>
+                        <span class="column-tag daily">每日</span>
+                    </div>
+                </div>
+                <div class="column-desc">全球政经动态，关税、地缘、宏观政策解读。特朗普的一举一动，美联储的利率决议，都在这里找到对A股的影响分析。</div>
+                <div class="column-meta">
+                    <span>今日更新 3 条</span>
+                    <span>→ 进入专栏</span>
+                </div>
+            </a>
+            
+            <a href="columns/domestic.html" class="column-card">
+                <div class="column-header">
+                    <div class="column-icon">🇨🇳</div>
+                    <div class="column-info">
+                        <div class="column-name">国内动态</div>
+                        <span class="column-tag daily">每日</span>
+                    </div>
+                </div>
+                <div class="column-desc">政策风向、产业趋势、地方经济要闻。中央一号文件、国资委动作、地方重大项目，第一时间解读对投资的影响。</div>
+                <div class="column-meta">
+                    <span>今日更新 5 条</span>
+                    <span>→ 进入专栏</span>
+                </div>
+            </a>
+            
+            <a href="columns/tech.html" class="column-card">
+                <div class="column-header">
+                    <div class="column-icon">🤖</div>
+                    <div class="column-info">
+                        <div class="column-name">科技新鲜事</div>
+                        <span class="column-tag daily">每日</span>
+                    </div>
+                </div>
+                <div class="column-desc">AI、机器人、芯片、新能源前沿动态。DeepSeek、宇树机器人、智平方融资，科技赛道的热点和投资机会。</div>
+                <div class="column-meta">
+                    <span>今日更新 3 条</span>
+                    <span>→ 进入专栏</span>
+                </div>
+            </a>
+            
+            <a href="columns/stock.html" class="column-card">
+                <div class="column-header">
+                    <div class="column-icon">🔥</div>
+                    <div class="column-info">
+                        <div class="column-name">A股重点</div>
+                        <span class="column-tag daily">每日收盘</span>
+                    </div>
+                </div>
+                <div class="column-desc">大盘分析、热点板块、操作建议。成交额、资金流向、技术面解读，每天收盘后的复盘总结。</div>
+                <div class="column-meta">
+                    <span>昨日已更新</span>
+                    <span>→ 进入专栏</span>
+                </div>
+            </a>
+        </div>
+        
+        <h2 class="section-title">📈 市场数据类（实时/每日）</h2>
+        
+        <div class="column-grid">
+            <a href="columns/crypto.html" class="column-card">
+                <div class="column-header">
+                    <div class="column-icon">₿</div>
+                    <div class="column-info">
+                        <div class="column-name">加密市场</div>
+                        <span class="column-tag realtime">实时</span>
+                    </div>
+                </div>
+                <div class="column-desc">BTC、ETH行情，政策监管、项目动态。价格走势、爆仓数据、ETF资金流向，加密市场的实时雷达。</div>
+                <div class="column-meta">
+                    <span>实时更新</span>
+                    <span>→ 进入专栏</span>
+                </div>
+            </a>
+            
+            <a href="columns/global-markets.html" class="column-card">
+                <div class="column-header">
+                    <div class="column-icon">📊</div>
+                    <div class="column-info">
+                        <div class="column-name">全球市场</div>
+                        <span class="column-tag daily">每日</span>
+                    </div>
+                </div>
+                <div class="column-desc">美股、港股、日股、欧股。全球主要市场动态，以及对A股的联动影响分析。</div>
+                <div class="column-meta">
+                    <span>每日收盘更新</span>
+                    <span>→ 进入专栏</span>
+                </div>
+            </a>
+        </div>
+        
+        <h2 class="section-title">🎨 人文艺术类（每周更新）</h2>
+        
+        <div class="column-grid">
+            <a href="columns/art.html" class="column-card">
+                <div class="column-header">
+                    <div class="column-icon">🎨</div>
+                    <div class="column-info">
+                        <div class="column-name">艺术鉴赏</div>
+                        <span class="column-tag weekly">每周</span>
+                    </div>
+                </div>
+                <div class="column-desc">名画赏析、艺术史、审美提升。梵高、莫奈、毕加索，看懂经典作品背后的故事和精神内核。</div>
+                <div class="column-meta">
+                    <span>本周已更新</span>
+                    <span>→ 进入专栏</span>
+                </div>
+            </a>
+            
+            <a href="columns/psychology.html" class="column-card">
+                <div class="column-header">
+                    <div class="column-icon">🧠</div>
+                    <div class="column-info">
+                        <div class="column-name">投资心理学</div>
+                        <span class="column-tag weekly">每周</span>
+                    </div>
+                </div>
+                <div class="column-desc">行为金融、认知偏差、情绪管理。为什么明知该买却不敢买？为什么赚一点就跑、亏很多却死扛？</div>
+                <div class="column-meta">
+                    <span>每周三更新</span>
+                    <span>→ 进入专栏</span>
+                </div>
+            </a>
+            
+            <a href="columns/emotion.html" class="column-card">
+                <div class="column-header">
+                    <div class="column-icon">❤️</div>
+                    <div class="column-info">
+                        <div class="column-name">情感驿站</div>
+                        <span class="column-tag weekly">每周</span>
+                    </div>
+                </div>
+                <div class="column-desc">生活感悟、情绪价值、人际关系。成年人的情绪劳动、职场压力、亲密关系，温暖的情感角落。</div>
+                <div class="column-meta">
+                    <span>每周五更新</span>
+                    <span>→ 进入专栏</span>
+                </div>
+            </a>
+        </div>
+        
+        <h2 class="section-title">📚 学习成长类（每周更新）</h2>
+        
+        <div class="column-grid">
+            <a href="columns/finance-learn.html" class="column-card">
+                <div class="column-header">
+                    <div class="column-icon">📖</div>
+                    <div class="column-info">
+                        <div class="column-name">每日财经学习</div>
+                        <span class="column-tag daily">每日</span>
+                    </div>
+                </div>
+                <div class="column-desc">复利、成交量、PE/PB、MACD...每天一个财经知识点，用大白话讲清楚投资必备的基础概念。</div>
+                <div class="column-meta">
+                    <span>今日：什么是复利？</span>
+                    <span>→ 进入专栏</span>
+                </div>
+            </a>
+            
+            <a href="columns/strategy.html" class="column-card">
+                <div class="column-header">
+                    <div class="column-icon">🎯</div>
+                    <div class="column-info">
+                        <div class="column-name">交易策略</div>
+                        <span class="column-tag weekly">每周</span>
+                    </div>
+                </div>
+                <div class="column-desc">量化策略、技术分析、资金管理。从入门到进阶，系统学习投资交易的方法论。</div>
+                <div class="column-meta">
+                    <span>每周一更新</span>
+                    <span>→ 进入专栏</span>
+                </div>
+            </a>
+        </div>
+        
+        <footer class="footer">
+            <p>专属信息网 · 每日更新 · 禅意 · 简约 · 专注</p>
+        </footer>
+    </div>
+</body>
+</html>

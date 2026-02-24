@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日简报 | 2026年2月24日 周二</title>
+    <title>每日简报 | 专属信息网</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -13,316 +13,183 @@
             color: #3a3a3a;
             line-height: 1.8;
         }
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .container { max-width: 900px; margin: 0 auto; padding: 40px 20px; }
+        
+        /* 头部 */
         .header { text-align: center; padding: 60px 0 40px; border-bottom: 1px solid #d4c9b8; margin-bottom: 40px; }
         .date { font-size: 14px; color: #8b7355; letter-spacing: 3px; margin-bottom: 10px; }
-        .title { font-size: 32px; font-weight: 300; color: #2c2c2c; letter-spacing: 8px; }
-        .zen-circle { width: 80px; height: 80px; border: 2px solid #c4b8a8; border-radius: 50%; margin: 30px auto; position: relative; opacity: 0.6; }
-        .zen-circle::before { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; border: 1px solid #d4c9b8; border-radius: 50%; }
-        .section { background: rgba(255, 255, 255, 0.6); border-radius: 8px; padding: 30px; margin-bottom: 25px; box-shadow: 0 2px 15px rgba(0,0,0,0.03); border: 1px solid rgba(212, 201, 184, 0.3); }
-        .section-title { font-size: 18px; color: #5a4a3a; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #e0d8cd; display: flex; align-items: center; gap: 10px; }
-        .news-list { list-style: none; }
-        .news-item { padding: 12px 0; border-bottom: 1px dashed #e0d8cd; position: relative; padding-left: 20px; }
+        .title { font-size: 36px; font-weight: 300; color: #2c2c2c; letter-spacing: 8px; }
+        .subtitle { font-size: 14px; color: #8b7355; margin-top: 15px; letter-spacing: 2px; }
+        .zen-circle { width: 60px; height: 60px; border: 2px solid #c4b8a8; border-radius: 50%; margin: 25px auto; position: relative; opacity: 0.6; }
+        .zen-circle::before { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 30px; height: 30px; border: 1px solid #d4c9b8; border-radius: 50%; }
+        
+        /* 导航 */
+        .nav { text-align: center; margin-bottom: 40px; padding: 15px 0; background: rgba(255,255,255,0.4); border-radius: 30px; }
+        .nav a { color: #5a4a3a; text-decoration: none; margin: 0 12px; font-size: 14px; padding: 6px 14px; border-radius: 15px; transition: all 0.3s; }
+        .nav a:hover, .nav a.active { background: #c4a882; color: white; }
+        
+        /* 专栏卡片网格 */
+        .column-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; margin-bottom: 40px; }
+        .column-card {
+            background: rgba(255,255,255,0.7);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.03);
+            border: 1px solid rgba(212,201,184,0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .column-card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.08); }
+        .column-icon { font-size: 32px; margin-bottom: 12px; }
+        .column-title { font-size: 18px; color: #2c2c2c; margin-bottom: 8px; font-weight: 500; }
+        .column-desc { font-size: 13px; color: #8b7355; line-height: 1.6; }
+        .column-update { font-size: 11px; color: #a09080; margin-top: 12px; }
+        
+        /* 今日早报预览 */
+        .today-brief { background: rgba(255,255,255,0.6); border-radius: 12px; padding: 30px; margin-bottom: 30px; box-shadow: 0 2px 15px rgba(0,0,0,0.03); }
+        .section-title { font-size: 20px; color: #5a4a3a; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #e0d8cd; display: flex; align-items: center; gap: 10px; }
+        
+        /* 新闻条目 */
+        .news-section { margin-bottom: 25px; }
+        .news-category { font-size: 14px; color: #c4a882; font-weight: 500; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .news-item { padding: 12px 0; border-bottom: 1px dashed #e0d8cd; position: relative; padding-left: 16px; }
         .news-item:last-child { border-bottom: none; }
-        .news-item::before { content: "•"; position: absolute; left: 0; color: #a09080; }
-        .highlight-box { background: linear-gradient(135deg, #faf8f5 0%, #f5f2ed 100%); border-left: 3px solid #c4a882; padding: 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
-        .learn-box { background: #f9f7f4; padding: 20px; border-radius: 8px; border: 1px solid #e8e0d5; }
-        .learn-title { font-size: 14px; color: #8b7355; margin-bottom: 10px; }
-        .reminder { background: linear-gradient(135deg, #f5f0e8 0%, #ebe5dc 100%); padding: 20px; border-radius: 8px; text-align: center; font-size: 15px; color: #5a4a3a; }
-        .footer { text-align: center; padding: 40px 0; color: #a09080; font-size: 12px; letter-spacing: 2px; }
-        .nav { text-align: center; margin-bottom: 30px; }
-        .nav a { color: #8b7355; text-decoration: none; margin: 0 15px; font-size: 14px; }
-        .nav a:hover { color: #5a4a3a; }
+        .news-item::before { content: "›"; position: absolute; left: 0; color: #c4a882; }
+        .news-title { font-size: 15px; color: #3a3a3a; margin-bottom: 6px; }
+        .news-summary { font-size: 13px; color: #666; line-height: 1.7; }
+        .news-impact { font-size: 12px; color: #8b7355; margin-top: 6px; font-style: italic; }
         
-        /* 滚动渐显动画 */
-        .section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        /* 深度思考框 */
+        .insight-box { background: linear-gradient(135deg, #faf8f5 0%, #f5f2ed 100%); border-left: 3px solid #c4a882; padding: 20px; margin: 20px 0; border-radius: 0 8px 8px 0; }
+        .insight-box p { font-size: 14px; color: #5a4a3a; line-height: 1.9; font-style: italic; }
         
-        /* 鼠标光标效果 - 电脑端 */
-        .cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #c4a882;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease, opacity 0.3s ease;
-            opacity: 0;
-        }
-        .cursor.active {
-            opacity: 1;
-            transform: scale(1.5);
-            background: rgba(196, 168, 130, 0.1);
-        }
-        .cursor-dot {
-            width: 6px;
-            height: 6px;
-            background: #c4a882;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .cursor-dot.active {
-            opacity: 1;
-        }
+        /* 阅读更多 */
+        .read-more { text-align: center; margin-top: 25px; }
+        .read-more a { display: inline-block; padding: 12px 30px; background: #c4a882; color: white; text-decoration: none; border-radius: 25px; font-size: 14px; transition: all 0.3s; }
+        .read-more a:hover { background: #a89070; }
         
-        /* 悬停效果 */
-        .section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
+        /* 页脚 */
+        .footer { text-align: center; padding: 40px 0; color: #a09080; font-size: 12px; letter-spacing: 2px; border-top: 1px solid #d4c9b8; margin-top: 40px; }
         
-        /* 移动端触摸优化 */
-        @media (hover: none) {
-            .cursor, .cursor-dot { display: none; }
-            .section { 
-                opacity: 1;
-                transform: none;
-                transition: transform 0.3s ease;
-            }
+        @media (max-width: 600px) { 
+            .title { font-size: 28px; letter-spacing: 4px; }
+            .column-grid { grid-template-columns: 1fr; }
+            .nav a { margin: 0 6px; font-size: 12px; padding: 5px 10px; }
         }
-        
-        /* 平滑滚动 */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* 加载动画 */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .header {
-            animation: fadeIn 0.8s ease-out;
-        }
-        
-        @media (max-width: 600px) { .title { font-size: 24px; letter-spacing: 4px; } .section { padding: 20px; } }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="nav">
-            <a href="index.html">今日</a>
-            <a href="archive.html">归档</a>
-            <a href="about.html">关于</a>
-        </div>
-        
         <header class="header">
-            <div class="date">2026年2月24日 周二</div>
+            <div class="date" id="current-date">2026年2月24日 周二</div>
             <h1 class="title">每日简报</h1>
             <div class="zen-circle"></div>
-            <div class="subtitle">专属信息网 · 禅意生活</div>
+            <div class="subtitle">专属信息网 · 深度思考 · 禅意生活</div>
         </header>
         
-        <section class="section">
-            <h2 class="section-title">📅 每周回顾</h2>
-            <div class="highlight-box">
-                <p><strong>【上周市场回顾】</strong></p>
-                <p>• 📈 A股：上证指数周涨0.97%，深成指涨1.2%，创业板指涨1.8%</p>
-<p>• 🌍 国际：美股上周五显著下行，道指跌超1%，纳指跌1.5%</p>
-<p>• 💰 汇率：人民币兑美元约7.25，外资持续流入</p>
-<p>• 🏆 板块：AI概念、芯片、机器人领涨；地产、银行相对弱势</p>
-<p>• 📊 成交：日均成交额1.8-2万亿，量能维持高位</p>
-                <br><br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>市场永远在奖励那些能看穿噪音的人。当所有人都在讨论AI泡沫时，真正赚钱的是那些看懂AI基础设施需求的人——算力、电力、数据中心。投资不是追逐热点，而是理解热点的底层逻辑。</em></p>
-            </div>
-        </section>
+        <nav class="nav">
+            <a href="index.html" class="active">首页</a>
+            <a href="today.html">今日早报</a>
+            <a href="columns.html">全部专栏</a>
+            <a href="archive.html">历史归档</a>
+            <a href="about.html">关于</a>
+        </nav>
         
-        <section class="section">
-            <h2 class="section-title">🤖 AI 专区</h2>
-            <div class="highlight-box">
-                <p><strong>【AI 快讯】</strong></p>
-                <p>• 阿里宣布未来三年投入超3800亿元建设云和AI硬件基础设施，超过去十年总和</p>
-<p>• DeepSeek概念指数2025年涨幅超40%，AI投资持续火热</p>
-<p>• 文心一言宣布4月1日起全面免费，AI大模型竞争白热化</p>
-<p>• GPT-4.5即将发布，已开发20多个月，具备顶尖推理能力</p>
-                <br>
-                <p><strong>【AI 投资风向】</strong></p>
-                <p>AI板块持续高热，建议关注三条主线：1）算力基建（阿里、腾讯、百度云业务）；2）大模型应用（DeepSeek概念、AI+医疗/教育/金融）；3）AI赋能传统行业。风险提示：部分个股估值偏高，注意回调风险，建议分批布局而非追高。</p>
-                <br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>我们正处于一个奇怪的时代：AI能写出完美的商业计划书，却不懂为什么要创业；能诊断疾病，却感受不到病人的恐惧。技术的边界越来越清晰，人类的边界却越来越模糊。也许真正的机会不在于AI能做什么，而在于AI不能做但人们依然愿意为之付费的事情——陪伴、理解、意义感。</em></p>
-            </div>
-        </section>
+        <!-- 专栏入口 -->
+        <div class="column-grid">
+            <a href="columns/international.html" class="column-card">
+                <div class="column-icon">🌍</div>
+                <div class="column-title">国际热点</div>
+                <div class="column-desc">全球政经动态，关税、地缘、宏观政策解读</div>
+                <div class="column-update">今日更新 3 条</div>
+            </a>
+            <a href="columns/domestic.html" class="column-card">
+                <div class="column-icon">🇨🇳</div>
+                <div class="column-title">国内动态</div>
+                <div class="column-desc">政策风向、产业趋势、地方经济要闻</div>
+                <div class="column-update">今日更新 5 条</div>
+            </a>
+            <a href="columns/tech.html" class="column-card">
+                <div class="column-icon">🤖</div>
+                <div class="column-title">科技新鲜事</div>
+                <div class="column-desc">AI、机器人、芯片、新能源前沿动态</div>
+                <div class="column-update">今日更新 3 条</div>
+            </a>
+            <a href="columns/stock.html" class="column-card">
+                <div class="column-icon">🔥</div>
+                <div class="column-title">A股重点</div>
+                <div class="column-desc">大盘分析、热点板块、操作建议</div>
+                <div class="column-update">每日收盘更新</div>
+            </a>
+            <a href="columns/crypto.html" class="column-card">
+                <div class="column-icon">₿</div>
+                <div class="column-title">加密市场</div>
+                <div class="column-desc">BTC、ETH行情，政策监管、项目动态</div>
+                <div class="column-update">实时更新</div>
+            </a>
+            <a href="columns/art.html" class="column-card">
+                <div class="column-icon">🎨</div>
+                <div class="column-title">艺术鉴赏</div>
+                <div class="column-desc">名画赏析、艺术史、审美提升</div>
+                <div class="column-update">每周更新</div>
+            </a>
+            <a href="columns/psychology.html" class="column-card">
+                <div class="column-icon">🧠</div>
+                <div class="column-title">投资心理学</div>
+                <div class="column-desc">行为金融、认知偏差、情绪管理</div>
+                <div class="column-update">每周更新</div>
+            </a>
+            <a href="columns/emotion.html" class="column-card">
+                <div class="column-icon">❤️</div>
+                <div class="column-title">情感驿站</div>
+                <div class="column-desc">生活感悟、情绪价值、人际关系</div>
+                <div class="column-update">每周更新</div>
+            </a>
+        </div>
         
-        <section class="section">
-            <h2 class="section-title">🌏 地缘政治分析</h2>
-            <div class="highlight-box">
-                <p><strong>【最新动态】</strong></p>
-                <p>• 俄乌冲突满三周年，全球政治经济格局深刻重塑</p>
-<p>• 美伊局势持续紧张，美军在伊朗周边集结兵力，霍尔木兹海峡航运风险上升</p>
-<p>• 特朗普关税政策持续发酵，全球贸易不确定性增加</p>
-                <br>
-                <p><strong>【深度解读】</strong></p>
-                <p>当前地缘政治风险主要集中在三大热点：中东局势（美伊对峙）、贸易摩擦（美国关税政策）、以及俄乌冲突的长期化。这些风险对全球供应链、能源价格和资本市场都将产生深远影响。建议投资者关注黄金、原油等避险资产，同时留意国产替代、军工等受益板块。</p>
-                <br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>历史不会重复，但会押韵。1930年代的贸易战最终导向了什么，历史书上有答案。但今天不同的是，全球供应链的纠缠比任何时候都深。脱钩不是开关，而是手术——疼的是双方。普通人能做什么？保持流动性，不押注单一货币、单一市场、单一叙事。</em></p>
-            </div>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">🌍 国际热点</h2>
-            <ul class="news-list"><li class="news-item">美股上周五显著下行，因最新数据逊于预期，市场担忧企业盈利前景，三大指数均大幅收跌。对A股影响：科技股情绪可能受拖累，但A股独立性增强。</li>
-<li class="news-item">美伊局势紧张，油价上涨到66美元/桶，国内油价可能上调。对A股影响：利好石油板块，利空航空、物流等高耗油行业。</li>
-<li class="news-item">美联储暗示可能推迟降息，美元走强，美十年期债息降至4.43厘。对A股影响：外资流动或承压，但国内货币政策相对独立。</li>
-<li class="news-item">日本1月通胀放缓，央行加息预期降温，亚太股市或受提振。对A股影响：区域风险偏好改善，港股科技股受益。</li></ul>
-            <br>
-            <p><strong>💭 深度思考</strong></p>
-            <p><em>特朗普的关税政策像一场即兴爵士乐——没人知道下一个音符是什么。但市场讨厌不确定性。这种环境下，'预测'变得无用，'适应'变得关键。与其猜测政策走向，不如构建无论哪种情况都能生存的仓位结构。</em></p>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">🇨🇳 国内动态</h2>
-            <ul class="news-list"><li class="news-item">广东'新春第一会'聚焦制造业和服务业高质量发展，2025年GDP目标5%左右。</li>
-<li class="news-item">央行近期可能降准降息，资金面有望更宽松，利好股市。</li>
-<li class="news-item">证监会发布新规，加强上市公司质量监管，长期利好A股生态。</li>
-<li class="news-item">以潮玩为代表的中国创意产业在全球掀起热潮，消费业态向情绪满足方向延伸。</li>
-<li class="news-item">多地出台房地产支持政策，房贷利率下调，地产链或迎修复。</li></ul>
-            <br>
-            <p><strong>💭 深度思考</strong></p>
-            <p><em>政策底和市场底往往不是同一个底。政策可以托住经济不往下掉，但托不出牛市。牛市需要信心，而信心来自赚钱效应，赚钱效应来自基本面改善。这个传导链条很长，需要耐心。现在是什么阶段？政策底已现，市场底在磨，业绩底未到。</em></p>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">💡 科技新鲜事</h2>
-            <ul class="news-list"><li class="news-item">阿里宣布未来三年投入3800亿元建设云和AI硬件基础设施，创中国民营企业云和AI硬件投入纪录。</li>
-<li class="news-item">DeepSeek横空出世后，国内外AI大模型企业加速迭代，中国AI科技崛起。</li>
-<li class="news-item">2025年我国可再生能源新增发电量覆盖全社会用电增量，绿电占比持续提升。</li></ul>
-            <br>
-            <p><strong>💭 深度思考</strong></p>
-            <p><em>技术扩散遵循一个规律：先被嘲笑，后被恐惧，最后被忽视。AI现在处于'被恐惧'阶段。但历史告诉我们，真正改变世界的技术，最终都会变得像水电一样——无处不在，却无人谈论。投资的关键是找到那个从'被恐惧'到'被忽视'的转折点。</em></p>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">🔥 A股重点</h2>
-            <div class="highlight-box">
-                <p>今日A股节后首个交易日，市场关注能否'开门红'。从技术面看，上证指数节前在4100点附近震荡，短期支撑在4050点，压力位在4150-4200点区间。成交量维持在1.8-2万亿高位，说明市场活跃度不错。板块方面，AI概念（DeepSeek、算力）、芯片、机器人仍是主线；消费复苏（春节数据亮眼）、国产替代（地缘政治推动）也值得关注。操作建议：控制仓位在6-7成，不追高，回调时布局优质标的。</p>
-                <br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>技术分析的本质是什么？是寻找市场参与者行为的规律。支撑和压力之所以存在，是因为人们记得那个价格。当足够多人相信某个价位有意义，它就有了意义。这是一种集体幻觉，但幻觉也能赚钱——只要你比大多数人早一步意识到幻觉的存在。</em></p>
-            </div>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">📊 其他市场</h2>
-            <ul class="news-list"><li class="news-item">美股：道指上周五跌超1%，纳指跌1.5%，科技股承压</li>
-<li class="news-item">港股：恒生指数年初至今涨17%，恒生科技指数涨31%，AI概念强势</li>
-<li class="news-item">比特币：约8.8万美元，24小时内跌幅超8%，测试关键支撑</li></ul>
-            <br>
-            <p><strong>💭 深度思考</strong></p>
-            <p><em>全球市场的联动性越来越强，但相关性不是因果性。美股涨，A股不一定跟；美股跌，A股不一定跌。真正重要的是理解每个市场背后的驱动因素。美股的驱动是流动性，A股的驱动是政策预期，港股的驱动是南向资金。搞清楚谁在买、为什么买，比看K线重要。</em></p>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">₿ 加密货币专栏</h2>
-            <div class="highlight-box">
-                <p><strong>【实时行情】</strong> 2025年2月24日</p>
-                <p>• 📉 <strong>比特币(BTC)</strong>：约 $91,400，24h跌幅超5%，测试9万美元关键支撑</p>
-                <p>• 📉 <strong>以太坊(ETH)</strong>：约 $2,514，24h跌幅超10%，跌破2500美元关口</p>
-                <p>• 📊 <strong>市场情绪</strong>：恐惧贪婪指数处于极度恐惧区间，避险情绪浓厚</p>
-                <p>• 💥 <strong>爆仓数据</strong>：24小时内超14万人爆仓，总金额超5亿美元</p>
-                <br>
-                <p><strong>【驱动因素】</strong></p>
-                <p>1. <strong>特朗普关税政策</strong>：15%全球关税引发风险资产全面抛售，加密市场与美股科技股高度联动下跌</p>
-                <p>2. <strong>Bybit盗币事件余波</strong>：15亿美元以太坊被盗事件持续影响市场信心，交易所安全性质疑升温</p>
-                <p>3. <strong>美伊局势紧张</strong>：地缘政治风险推升避险需求，资金从加密货币流向黄金（年内涨幅约20%）</p>
-                <p>4. <strong>ETF资金流出</strong>：美国现货比特币ETF连续五周净流出，累计约38-60亿美元</p>
-                <br>
-                <p><strong>【技术面分析】</strong></p>
-                <p>比特币关键支撑位：$90,000 / $85,000 / $80,000；阻力位：$95,000 / $100,000。以太坊关键支撑位：$2,400 / $2,200；阻力位：$2,700 / $2,850。期货持仓数据显示，$60,000成为关键下行保护集中位。</p>
-                <br>
-                <p><strong>【操作建议】</strong></p>
-                <p>短期市场处于恐慌性抛售后的脆弱整理期，建议观望为主，等待企稳信号。中长期投资者可关注关键支撑位的布局机会，但需控制仓位，分批建仓。风险提示：宏观政策不确定性、监管风险、交易所安全风险。</p>
-                <br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>加密货币市场正在经历'从分发到重置'的过渡阶段。历史经验表明，此类调整通常需要数月而非数周。当比特币'数字黄金'的叙事在真正的避险需求面前失效时，市场被迫重新思考它的定位。也许这不是坏事——挤掉泡沫，才能看清真正的价值支撑。对于愿意穿越周期的人来说，现在可能是痛苦的，但未来可能是奖励的。</em></p>
-            </div>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">🎨 艺术鉴赏</h2>
-            <div class="highlight-box">
-                <p><strong>【今日赏析】</strong> 《星月夜》——梵高的疯狂与浪漫</p>
-                <br>
-                <div style="text-align: center; margin: 20px 0;">
-                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" alt="星月夜 - 梵高" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                    <p style="font-size: 12px; color: #8b7355; margin-top: 8px;">《星月夜》(The Starry Night), 1889, 布面油画, 73.7 cm × 92.1 cm, 现藏于纽约现代艺术博物馆(MoMA)</p>
+        <!-- 今日早报预览 -->
+        <div class="today-brief">
+            <h2 class="section-title">📰 今日早报预览</h2>
+            
+            <div class="news-section">
+                <div class="news-category">🌍 国际热点</div>
+                <div class="news-item">
+                    <div class="news-title">俄乌冲突满三周年，和平谈判有新动静</div>
+                    <div class="news-summary">特朗普政府跟俄方直接对话，想尽快结束这场仗。但乌克兰和欧洲盟友有点不高兴——谈判桌上没叫他们。</div>
+                    <div class="news-impact">💡 影响：军工、黄金板块可能波动，但整体对A股影响有限</div>
                 </div>
-                <p>这幅创作于1889年的油画，是梵高在圣雷米精神病院期间的作品。画面中旋转的星云像巨大的漩涡，明亮的星星闪烁着耀眼的光芒，一弯新月悬挂天际。起伏的山峦如波涛般涌动，仿佛能感受到艺术家内心的躁动与不安。那棵黑色的柏树像火焰般直冲云霄，而宁静的村庄则在夜色中沉睡，教堂的尖顶指向天空。梵高用夸张的线条和浓烈的色彩——深蓝、明黄、翠绿——将内心的情感直接倾泻在画布上。这不是我们肉眼所见的夜空，而是梵高灵魂深处的宇宙。</p>
-                <br>
-                <p><em>💡 艺术不是复制现实，而是表达内心。梵高教会我们：即使身处黑暗，也要仰望星空。那些看似疯狂旋转的笔触，恰恰是对生命最炽热的爱。</em></p>
-                <br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>为什么我们在130年后依然被这幅画打动？因为梵高画出了人类共通的情感——孤独、渴望、对超越性的追求。技术会过时，但情感不会。在AI能画出'完美'图像的今天，梵高的'不完美'反而更显珍贵。这提醒我们：价值不在于效率，而在于独特性；不在于精确，而在于真诚。</em></p>
+                <div class="news-item">
+                    <div class="news-title">特朗普又要加关税，美股昨晚大跌</div>
+                    <div class="news-summary">美国最高法院刚否了他的对等关税，特朗普立马发话要把全球关税从10%提到15%。道指昨晚跌了800多点。</div>
+                    <div class="news-impact">💡 影响：出口企业可能受影响，但国内政策对冲力度大</div>
+                </div>
             </div>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">🧠 投资心理学</h2>
-            <div class="highlight-box">
-                <p><strong>【今日话题】</strong> AI时代的'存在感焦虑'</p>
-                <br>
-                <p>当AI能写诗、画画、写代码，甚至通过律师考试时，很多人开始问：'我还能做什么？'这种存在感焦虑正在蔓延。社会学研究发现，技术革命期人们会经历'能力贬值恐慌'——不是你真的没价值，而是衡量价值的标准在变化。历史上，汽车取代马车时，马夫们也曾恐慌，但驾驶员、汽修工、交通规划师等新职业应运而生。AI不会取代人，但会用AI的人会取代不会用的人。</p>
-                <br>
-                <p><strong>💡 今日心法：与其焦虑被AI替代，不如思考如何让AI成为你的'外接大脑'。人类的创造力、同理心、价值判断，依然是不可替代的核心竞争力。</strong></p>
-                <br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>更深层的焦虑或许不是'AI会取代我'，而是'我不知道自己是谁'。当工作、技能、甚至创造力都被技术重新定义，人们被迫面对一个古老的问题：如果我不是我的职业，那我是谁？这种存在主义的危机，也许正是这个时代送给我们的礼物——逼我们找到比工作更深层的自我认同。</em></p>
+            
+            <div class="news-section">
+                <div class="news-category">🇨🇳 国内动态</div>
+                <div class="news-item">
+                    <div class="news-title">2025年中央一号文件发布，聚焦智慧农业</div>
+                    <div class="news-summary">文件提出要发展农业新质生产力，用AI技术改造农业，还明确禁止城镇居民买农房和宅基地。</div>
+                    <div class="news-impact">💡 影响：利好农业科技股，无人机、智能农机相关企业</div>
+                </div>
+                <div class="news-item">
+                    <div class="news-title">A股成交额创历史新高，外资疯狂买入</div>
+                    <div class="news-summary">昨天A股成交额突破2.6万亿元！外资净流入超100亿美元，汇丰、高盛、摩根士丹利集体唱多中国股市。</div>
+                    <div class="news-impact">💡 影响：老外看好咱们的科技企业和市场前景</div>
+                </div>
             </div>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">❤️ 情感驿站</h2>
-            <div class="highlight-box">
-                <p><strong>【今日话题】</strong> 成年人的'情绪劳动'</p>
-                <br>
-                <p>你有没有发现，上班时即使再累也要保持微笑，面对客户的无理要求也要耐心解释，同事甩锅时还要装作大度？这叫'情绪劳动'——为了工作和社交，我们不得不管理、压抑甚至伪装自己的情绪。社会学研究发现，情绪劳动比体力劳动更消耗人。因为它没有下班时间，你回家后可能还在回味白天那句没怼回去的话。</p>
-                <br>
-                <p><em>📝 今日短句：'成年人的崩溃，是从计算'再忍忍就下班了'开始的。'</em></p>
-                <br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>为什么我们越来越累？因为除了完成工作本身，我们还要'表演'一个情绪稳定的成年人。这种表演没有片酬，却耗费心力。也许真正的自我关怀，不是买包买鞋，而是允许自己偶尔'情绪不稳定'——在不伤害他人的前提下，诚实面对自己的感受。</em></p>
+            
+            <div class="insight-box">
+                <p>💭 深度思考：特朗普的关税政策像一场即兴爵士乐——没人知道下一个音符是什么。但市场讨厌不确定性。这种环境下，'预测'变得无用，'适应'变得关键。与其猜测政策走向，不如构建无论哪种情况都能生存的仓位结构。</p>
             </div>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">👀 今日看点</h2>
-            <ul class="news-list"><li class="news-item">A股春节后首个交易日，关注能否'开门红'</li>
-<li class="news-item">特朗普关税政策细节，关注全球市场反应</li>
-<li class="news-item">阿里AI投资计划后续，关注相关产业链机会</li></ul>
-            <br>
-            <p><strong>💭 深度思考</strong></p>
-            <p><em>关注什么，决定了你看到什么。市场每天产生无数信息，但大部分只是噪音。真正的信号往往藏在被忽视的地方——成交量的异常、板块轮动的节奏、资金流向的变化。训练自己过滤噪音的能力，比获取更多信息的渠道更重要。</em></p>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">📚 每日财经学习</h2>
-            <div class="learn-box">
-                <div class="learn-title">成交量——市场的'体温计'</div>
-                <p>成交量就像市场的体温计。股价上涨但成交量萎缩，说明买的人不多，涨势可能不持久；股价下跌但成交量放大，说明卖的人多，可能还要继续跌。简单说：量价齐升是健康，量价背离要警惕。</p>
+            
+            <div class="read-more">
+                <a href="today.html">阅读完整早报 →</a>
             </div>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">💡 每日一提醒</h2>
-            <div class="reminder">
-                <div style="font-size: 24px; margin-bottom: 10px;">☀️</div>
-                <p>节后开盘别急着追高，先看半小时盘面再决定。投资是马拉松，不是百米冲刺。</p>
-            </div>
-        </section>
+        </div>
         
         <footer class="footer">
             <p>专属信息网 · 每日更新</p>
@@ -330,87 +197,12 @@
         </footer>
     </div>
     
-    <!-- 鼠标光标效果 -->
-    <div class="cursor"></div>
-    <div class="cursor-dot"></div>
-    
     <script>
-        // 检测是否为触摸设备
-        const isTouchDevice = window.matchMedia('(hover: none)').matches;
-        
-        if (!isTouchDevice) {
-            // 电脑端 - 鼠标光标效果
-            const cursor = document.querySelector('.cursor');
-            const cursorDot = document.querySelector('.cursor-dot');
-            let mouseX = 0, mouseY = 0;
-            let cursorX = 0, cursorY = 0;
-            
-            document.addEventListener('mousemove', (e) => {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
-                cursorDot.style.left = mouseX - 3 + 'px';
-                cursorDot.style.top = mouseY - 3 + 'px';
-                cursor.classList.add('active');
-                cursorDot.classList.add('active');
-            });
-            
-            document.addEventListener('mouseleave', () => {
-                cursor.classList.remove('active');
-                cursorDot.classList.remove('active');
-            });
-            
-            // 光标跟随动画
-            function animateCursor() {
-                cursorX += (mouseX - cursorX) * 0.1;
-                cursorY += (mouseY - cursorY) * 0.1;
-                cursor.style.left = cursorX - 10 + 'px';
-                cursor.style.top = cursorY - 10 + 'px';
-                requestAnimationFrame(animateCursor);
-            }
-            animateCursor();
-            
-            // 悬停效果
-            document.querySelectorAll('a, .section').forEach(el => {
-                el.addEventListener('mouseenter', () => {
-                    cursor.style.transform = 'scale(2)';
-                    cursor.style.borderColor = '#8b7355';
-                });
-                el.addEventListener('mouseleave', () => {
-                    cursor.style.transform = 'scale(1)';
-                    cursor.style.borderColor = '#c4a882';
-                });
-            });
-        }
-        
-        // 滚动渐显动画
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-        
-        document.querySelectorAll('.section').forEach(section => {
-            observer.observe(section);
-        });
-        
-        // 移动端触摸反馈
-        if (isTouchDevice) {
-            document.querySelectorAll('.section').forEach(section => {
-                section.addEventListener('touchstart', () => {
-                    section.style.transform = 'scale(0.98)';
-                });
-                section.addEventListener('touchend', () => {
-                    section.style.transform = 'scale(1)';
-                });
-            });
-        }
+        // 自动更新日期
+        const dateEl = document.getElementById('current-date');
+        const now = new Date();
+        const weekdays = ['周日', '周一', '周二', '周三', '周四', '周五', '周六'];
+        dateEl.textContent = `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日 ${weekdays[now.getDay()]}`;
     </script>
 </body>
 </html>
