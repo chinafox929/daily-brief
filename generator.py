@@ -68,6 +68,8 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         .learn-box {{ background: #f9f7f4; padding: 20px; border-radius: 8px; border: 1px solid #e8e0d5; }}
         .learn-title {{ font-size: 14px; color: #8b7355; margin-bottom: 10px; }}
         .reminder {{ background: linear-gradient(135deg, #f5f0e8 0%, #ebe5dc 100%); padding: 20px; border-radius: 8px; text-align: center; font-size: 15px; color: #5a4a3a; }}
+        .art-image {{ width: 100%; max-width: 600px; margin: 20px auto; display: block; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }}
+        .art-caption {{ text-align: center; font-size: 13px; color: #8b7355; margin-top: 10px; font-style: italic; }}
         .footer {{ text-align: center; padding: 40px 0; color: #a09080; font-size: 12px; letter-spacing: 2px; }}
         .nav {{ text-align: center; margin-bottom: 30px; }}
         .nav a {{ color: #8b7355; text-decoration: none; margin: 0 15px; font-size: 14px; }}
@@ -263,6 +265,9 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
             <h2 class="section-title">🎨 艺术鉴赏</h2>
             <div class="highlight-box">
                 <p><strong>【今日赏析】</strong> {art_title}</p>
+                <br>
+                <img src="{art_image}" alt="{art_title}" class="art-image" onerror="this.style.display='none'">
+                <p class="art-caption">{art_title}</p>
                 <br>
                 <p>{art_content}</p>
                 <br>
@@ -515,6 +520,7 @@ def generate_brief():
         "crypto_analysis": "市场正处于深度调整期，情绪极度悲观。BTC在6.6-7万美元区间震荡整理，ETH跌破2000美元后走势脆弱。但恐惧指数14已进入历史买入区域，巨鲸持续累积是积极信号。短期观望为主，中长期投资者可考虑分批布局。风险提示：监管政策不确定性、宏观流动性收紧。",
         "crypto_thought": "加密货币市场是一面镜子，照出人性的贪婪与恐惧。当恐惧指数14时，意味着市场参与者已经恐慌到了极点——而这往往是反向指标。但反人性的地方在于：你知道应该买，但你不敢。为什么？因为'这次不一样'的念头会占据你的大脑。每次危机，人们都会说'这次不一样'，但历史总是惊人地相似。",
         "art_title": "《星月夜》——梵高的疯狂与浪漫",
+        "art_image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
         "art_content": "这幅创作于1889年的油画，是梵高在圣雷米精神病院期间的作品。画面中旋转的星云像巨大的漩涡，明亮的星星闪烁着耀眼的光芒，一弯新月悬挂天际。起伏的山峦如波涛般涌动，仿佛能感受到艺术家内心的躁动与不安。那棵黑色的柏树像火焰般直冲云霄，而宁静的村庄则在夜色中沉睡，教堂的尖顶指向天空。梵高用夸张的线条和浓烈的色彩——深蓝、明黄、翠绿——将内心的情感直接倾泻在画布上。这不是我们肉眼所见的夜空，而是梵高灵魂深处的宇宙。",
         "art_insight": "艺术不是复制现实，而是表达内心。梵高教会我们：即使身处黑暗，也要仰望星空。那些看似疯狂旋转的笔触，恰恰是对生命最炽热的爱。",
         "art_thought": "为什么我们在130年后依然被这幅画打动？因为梵高画出了人类共通的情感——孤独、渴望、对超越性的追求。技术会过时，但情感不会。在AI能画出'完美'图像的今天，梵高的'不完美'反而更显珍贵。这提醒我们：价值不在于效率，而在于独特性；不在于精确，而在于真诚。",
@@ -580,6 +586,7 @@ def generate_html(data):
         crypto_analysis=data.get("crypto_analysis", "加密市场波动较大，投资需谨慎。"),
         crypto_thought=data.get("crypto_thought", "加密市场反映了人性的贪婪与恐惧。"),
         art_title=data.get("art_title", "今日艺术赏析"),
+        art_image=data.get("art_image", ""),
         art_content=data.get("art_content", "艺术是人类情感的表达。"),
         art_insight=data.get("art_insight", "用心感受艺术之美。"),
         art_thought=data.get("art_thought", "艺术的价值在于触动人心。"),
