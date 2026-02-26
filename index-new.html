@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="theme-zen">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>每日简报 | 2026年2月27日 周五</title>
+    <link rel="stylesheet" href="styles-new.css">
+</head>
+<body>
+    <!-- 阅读进度条 -->
+    <div class="reading-progress" id="progress-bar"></div>
+    
+    <!-- 毛玻璃导航 -->
+    <nav class="glass-nav">
+        <div class="nav-brand">每日简报</div>
+        <div class="nav-links">
+            <a href="index.html">今日</a>
+            <a href="archive.html">归档</a>
+            <a href="about.html">关于</a>
+        </div>
+    </nav>
+    
+    <!-- 头部区域 -->
+    <header class="hero-section">
+        <div class="hero-date">2026年2月27日 星期五</div>
+        <h1 class="hero-title">每日简报</h1>
+        <div class="hero-subtitle">专属信息网 · 禅意生活</div>
+    </header>
+    
+    <!-- 主内容 -->
+    <main class="main-content">
+        
+        <!-- 每周回顾 -->
+        <article class="card">
+            <div class="card-header">
+                <div class="card-icon">📅</div>
+                <h2 class="card-title">每周回顾</h2>
+                <button class="card-action collapse-btn" onclick="toggleCard(this)">−</button>
+            </div>
+            <div class="collapsible-content">
+                <div class="highlight-box">
+                    <ul class="news-list">
+                        <li class="news-item">📈 <strong>A股：</strong>沪指收涨0.72%报4147点，深成指涨1.29%，创业板指涨1.41%</li>
+                        <li class="news-item">🌍 <strong>国际：</strong>美股连续第二日收高，人工智能概念股普涨</li>
+                        <li class="news-item">💰 <strong>汇率：</strong>人民币兑美元突破6.87创近三年新高</li>
+                        <li class="news-item">🏆 <strong>板块：</strong>有色金属、钢铁、化工等资源股持续走强</li>
+                    </ul>
+                </div>
+                <div class="insight-box">
+                    <div class="insight-label">深度思考</div>
+                    <p class="insight-text">市场永远在奖励那些能看穿噪音的人。当所有人都在讨论AI泡沫时，真正赚钱的是那些看懂AI基础设施需求的人——算力、电力、数据中心。</p>
+                </div>
+            </div>
+        </article>
+        
+        <!-- AI专区 -->
+        <article class="card">
+            <div class="card-header">
+                <div class="card-icon">🤖</div>
+                <h2 class="card-title">AI 专区</h2>
+                <button class="card-action">☆</button>
+            </div>
+            <ul class="news-list">
+                <li class="news-item">阿里宣布未来三年投入超3800亿元建设云和AI硬件基础设施</li>
+                <li class="news-item">多省份"新春第一会"点名AI，强化技术突破和场景应用</li>
+                <li class="news-item">科技巨头AI竞争升温，2026年AI投资将突破6500亿美元</li>
+            </ul>
+            <div class="insight-box">
+                <div class="insight-label">深度思考</div>
+                <p class="insight-text">我们正处于一个奇怪的时代：AI能写出完美的商业计划书，却不懂为什么要创业；能诊断疾病，却感受不到病人的恐惧。</p>
+            </div>
+        </article>
+        
+        <!-- A股重点 -->
+        <article class="card">
+            <div class="card-header">
+                <div class="card-icon">🔥</div>
+                <h2 class="card-title">A股重点</h2>
+                <button class="card-action">☆</button>
+            </div>
+            <div class="highlight-box">
+                <p style="font-size: 15px; line-height: 1.9; color: var(--text-secondary);">
+                    2月25日A股延续量价齐升态势，沪指收涨0.72%报4147.23点。市场成交额达2.48万亿元，较前日增加2628亿元。板块方面，有色金属、钢铁、化工等资源股持续走强，10只有色个股涨停。
+                </p>
+            </div>
+            <div class="insight-box">
+                <div class="insight-label">深度思考</div>
+                <p class="insight-text">技术分析的本质是什么？是寻找市场参与者行为的规律。支撑和压力之所以存在，是因为人们记得那个价格。</p>
+            </div>
+        </article>
+        
+        <!-- 艺术鉴赏 -->
+        <article class="card art-card">
+            <div class="card-header">
+                <div class="card-icon">🎨</div>
+                <h2 class="card-title">艺术鉴赏</h2>
+            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" alt="星月夜" class="art-image">
+            <div class="art-title">《星月夜》——梵高的疯狂与浪漫</div>
+            <div class="art-desc">创作于1889年的油画，是梵高在圣雷米精神病院期间的作品</div>
+            <div class="insight-box">
+                <div class="insight-label">艺术启示</div>
+                <p class="insight-text">艺术不是复制现实，而是表达内心。梵高教会我们：即使身处黑暗，也要仰望星空。</p>
+            </div>
+        </article>
+        
+        <!-- 每日财经学习 -->
+        <article class="card">
+            <div class="card-header">
+                <div class="card-icon">📚</div>
+                <h2 class="card-title">每日财经学习</h2>
+                <button class="collapse-btn">收起</button>
+            </div>
+            <div class="learn-card">
+                <div class="learn-label">今日概念</div>
+                <div class="learn-title">成交量——市场的"体温计"</div>
+                <div class="learn-content">
+                    成交量就像市场的体温计。股价上涨但成交量萎缩，说明买的人不多，涨势可能不持久；股价下跌但成交量放大，说明卖的人多，可能还要继续跌。
+                </div>
+            </div>
+        </article>
+        
+        <!-- 每日提醒 -->
+        <article class="card reminder-card">
+            <div class="reminder-icon">☀️</div>
+            <div class="reminder-text">资源股虽好，但别追高。投资是马拉松，不是百米冲刺，耐心比冲动更重要。</div>
+        </article>
+        
+    </main>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-brand">每日简报</div>
+        <div>专属信息网 · 禅意 · 简约 · 专注</div>
+    </footer>
+    
+    <!-- 阅读进度脚本 -->
+    <script>
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + '%';
+        });
+        
+        function toggleCard(btn) {
+            const content = btn.closest('.card').querySelector('.collapsible-content');
+            content.classList.toggle('collapsed');
+            btn.textContent = content.classList.contains('collapsed') ? '+' : '−';
+        }
+    </script>
+</body>
+</html>
