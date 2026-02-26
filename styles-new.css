@@ -433,3 +433,156 @@
 ::-webkit-scrollbar-thumb:hover {
   background: var(--text-muted);
 }
+
+/* ==================== 暗黑主题 - 午夜深蓝 ==================== */
+.theme-dark {
+  /* 色彩系统 - 参考 Apple Dark Mode */
+  --bg-page: #000000;
+  --bg-elevated: #1c1c1e;
+  --bg-card: #2c2c2e;
+  --bg-highlight: #3a3a3c;
+  
+  --text-primary: #ffffff;
+  --text-secondary: #98989d;
+  --text-tertiary: #636366;
+  --text-muted: #48484a;
+  
+  --border-light: #38383a;
+  --border-medium: #48484a;
+  
+  /* 强调色 - 柔和的蓝紫调 */
+  --accent-warm: #0a84ff;
+  --accent-soft: #5e5ce6;
+  
+  /* 阴影 - 深邃有层次 */
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.8);
+  --shadow-md: 0 4px 20px rgba(0,0,0,0.6);
+  --shadow-lg: 0 8px 40px rgba(0,0,0,0.5);
+  --shadow-glow: 0 0 40px rgba(10, 132, 255, 0.15);
+}
+
+.theme-dark body {
+  background: var(--bg-page);
+  color: var(--text-primary);
+}
+
+.theme-dark .reading-progress {
+  background: linear-gradient(90deg, var(--accent-warm), var(--accent-soft));
+}
+
+.theme-dark .glass-nav {
+  background: rgba(0, 0, 0, 0.7);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.theme-dark .nav-brand {
+  color: var(--text-primary);
+}
+
+.theme-dark .nav-links a {
+  color: var(--text-secondary);
+}
+
+.theme-dark .nav-links a:hover {
+  color: var(--accent-warm);
+}
+
+.theme-dark .hero-section {
+  background: linear-gradient(180deg, var(--bg-elevated) 0%, var(--bg-page) 100%);
+}
+
+.theme-dark .hero-title {
+  color: var(--text-primary);
+  font-weight: 600;
+}
+
+.theme-dark .hero-date,
+.theme-dark .hero-subtitle {
+  color: var(--text-secondary);
+}
+
+.theme-dark .card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-light);
+  box-shadow: var(--shadow-md);
+}
+
+.theme-dark .card:hover {
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+  border-color: var(--border-medium);
+}
+
+.theme-dark .card-header {
+  border-bottom: 1px solid var(--border-light);
+}
+
+.theme-dark .card-icon {
+  background: var(--bg-highlight);
+}
+
+.theme-dark .card-title {
+  color: var(--text-primary);
+}
+
+.theme-dark .card-action {
+  color: var(--text-tertiary);
+}
+
+.theme-dark .card-action:hover {
+  background: var(--bg-highlight);
+  color: var(--accent-warm);
+}
+
+.theme-dark .news-item {
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-light);
+}
+
+.theme-dark .news-item strong {
+  color: var(--text-primary);
+}
+
+.theme-dark .insight-box {
+  background: var(--bg-elevated);
+  border-left: 4px solid var(--accent-warm);
+}
+
+.theme-dark .insight-label {
+  color: var(--accent-warm);
+}
+
+.theme-dark .insight-text {
+  color: var(--text-secondary);
+}
+
+.theme-dark .highlight-box {
+  background: var(--bg-elevated);
+}
+
+.theme-dark .learn-card {
+  background: var(--bg-elevated);
+}
+
+.theme-dark .learn-label {
+  color: var(--accent-soft);
+}
+
+.theme-dark .learn-title {
+  color: var(--text-primary);
+}
+
+.theme-dark .learn-content {
+  color: var(--text-secondary);
+}
+
+.theme-dark .reminder-card {
+  background: linear-gradient(135deg, var(--bg-elevated) 0%, var(--bg-card) 100%);
+}
+
+.theme-dark .footer {
+  color: var(--text-tertiary);
+}
+
+.theme-dark .footer-brand {
+  color: var(--text-secondary);
+}
