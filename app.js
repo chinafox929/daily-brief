@@ -136,13 +136,17 @@
         },
 
         applyTheme(themeId) {
-            document.documentElement.setAttribute('data-theme', themeId);
-            document.body.className = document.body.className.replace(/theme-\w+/g, '');
+            // 移除所有主题类
+            document.body.classList.remove('theme-zen', 'theme-dark', 'theme-modern', 'theme-paper', 'theme-forest', 'theme-auto');
+            // 添加新主题类
             document.body.classList.add(`theme-${themeId}`);
+            document.documentElement.setAttribute('data-theme', themeId);
             
             if (themeId === 'auto') {
                 const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
                 document.body.classList.toggle('dark-mode', prefersDark);
+            } else {
+                document.body.classList.remove('dark-mode');
             }
             
             localStorage.setItem('db_theme', themeId);

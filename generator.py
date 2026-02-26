@@ -48,9 +48,9 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
         body {{
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
-            background: linear-gradient(135deg, #f5f0e8 0%, #e8e0d5 100%);
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
             min-height: 100vh;
-            color: #3a3a3a;
+            color: var(--text-primary);
             line-height: 1.8;
         }}
         .container {{ max-width: 800px; margin: 0 auto; padding: 40px 20px; }}
@@ -152,7 +152,7 @@ HTML_TEMPLATE = '''<!DOCTYPE html>
         @media (max-width: 600px) {{ .title {{ font-size: 24px; letter-spacing: 4px; }} .section {{ padding: 20px; }} }}
     </style>
 </head>
-<body>
+<body class="theme-zen">
     <div class="container">
         <div class="nav">
             <a href="index.html">今日</a>
