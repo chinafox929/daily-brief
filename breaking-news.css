@@ -1,0 +1,140 @@
+/* 突发新闻滚动条样式 */
+.breaking-news-ticker {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(90deg, #1a1a2e 0%, #16213e 100%);
+    color: #fff;
+    z-index: 10000;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.breaking-news-label {
+    background: #e74c3c;
+    color: #fff;
+    padding: 0 15px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 13px;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.breaking-news-label::before {
+    content: "🔥";
+    margin-right: 5px;
+}
+
+.breaking-news-content {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+    height: 100%;
+}
+
+.breaking-news-scroll {
+    display: flex;
+    position: absolute;
+    white-space: nowrap;
+    animation: scroll 30s linear infinite;
+    height: 100%;
+    align-items: center;
+}
+
+.breaking-news-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 30px;
+    font-size: 14px;
+    border-right: 1px solid rgba(255,255,255,0.2);
+}
+
+.breaking-news-item:last-child {
+    border-right: none;
+}
+
+.breaking-news-time {
+    color: #888;
+    font-size: 12px;
+    margin-right: 10px;
+}
+
+.breaking-news-category {
+    background: rgba(255,255,255,0.15);
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    margin-right: 10px;
+}
+
+.breaking-news-category.urgency-high {
+    background: #e74c3c;
+}
+
+.breaking-news-category.urgency-medium {
+    background: #f39c12;
+}
+
+.breaking-news-category.urgency-low {
+    background: #3498db;
+}
+
+.breaking-news-title {
+    color: #fff;
+    text-decoration: none;
+}
+
+.breaking-news-title:hover {
+    color: #ffd700;
+}
+
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* 暂停滚动 */
+.breaking-news-ticker:hover .breaking-news-scroll {
+    animation-play-state: paused;
+}
+
+/* 移动端适配 */
+@media (max-width: 768px) {
+    .breaking-news-ticker {
+        height: 36px;
+    }
+    
+    .breaking-news-label {
+        font-size: 11px;
+        padding: 0 10px;
+    }
+    
+    .breaking-news-item {
+        font-size: 12px;
+        padding: 0 20px;
+    }
+    
+    .breaking-news-time {
+        display: none;
+    }
+}
+
+/* 页面内容顶部留出空间 */
+body.has-ticker {
+    padding-top: 40px;
+}
+
+body.has-ticker .container {
+    padding-top: 20px;
+}
