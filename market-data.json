@@ -1,0 +1,25 @@
+{
+  "lastUpdate": "2026-03-02T14:43:45.799701",
+  "crypto": [],
+  "stocks": [
+    {
+      "symbol": "sh000001",
+      "name": "上证指数",
+      "price": 4180.1532,
+      "change": 0.41
+    },
+    {
+      "symbol": "sz399001",
+      "name": "深证成指",
+      "price": 14458.879,
+      "change": -0.25
+    },
+    {
+      "symbol": "sz399006",
+      "name": "创业板指",
+      "price": 3294.265,
+      "change": -0.48
+    }
+  ],
+  "signals": []
+}

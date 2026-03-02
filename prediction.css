@@ -1,0 +1,148 @@
+/* 推荐预测模块样式 */
+.prediction-module {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border-radius: 12px;
+    padding: 25px;
+    margin: 20px 0;
+    color: #fff;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+}
+
+.prediction-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.prediction-header h3 {
+    font-size: 18px;
+    margin: 0;
+}
+
+.prediction-time {
+    color: #888;
+    font-size: 12px;
+    margin-left: auto;
+}
+
+.market-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.market-card {
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 15px;
+    border-left: 3px solid #3498db;
+}
+
+.market-card.up {
+    border-left-color: #27ae60;
+}
+
+.market-card.down {
+    border-left-color: #e74c3c;
+}
+
+.market-name {
+    font-size: 14px;
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+.market-price {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.market-change {
+    font-size: 14px;
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
+}
+
+.market-change.up {
+    background: rgba(39, 174, 96, 0.2);
+    color: #27ae60;
+}
+
+.market-change.down {
+    background: rgba(231, 76, 60, 0.2);
+    color: #e74c3c;
+}
+
+.signals-section {
+    margin-top: 20px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.signals-title {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: #ffd700;
+}
+
+.signal-item {
+    background: rgba(255,255,255,0.05);
+    border-radius: 8px;
+    padding: 12px 15px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.signal-badge {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.signal-badge.buy {
+    background: rgba(39, 174, 96, 0.3);
+    color: #27ae60;
+}
+
+.signal-badge.sell {
+    background: rgba(231, 76, 60, 0.3);
+    color: #e74c3c;
+}
+
+.signal-badge.hold {
+    background: rgba(241, 196, 15, 0.3);
+    color: #f1c40f;
+}
+
+.signal-info {
+    flex: 1;
+}
+
+.signal-asset {
+    font-weight: bold;
+    margin-bottom: 3px;
+}
+
+.signal-suggestion {
+    font-size: 13px;
+    color: #aaa;
+}
+
+.disclaimer {
+    margin-top: 20px;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    font-size: 11px;
+    color: #666;
+    text-align: center;
+}
