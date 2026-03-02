@@ -5,8 +5,13 @@ class RealtimeStockQuery {
             "腾讯": "hk00700", "腾讯控股": "hk00700", "00700": "hk00700",
             "阿里巴巴": "hk09988", "阿里": "hk09988", "09988": "hk09988",
             "比亚迪": "sz002594", "002594": "sz002594",
-            "茅台": "sh600519", "贵州茅台": "sh600519", "600519": "sh600519"
+            "茅台": "sh600519", "贵州茅台": "sh600519", "600519": "sh600519",
+            "宁德时代": "sz300750", "300750": "sz300750",
+            "中国平安": "sh601318", "601318": "sh601318",
+            "招商银行": "sh600036", "600036": "sh600036"
         };
+        this.currentSymbol = null;
+        this.autoRefreshInterval = null;
     }
     
     async query(input) {
@@ -116,4 +121,36 @@ async function queryStockRealtime() {
     
     html += `</div>`;
     resultDiv.innerHTML = html;
+    
+    // 启动自动刷新
+    startAutoRefresh(input);
 }
+
+// 自动刷新功能
+function startAutoRefresh(symbol) {
+    // 清除之前的定时器
+    if (window.autoRefreshInterval) {
+        clearInterval(window.autoRefreshInterval);
+    }
+    
+    // 每30秒刷新一次
+    window.autoRefreshInterval = setInterval(() => {
+        console.log('自动刷新:', symbol);
+        queryStockRealtime();
+    }, 30000);
+    
+    // 显示刷新提示
+    const resultDiv = document.getElementById('analysis-result');
+    const refreshIndicator = document.createElement('div');
+    refreshIndicator.id = 'refresh-indicator';
+    refreshIndicator.style.cssText = 'text-align:center;color:#888;font-size:12px;margin-top:10px;';
+    refreshIndicator.innerHTML = '⏱️ 每30秒自动刷新';
+    resultDiv.appendChild(refreshIndicator);
+}
+
+// 页面关闭时清除定时器
+window.addEventListener('beforeunload', () => {
+    if (window.autoRefreshInterval) {
+        clearInterval(window.autoRefreshInterval);
+    }
+});
