@@ -1,15 +1,15 @@
 {
-  "last_update": "2026-03-04T05:18:05.294720",
+  "last_update": "2026-03-05T08:24:15.994254",
   "stocks": [
     {
       "symbol": "sh000001",
       "name": "上证指数",
-      "price": 4122.676,
-      "change": -1.43,
+      "price": 4082.474,
+      "change": -0.98,
       "indicators": {
-        "change_pct": -1.43,
-        "amplitude": 1.94,
-        "position": 8.2,
+        "change_pct": -0.98,
+        "amplitude": 1.23,
+        "position": 53.5,
         "trend": "下跌",
         "volume_status": "放量"
       },
@@ -18,135 +18,40 @@
         "confidence": "中",
         "score": 0,
         "action": "趋势不明，建议观望",
-        "reasons": [
-          "小幅回调",
-          "接近当日低点，或有支撑"
-        ]
+        "reasons": []
       },
-      "update_time": "2026-03-03 15:30:39"
+      "update_time": "2026-03-04 15:30:39"
     },
     {
       "symbol": "sz399001",
       "name": "深证成指",
-      "price": 14022.392,
-      "change": -3.07,
+      "price": 13917.752,
+      "change": -0.75,
       "indicators": {
-        "change_pct": -3.07,
-        "amplitude": 3.58,
-        "position": 2.8,
+        "change_pct": -0.75,
+        "amplitude": 1.84,
+        "position": 24.6,
         "trend": "下跌",
         "volume_status": "放量"
       },
       "signal": {
-        "signal": "卖出",
+        "signal": "持有",
         "confidence": "中",
-        "score": -1,
-        "action": "建议减仓避险，等待企稳",
-        "reasons": [
-          "跌幅较大，注意风险",
-          "接近当日低点，或有支撑"
-        ]
+        "score": 0,
+        "action": "趋势不明，建议观望",
+        "reasons": []
       },
-      "update_time": "2026-03-03 15:00:03"
+      "update_time": "2026-03-04 15:00:03"
     },
     {
       "symbol": "sz399006",
       "name": "创业板指",
-      "price": 3209.482,
-      "change": -2.57,
+      "price": 3164.371,
+      "change": -1.41,
       "indicators": {
-        "change_pct": -2.57,
-        "amplitude": 3.78,
-        "position": 2.3,
-        "trend": "下跌",
-        "volume_status": "放量"
-      },
-      "signal": {
-        "signal": "持有",
-        "confidence": "中",
-        "score": 0,
-        "action": "趋势不明，建议观望",
-        "reasons": [
-          "小幅回调",
-          "接近当日低点，或有支撑"
-        ]
-      },
-      "update_time": "2026-03-03 15:00:03"
-    },
-    {
-      "symbol": "sh600519",
-      "name": "贵州茅台",
-      "price": 1426.19,
-      "change": -0.97,
-      "indicators": {
-        "change_pct": -0.97,
-        "amplitude": 2.13,
-        "position": 13.2,
-        "trend": "下跌",
-        "volume_status": "放量"
-      },
-      "signal": {
-        "signal": "持有",
-        "confidence": "中",
-        "score": 1,
-        "action": "趋势不明，建议观望",
-        "reasons": [
-          "接近当日低点，或有支撑"
-        ]
-      },
-      "update_time": "2026-03-03 15:00:03"
-    },
-    {
-      "symbol": "sz000858",
-      "name": "五粮液",
-      "price": 102.55,
-      "change": -0.65,
-      "indicators": {
-        "change_pct": -0.65,
-        "amplitude": 2.4,
-        "position": 26.2,
-        "trend": "下跌",
-        "volume_status": "放量"
-      },
-      "signal": {
-        "signal": "持有",
-        "confidence": "中",
-        "score": 0,
-        "action": "趋势不明，建议观望",
-        "reasons": []
-      },
-      "update_time": "2026-03-03 15:00:00"
-    },
-    {
-      "symbol": "sh601318",
-      "name": "中国平安",
-      "price": 62.57,
-      "change": 0.35,
-      "indicators": {
-        "change_pct": 0.35,
-        "amplitude": 2.87,
-        "position": 35.8,
-        "trend": "上涨",
-        "volume_status": "放量"
-      },
-      "signal": {
-        "signal": "持有",
-        "confidence": "中",
-        "score": 0,
-        "action": "趋势不明，建议观望",
-        "reasons": []
-      },
-      "update_time": "2026-03-03 15:00:03"
-    },
-    {
-      "symbol": "sz002594",
-      "name": "比亚迪",
-      "price": 95.21,
-      "change": -1.63,
-      "indicators": {
-        "change_pct": -1.63,
-        "amplitude": 3.1,
-        "position": 40.7,
+        "change_pct": -1.41,
+        "amplitude": 2.11,
+        "position": 22.1,
         "trend": "下跌",
         "volume_status": "放量"
       },
@@ -159,30 +64,120 @@
           "小幅回调"
         ]
       },
-      "update_time": "2026-03-03 15:00:00"
+      "update_time": "2026-03-04 15:00:03"
     },
     {
-      "symbol": "sh600036",
-      "name": "招商银行",
-      "price": 39.18,
-      "change": 1.32,
+      "symbol": "sh600519",
+      "name": "贵州茅台",
+      "price": 1401.18,
+      "change": -1.75,
       "indicators": {
-        "change_pct": 1.32,
-        "amplitude": 2.56,
-        "position": 62.6,
+        "change_pct": -1.75,
+        "amplitude": 2.17,
+        "position": 29.4,
+        "trend": "下跌",
+        "volume_status": "放量"
+      },
+      "signal": {
+        "signal": "卖出",
+        "confidence": "中",
+        "score": -1,
+        "action": "建议减仓避险，等待企稳",
+        "reasons": [
+          "小幅回调"
+        ]
+      },
+      "update_time": "2026-03-04 15:00:03"
+    },
+    {
+      "symbol": "sz000858",
+      "name": "五粮液",
+      "price": 101.02,
+      "change": -1.49,
+      "indicators": {
+        "change_pct": -1.49,
+        "amplitude": 1.23,
+        "position": 21.4,
+        "trend": "下跌",
+        "volume_status": "放量"
+      },
+      "signal": {
+        "signal": "卖出",
+        "confidence": "中",
+        "score": -1,
+        "action": "建议减仓避险，等待企稳",
+        "reasons": [
+          "小幅回调"
+        ]
+      },
+      "update_time": "2026-03-04 15:00:00"
+    },
+    {
+      "symbol": "sh601318",
+      "name": "中国平安",
+      "price": 61.79,
+      "change": -1.25,
+      "indicators": {
+        "change_pct": -1.25,
+        "amplitude": 3.05,
+        "position": 59.7,
+        "trend": "下跌",
+        "volume_status": "放量"
+      },
+      "signal": {
+        "signal": "卖出",
+        "confidence": "中",
+        "score": -1,
+        "action": "建议减仓避险，等待企稳",
+        "reasons": [
+          "小幅回调"
+        ]
+      },
+      "update_time": "2026-03-04 15:00:01"
+    },
+    {
+      "symbol": "sz002594",
+      "name": "比亚迪",
+      "price": 95.99,
+      "change": 0.82,
+      "indicators": {
+        "change_pct": 0.82,
+        "amplitude": 3.26,
+        "position": 73.9,
         "trend": "上涨",
         "volume_status": "放量"
       },
       "signal": {
         "signal": "持有",
         "confidence": "中",
-        "score": 1,
+        "score": 0,
         "action": "趋势不明，建议观望",
+        "reasons": []
+      },
+      "update_time": "2026-03-04 15:00:00"
+    },
+    {
+      "symbol": "sh600036",
+      "name": "招商银行",
+      "price": 38.6,
+      "change": -1.48,
+      "indicators": {
+        "change_pct": -1.48,
+        "amplitude": 2.6,
+        "position": 57.8,
+        "trend": "下跌",
+        "volume_status": "放量"
+      },
+      "signal": {
+        "signal": "卖出",
+        "confidence": "中",
+        "score": -1,
+        "action": "建议减仓避险，等待企稳",
         "reasons": [
-          "温和上涨"
+          "小幅回调"
         ]
       },
-      "update_time": "2026-03-03 15:00:01"
+      "update_time": "2026-03-04 15:00:01"
     }
   ]
 }

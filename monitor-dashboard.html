@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>定时任务监控面板</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 20px;
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        .header h1 {
+            font-size: 28px;
+            background: linear-gradient(90deg, #60a5fa, #a78bfa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .header .time {
+            color: #64748b;
+            margin-top: 8px;
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #334155;
+        }
+        .card-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+        .card-title {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        .status {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .status.success {
+            background: #064e3b;
+            color: #34d399;
+        }
+        .status.error {
+            background: #450a0a;
+            color: #f87171;
+        }
+        .status.warning {
+            background: #451a03;
+            color: #fbbf24;
+        }
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+        .status.success .status-dot { background: #34d399; }
+        .status.error .status-dot { background: #f87171; }
+        .status.warning .status-dot { background: #fbbf24; }
+        
+        .metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #334155;
+        }
+        .metric:last-child { border-bottom: none; }
+        .metric-label { color: #94a3b8; font-size: 14px; }
+        .metric-value { font-weight: 500; }
+        .metric-value.good { color: #34d399; }
+        .metric-value.bad { color: #f87171; }
+        
+        .error-log {
+            background: #0f172a;
+            border-radius: 8px;
+            padding: 12px;
+            margin-top: 10px;
+            font-family: 'Monaco', 'Consolas', monospace;
+            font-size: 12px;
+            color: #f87171;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        
+        .refresh-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+        }
+        .refresh-btn:hover { background: #2563eb; }
+        
+        .summary-bar {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        .summary-item {
+            background: #1e293b;
+            padding: 15px 30px;
+            border-radius: 10px;
+            text-align: center;
+            border: 1px solid #334155;
+        }
+        .summary-value {
+            font-size: 32px;
+            font-weight: 700;
+        }
+        .summary-value.success { color: #34d399; }
+        .summary-value.error { color: #f87171; }
+        .summary-value.warning { color: #fbbf24; }
+        .summary-label {
+            color: #64748b;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤖 定时任务监控面板</h1>
+        <div class="time" id="currentTime">--</div>
+    </div>
+    
+    <div class="summary-bar">
+        <div class="summary-item">
+            <div class="summary-value success" id="successCount">--</div>
+            <div class="summary-label">成功任务</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-value error" id="errorCount">--</div>
+            <div class="summary-label">失败任务</div>
+        </div>
+        <div class="summary-item">
+            <div class="summary-value warning" id="warningCount">--</div>
+            <div class="summary-label">警告</div>
+        </div>
+    </div>
+    
+    <div class="grid">
+        <!-- 股票数据抓取 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">📈 股票实时数据抓取</span>
+                <span class="status warning" id="stockStatus">
+                    <span class="status-dot"></span>异常
+                </span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">任务ID</span>
+                <span class="metric-value">bf684d7a...</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">执行周期</span>
+                <span class="metric-value">每2分钟</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">今日执行</span>
+                <span class="metric-value" id="stockRuns">--次</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">失败次数</span>
+                <span class="metric-value bad" id="stockFails">--次</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">最后执行</span>
+                <span class="metric-value" id="stockLast">--</span>
+            </div>
+            <div class="error-log" id="stockErrors">
+                工具调用验证错误<br>
+                文件路径错误: stock_data.json 不存在<br>
+                API响应异常
+            </div>
+        </div>
+        
+        <!-- 突发新闻更新 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">📰 突发新闻更新</span>
+                <span class="status success" id="newsStatus">
+                    <span class="status-dot"></span>正常
+                </span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">任务ID</span>
+                <span class="metric-value">bfe0486b...</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">执行周期</span>
+                <span class="metric-value">每30分钟</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">今日推送</span>
+                <span class="metric-value good" id="newsPushes">--次</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">GitHub状态</span>
+                <span class="metric-value good">已同步</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">最后更新</span>
+                <span class="metric-value" id="newsLast">--</span>
+            </div>
+        </div>
+        
+        <!-- 社交媒体监控 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">🔥 社交媒体热搜</span>
+                <span class="status error" id="socialStatus">
+                    <span class="status-dot"></span>故障
+                </span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">任务ID</span>
+                <span class="metric-value">bd567762...</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">状态</span>
+                <span class="metric-value bad">验证错误</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">最后成功</span>
+                <span class="metric-value">--</span>
+            </div>
+            <div class="error-log" id="socialErrors">
+                35 validation errors<br>
+                tools[0].function 字段缺失
+            </div>
+        </div>
+        
+        <!-- 系统状态 -->
+        <div class="card">
+            <div class="card-header">
+                <span class="card-title">⚙️ 系统状态</span>
+                <span class="status success">
+                    <span class="status-dot"></span>正常
+                </span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">OpenClaw版本</span>
+                <span class="metric-value">latest</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">运行时</span>
+                <span class="metric-value" id="uptime">--</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">活跃任务</span>
+                <span class="metric-value">5个</span>
+            </div>
+            <div class="metric">
+                <span class="metric-label">数据目录</span>
+                <span class="metric-value">/daily-brief/</span>
+            </div>
+        </div>
+    </div>
+    
+    <button class="refresh-btn" onclick="location.reload()">🔄 刷新数据</button>
+    
+    <script>
+        // 更新时间
+        function updateTime() {
+            const now = new Date();
+            document.getElementById('currentTime').textContent = 
+                now.toLocaleString('zh-CN', { 
+                    year: 'numeric', month: '2-digit', day: '2-digit',
+                    hour: '2-digit', minute: '2-digit', second: '2-digit'
+                });
+        }
+        updateTime();
+        setInterval(updateTime, 1000);
+        
+        // 模拟数据 - 实际应该从后端API获取
+        const mockData = {
+            stock: { runs: 720, fails: 15, last: '23:55' },
+            news: { pushes: 48, last: '23:30' },
+            success: 1350,
+            error: 18,
+            warning: 5
+        };
+        
+        document.getElementById('stockRuns').textContent = mockData.stock.runs + '次';
+        document.getElementById('stockFails').textContent = mockData.stock.fails + '次';
+        document.getElementById('stockLast').textContent = mockData.stock.last;
+        document.getElementById('newsPushes').textContent = mockData.news.pushes + '次';
+        document.getElementById('newsLast').textContent = mockData.news.last;
+        document.getElementById('successCount').textContent = mockData.success;
+        document.getElementById('errorCount').textContent = mockData.error;
+        document.getElementById('warningCount').textContent = mockData.warning;
+        
+        // 计算运行时间
+        const startTime = new Date('2026-03-04T08:00:00');
+        function updateUptime() {
+            const now = new Date();
+            const diff = Math.floor((now - startTime) / 1000);
+            const hours = Math.floor(diff / 3600);
+            const mins = Math.floor((diff % 3600) / 60);
+            document.getElementById('uptime').textContent = `${hours}小时${mins}分`;
+        }
+        updateUptime();
+        setInterval(updateUptime, 60000);
+    </script>
+</body>
+</html>
