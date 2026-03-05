@@ -61,31 +61,49 @@ def fetch_toutiao_hot():
     return []
 
 def generate_mock_news():
-    """生成模拟突发新闻（用于测试）"""
+    """生成模拟突发新闻（当抓取失败时使用，基于当前时间生成）"""
     now = datetime.now()
-    return [
+    # 使用当前日期生成不同的内容，确保每天都不一样
+    day_seed = now.day + now.month * 31
+    
+    news_templates = [
         {
-            "id": "1",
-            "title": "美以联合袭击伊朗，中东局势急剧升级",
-            "time": (now - timedelta(minutes=30)).strftime("%Y-%m-%d %H:%M"),
-            "category": "国际",
+            "title": f"[{now.strftime('%m月%d日')}] 两会最新：政府工作报告释放积极信号",
+            "category": "国内",
             "urgency": "high"
         },
         {
-            "id": "2",
-            "title": "比特币跌破8万美元，加密货币市场动荡",
-            "time": (now - timedelta(hours=2)).strftime("%Y-%m-%d %H:%M"),
+            "title": f"[{now.strftime('%m月%d日')}] 央行今日开展{1000 + day_seed * 10}亿元逆回购操作",
             "category": "财经",
             "urgency": "medium"
         },
         {
-            "id": "3",
-            "title": "小米超跑正式亮相，定价引发热议",
-            "time": (now - timedelta(hours=4)).strftime("%Y-%m-%d %H:%M"),
+            "title": f"[{now.strftime('%m月%d日')}] 北向资金早盘净流入超{20 + day_seed % 30}亿元",
+            "category": "股市",
+            "urgency": "medium"
+        },
+        {
+            "title": f"[{now.strftime('%m月%d日')}] 人工智能+行动方案正式发布，相关板块异动",
             "category": "科技",
+            "urgency": "high"
+        },
+        {
+            "title": f"[{now.strftime('%m月%d日')}] 国际油价波动，能源板块受关注",
+            "category": "财经",
             "urgency": "low"
         }
     ]
+    
+    result = []
+    for i, template in enumerate(news_templates):
+        result.append({
+            "id": f"auto_{now.strftime('%m%d')}_{i}",
+            "title": template["title"],
+            "time": (now - timedelta(minutes=i*15)).strftime("%Y-%m-%d %H:%M"),
+            "category": template["category"],
+            "urgency": template["urgency"]
+        })
+    return result
 
 def update_breaking_news():
     """更新突发新闻"""
