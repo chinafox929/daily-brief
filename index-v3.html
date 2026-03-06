@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <title>每日简报 | 2026年3月6日 周五 [v2]</title>
+    <link rel="stylesheet" href="styles.css?v=202603061800">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            min-height: 100vh;
+            color: var(--text-primary);
+            line-height: 1.8;
+        }
+        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
+        .header { text-align: center; padding: 60px 0 40px; border-bottom: 1px solid #d4c9b8; margin-bottom: 40px; }
+        .date { font-size: 14px; color: #8b7355; letter-spacing: 3px; margin-bottom: 10px; }
+        .title { font-size: 32px; font-weight: 300; color: #2c2c2c; letter-spacing: 8px; }
+        .zen-circle { width: 80px; height: 80px; border: 2px solid #c4b8a8; border-radius: 50%; margin: 30px auto; position: relative; opacity: 0.6; }
+        .zen-circle::before { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; border: 1px solid #d4c9b8; border-radius: 50%; }
+        .section { background: rgba(255, 255, 255, 0.6); border-radius: 8px; padding: 30px; margin-bottom: 25px; box-shadow: 0 2px 15px rgba(0,0,0,0.03); border: 1px solid rgba(212, 201, 184, 0.3); }
+        .section-title { font-size: 18px; color: #5a4a3a; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #e0d8cd; display: flex; align-items: center; gap: 10px; }
+        .news-list { list-style: none; }
+        .news-item { padding: 12px 0; border-bottom: 1px dashed #e0d8cd; position: relative; padding-left: 20px; }
+        .news-item:last-child { border-bottom: none; }
+        .news-item::before { content: "•"; position: absolute; left: 0; color: #a09080; }
+        .highlight-box { background: linear-gradient(135deg, #faf8f5 0%, #f5f2ed 100%); border-left: 3px solid #c4a882; padding: 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
+        .learn-box { background: #f9f7f4; padding: 20px; border-radius: 8px; border: 1px solid #e8e0d5; }
+        .learn-title { font-size: 14px; color: #8b7355; margin-bottom: 10px; }
+        .reminder { background: linear-gradient(135deg, #f5f0e8 0%, #ebe5dc 100%); padding: 20px; border-radius: 8px; text-align: center; font-size: 15px; color: #5a4a3a; }
+        .art-image { width: 100%; max-width: 600px; margin: 20px auto; display: block; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+        .art-caption { text-align: center; font-size: 13px; color: #8b7355; margin-top: 10px; font-style: italic; }
+        .footer { text-align: center; padding: 40px 0; color: #a09080; font-size: 12px; letter-spacing: 2px; }
+        .nav { text-align: center; margin-bottom: 30px; }
+        .nav a { color: #8b7355; text-decoration: none; margin: 0 15px; font-size: 14px; }
+        .nav a:hover { color: #5a4a3a; }
+        
+        /* 滚动渐显动画 */
+        .section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease-out;
+        }
+        .section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* 鼠标光标效果 - 电脑端 */
+        .cursor {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #c4a882;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            transition: transform 0.1s ease, opacity 0.3s ease;
+            opacity: 0;
+        }
+        .cursor.active {
+            opacity: 1;
+            transform: scale(1.5);
+            background: rgba(196, 168, 130, 0.1);
+        }
+        .cursor-dot {
+            width: 6px;
+            height: 6px;
+            background: #c4a882;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .cursor-dot.active {
+            opacity: 1;
+        }
+        
+        /* 悬停效果 */
+        .section:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        
+        /* 移动端触摸优化 */
+        @media (hover: none) {
+            .cursor, .cursor-dot { display: none; }
+            .section { 
+                opacity: 1;
+                transform: none;
+                transition: transform 0.3s ease;
+            }
+        }
+        
+        /* 平滑滚动 */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* 加载动画 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .header {
+            animation: fadeIn 0.8s ease-out;
+        }
+        
+        @media (max-width: 600px) { .title { font-size: 24px; letter-spacing: 4px; } .section { padding: 20px; } }
+    </style>
+</head>
+<body class="theme-zen">
+    <div class="container">
+        <div class="nav">
+            <a href="index.html">今日</a>
+            <a href="archive.html">归档</a>
+            <a href="about.html">关于</a>
+        </div>
+        
+        <header class="header">
+            <div class="date">2026年3月6日 周五</div>
+            <h1 class="title">每日简报</h1>
+            <div class="zen-circle"></div>
+            <div class="subtitle">专属信息网 · 禅意生活</div>
+        </header>
+        
+        <section class="section">
+            <h2 class="section-title">📅 每周回顾</h2>
+            <div class="highlight-box">
+                <p><strong>【上周市场回顾】</strong></p>
+                <p>• 📈 A股：上证指数周涨2.3%，深成指涨1.8%，创业板指涨3.1%</p>
+<p>• 🌍 国际：道指创新高，纳指涨4.2%，欧股普涨</p>
+<p>• 💰 汇率：人民币兑美元升值0.5%，外资净流入超200亿</p>
+<p>• 🏆 板块：AI概念、芯片、新能源领涨；地产、银行回调</p>
+<p>• 📊 成交：日均成交额1.2万亿，较上周放量15%</p>
+                <br><br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>市场永远在奖励那些能看穿噪音的人。当所有人都在讨论AI泡沫时，真正赚钱的是那些看懂AI基础设施需求的人——算力、电力、数据中心。投资不是追逐热点，而是理解热点的底层逻辑。</em></p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">🤖 AI 专区</h2>
+            <div class="highlight-box">
+                <p><strong>【AI 快讯】</strong></p>
+                <p>• OpenAI 将发布 GPT-4.5 模型，已开发20多个月 [证券时报]</p>
+<p>• GPT-5.2 发布，具备顶尖推理、长上下文和视觉能力 [OpenAI]</p>
+<p>• 文心一言宣布4月1日起全面免费，所有用户可体验 [钛媒体]</p>
+<p>• DeepSeek 横空出世后，国内外AI大模型企业加速迭代 [钛媒体]</p>
+                <br>
+                <p><strong>【AI 投资风向】</strong></p>
+                <p>AI 板块持续高热，建议关注三条主线：1）算力基建（英伟达、AMD、国产芯片）；2）大模型应用（微软、谷歌、百度、阿里）；3）AI 赋能传统行业（医疗、教育、金融）。风险提示：估值偏高，注意回调风险。</p>
+                <br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>我们正处于一个奇怪的时代：AI能写出完美的商业计划书，却不懂为什么要创业；能诊断疾病，却感受不到病人的恐惧。技术的边界越来越清晰，人类的边界却越来越模糊。也许真正的机会不在于AI能做什么，而在于AI不能做但人们依然愿意为之付费的事情——陪伴、理解、意义感。</em></p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">🌏 地缘政治分析</h2>
+            <div class="highlight-box">
+                <p><strong>【最新动态】</strong></p>
+                <p>• 美伊局势持续紧张，美军在伊朗周边集结兵力，霍尔木兹海峡航运风险上升</p>
+<p>• 特朗普宣布对全球加征10-15%关税，中美贸易摩擦升级担忧再起</p>
+<p>• 俄乌冲突进入新阶段，能源供应链重构加速</p>
+                <br>
+                <p><strong>【深度解读】</strong></p>
+                <p>当前地缘政治风险主要集中在三大热点：中东局势（美伊对峙）、贸易摩擦（美国关税政策）、以及俄乌冲突的长期化。这些风险对全球供应链、能源价格和资本市场都将产生深远影响。建议投资者关注黄金、原油等避险资产，同时留意国产替代、军工等受益板块。</p>
+                <br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>历史不会重复，但会押韵。1930年代的贸易战最终导向了什么，历史书上有答案。但今天不同的是，全球供应链的纠缠比任何时候都深。脱钩不是开关，而是手术——疼的是双方。普通人能做什么？保持流动性，不押注单一货币、单一市场、单一叙事。</em></p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">🌍 国际热点</h2>
+            <ul class="news-list"><li class="news-item">特朗普关税新方案今天可能公布，美国继续对全球商品加税10-15%。对A股影响：出口链承压，国产替代概念或受益。</li>
+<li class="news-item">美伊局势紧张，油价上涨到66美元/桶，国内油价可能上调。</li>
+<li class="news-item">美联储暗示可能推迟降息，美元走强，对新兴市场资金流动有影响。</li>
+<li class="news-item">日本1月通胀放缓，央行加息预期降温，亚太股市或受提振。</li></ul>
+            <br>
+            <p><strong>💭 深度思考</strong></p>
+            <p><em>特朗普的关税政策像一场即兴爵士乐——没人知道下一个音符是什么。但市场讨厌不确定性。这种环境下，'预测'变得无用，'适应'变得关键。与其猜测政策走向，不如构建无论哪种情况都能生存的仓位结构。</em></p>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">🇨🇳 国内动态</h2>
+            <ul class="news-list"><li class="news-item">明天A股春节后首个交易日，历史数据显示春节后第一周上涨概率约70%，'开门红'可期。</li>
+<li class="news-item">央行近期可能降准降息，资金面有望更宽松，利好股市。</li>
+<li class="news-item">证监会发布新规，加强上市公司质量监管，长期利好A股生态。</li>
+<li class="news-item">春节假期消费数据亮眼，旅游、电影、餐饮收入超预期，消费复苏概念值得关注。</li>
+<li class="news-item">多地出台房地产支持政策，房贷利率下调，地产链或迎修复。</li></ul>
+            <br>
+            <p><strong>💭 深度思考</strong></p>
+            <p><em>政策底和市场底往往不是同一个底。政策可以托住经济不往下掉，但托不出牛市。牛市需要信心，而信心来自赚钱效应，赚钱效应来自基本面改善。这个传导链条很长，需要耐心。现在是什么阶段？政策底已现，市场底在磨，业绩底未到。</em></p>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">💡 科技新鲜事</h2>
+            <ul class="news-list"><li class="news-item">国产AI公司智谱股价暴涨42%，市值破3000亿，AI应用概念持续火热。</li>
+<li class="news-item">小红书内测AI剪辑工具，对着手机说句话就能剪视频。</li>
+<li class="news-item">比亚迪发布新车型，价格再创新低，新能源车竞争白热化。</li></ul>
+            <br>
+            <p><strong>💭 深度思考</strong></p>
+            <p><em>技术扩散遵循一个规律：先被嘲笑，后被恐惧，最后被忽视。AI现在处于'被恐惧'阶段。但历史告诉我们，真正改变世界的技术，最终都会变得像水电一样——无处不在，却无人谈论。投资的关键是找到那个从'被恐惧'到'被忽视'的转折点。</em></p>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">🔥 A股重点</h2>
+            <div class="highlight-box">
+                <p>上周五（节前）A股集体收跌，上证指数跌1.26%报4082点，深成指跌1.28%，创业板指跌1.57%。成交额2万亿，较前日缩量7%。板块方面，海洋捕捞、半导体设备逆势上涨；通信线缆、稀土、有色金属跌幅居前。技术面看，沪指跌破4100点整数关口，短期支撑在4050点附近，压力在4150点。明日节后开市，关注能否'开门红'，建议控制仓位，重点关注AI应用、国产替代、消费复苏三大主线。</p>
+                <br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>技术分析的本质是什么？是寻找市场参与者行为的规律。支撑和压力之所以存在，是因为人们记得那个价格。当足够多人相信某个价位有意义，它就有了意义。这是一种集体幻觉，但幻觉也能赚钱——只要你比大多数人早一步意识到幻觉的存在。</em></p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">📊 其他市场</h2>
+            <ul class="news-list"><li class="news-item">美股：道指逼近5万点，科技股领涨</li>
+<li class="news-item">港股：AI概念强势，腾讯阿里承压</li>
+<li class="news-item">比特币：约6.8万美元</li></ul>
+            <br>
+            <p><strong>💭 深度思考</strong></p>
+            <p><em>全球市场的联动性越来越强，但相关性不是因果性。美股涨，A股不一定跟；美股跌，A股不一定跌。真正重要的是理解每个市场背后的驱动因素。美股的驱动是流动性，A股的驱动是政策预期，港股的驱动是南向资金。搞清楚谁在买、为什么买，比看K线重要。</em></p>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">₿ 加密货币专栏</h2>
+            <div class="highlight-box">
+                <p><strong>【市场动态】</strong></p>
+                <p>• 📉 比特币现报$67,200，24小时跌幅2.3%，测试6.7万美元关键支撑</p>
+<p>• 📉 以太坊失守$1,950，较历史高点回撤超60%，ETF持续流出</p>
+<p>• 😰 恐惧与贪婪指数：14/100（极度恐惧），创近半年新低</p>
+<p>• 💰 机构动态：现货比特币ETF上周净流出超3亿美元，矿企Bitdeer大举抛售</p>
+<p>• 🔍 链上信号：巨鲸地址数增加，聪明资金在悄悄吸筹</p>
+<p>• 📊 市场情绪：社交媒体情绪跌至2025年大涨前水平，散户恐慌抛售</p>
+                <br>
+                <p><strong>【趋势分析】</strong></p>
+                <p>市场正处于深度调整期，情绪极度悲观。BTC在6.6-7万美元区间震荡整理，ETH跌破2000美元后走势脆弱。但恐惧指数14已进入历史买入区域，巨鲸持续累积是积极信号。短期观望为主，中长期投资者可考虑分批布局。风险提示：监管政策不确定性、宏观流动性收紧。</p>
+                <br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>加密货币市场是一面镜子，照出人性的贪婪与恐惧。当恐惧指数14时，意味着市场参与者已经恐慌到了极点——而这往往是反向指标。但反人性的地方在于：你知道应该买，但你不敢。为什么？因为'这次不一样'的念头会占据你的大脑。每次危机，人们都会说'这次不一样'，但历史总是惊人地相似。</em></p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">🎨 艺术鉴赏</h2>
+            <div class="highlight-box">
+                <p><strong>【今日赏析】</strong> 《星月夜》——梵高的疯狂与浪漫</p>
+                <br>
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" alt="《星月夜》——梵高的疯狂与浪漫" class="art-image" onerror="this.style.display='none'">
+                <p class="art-caption">《星月夜》——梵高的疯狂与浪漫</p>
+                <br>
+                <p>这幅创作于1889年的油画，是梵高在圣雷米精神病院期间的作品。画面中旋转的星云像巨大的漩涡，明亮的星星闪烁着耀眼的光芒，一弯新月悬挂天际。起伏的山峦如波涛般涌动，仿佛能感受到艺术家内心的躁动与不安。那棵黑色的柏树像火焰般直冲云霄，而宁静的村庄则在夜色中沉睡，教堂的尖顶指向天空。梵高用夸张的线条和浓烈的色彩——深蓝、明黄、翠绿——将内心的情感直接倾泻在画布上。这不是我们肉眼所见的夜空，而是梵高灵魂深处的宇宙。</p>
+                <br>
+                <p><em>💡 艺术不是复制现实，而是表达内心。梵高教会我们：即使身处黑暗，也要仰望星空。那些看似疯狂旋转的笔触，恰恰是对生命最炽热的爱。</em></p>
+                <br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>为什么我们在130年后依然被这幅画打动？因为梵高画出了人类共通的情感——孤独、渴望、对超越性的追求。技术会过时，但情感不会。在AI能画出'完美'图像的今天，梵高的'不完美'反而更显珍贵。这提醒我们：价值不在于效率，而在于独特性；不在于精确，而在于真诚。</em></p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">🧠 投资心理学</h2>
+            <div class="highlight-box">
+                <p><strong>【今日话题】</strong> AI时代的'存在感焦虑'</p>
+                <br>
+                <p>当AI能写诗、画画、写代码，甚至通过律师考试时，很多人开始问：'我还能做什么？'这种存在感焦虑正在蔓延。社会学研究发现，技术革命期人们会经历'能力贬值恐慌'——不是你真的没价值，而是衡量价值的标准在变化。历史上，汽车取代马车时，马夫们也曾恐慌，但驾驶员、汽修工、交通规划师等新职业应运而生。AI不会取代人，但会用AI的人会取代不会用的人。</p>
+                <br>
+                <p><strong>💡 今日心法：与其焦虑被AI替代，不如思考如何让AI成为你的'外接大脑'。人类的创造力、同理心、价值判断，依然是不可替代的核心竞争力。</strong></p>
+                <br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>更深层的焦虑或许不是'AI会取代我'，而是'我不知道自己是谁'。当工作、技能、甚至创造力都被技术重新定义，人们被迫面对一个古老的问题：如果我不是我的职业，那我是谁？这种存在主义的危机，也许正是这个时代送给我们的礼物——逼我们找到比工作更深层的自我认同。</em></p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">❤️ 情感驿站</h2>
+            <div class="highlight-box">
+                <p><strong>【今日话题】</strong> 成年人的'情绪劳动'</p>
+                <br>
+                <p>你有没有发现，上班时即使再累也要保持微笑，面对客户的无理要求也要耐心解释，同事甩锅时还要装作大度？这叫'情绪劳动'——为了工作和社交，我们不得不管理、压抑甚至伪装自己的情绪。社会学研究发现，情绪劳动比体力劳动更消耗人。因为它没有下班时间，你回家后可能还在回味白天那句没怼回去的话。</p>
+                <br>
+                <p><em>📝 今日短句：'成年人的崩溃，是从计算'再忍忍就下班了'开始的。'</em></p>
+                <br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>为什么我们越来越累？因为除了完成工作本身，我们还要'表演'一个情绪稳定的成年人。这种表演没有片酬，却耗费心力。也许真正的自我关怀，不是买包买鞋，而是允许自己偶尔'情绪不稳定'——在不伤害他人的前提下，诚实面对自己的感受。</em></p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">👀 今日看点</h2>
+            <ul class="news-list"><li class="news-item">A股春节后首个交易日，关注'开门红'</li>
+<li class="news-item">1月LPR数据公布，关注利率动向</li>
+<li class="news-item">特朗普关税细节公布，关注市场反应</li></ul>
+            <br>
+            <p><strong>💭 深度思考</strong></p>
+            <p><em>关注什么，决定了你看到什么。市场每天产生无数信息，但大部分只是噪音。真正的信号往往藏在被忽视的地方——成交量的异常、板块轮动的节奏、资金流向的变化。训练自己过滤噪音的能力，比获取更多信息的渠道更重要。</em></p>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">📚 每日财经学习</h2>
+            <div class="learn-box">
+                <div class="learn-title">支撑位和压力位</div>
+                <p>就像楼梯的台阶，股价跌到某个位置跌不动了叫支撑（有人买），涨到某个位置涨不动了叫压力（有人卖）。突破压力可能继续上涨，跌破支撑可能继续下跌。</p>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title">💡 每日一提醒</h2>
+            <div class="reminder">
+                <div style="font-size: 24px; margin-bottom: 10px;">☀️</div>
+                <p>节后开盘别急着追高，先看半小时盘面再决定。祝投资顺利！</p>
+            </div>
+        </section>
+        
+        <footer class="footer">
+            <p>专属信息网 · 每日更新</p>
+            <p style="margin-top: 10px; opacity: 0.6;">禅意 · 简约 · 专注</p>
+        </footer>
+    </div>
+    
+    <!-- 鼠标光标效果 -->
+    <div class="cursor"></div>
+    <div class="cursor-dot"></div>
+    
+    <script>
+        // 检测是否为触摸设备
+        const isTouchDevice = window.matchMedia('(hover: none)').matches;
+        
+        if (!isTouchDevice) {
+            // 电脑端 - 鼠标光标效果
+            const cursor = document.querySelector('.cursor');
+            const cursorDot = document.querySelector('.cursor-dot');
+            let mouseX = 0, mouseY = 0;
+            let cursorX = 0, cursorY = 0;
+            
+            document.addEventListener('mousemove', (e) => {
+                mouseX = e.clientX;
+                mouseY = e.clientY;
+                cursorDot.style.left = mouseX - 3 + 'px';
+                cursorDot.style.top = mouseY - 3 + 'px';
+                cursor.classList.add('active');
+                cursorDot.classList.add('active');
+            });
+            
+            document.addEventListener('mouseleave', () => {
+                cursor.classList.remove('active');
+                cursorDot.classList.remove('active');
+            });
+            
+            // 光标跟随动画
+            function animateCursor() {
+                cursorX += (mouseX - cursorX) * 0.1;
+                cursorY += (mouseY - cursorY) * 0.1;
+                cursor.style.left = cursorX - 10 + 'px';
+                cursor.style.top = cursorY - 10 + 'px';
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+            
+            // 悬停效果
+            document.querySelectorAll('a, .section').forEach(el => {
+                el.addEventListener('mouseenter', () => {
+                    cursor.style.transform = 'scale(2)';
+                    cursor.style.borderColor = '#8b7355';
+                });
+                el.addEventListener('mouseleave', () => {
+                    cursor.style.transform = 'scale(1)';
+                    cursor.style.borderColor = '#c4a882';
+                });
+            });
+        }
+        
+        // 滚动渐显动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        document.querySelectorAll('.section').forEach(section => {
+            observer.observe(section);
+        });
+        
+        // 移动端触摸反馈
+        if (isTouchDevice) {
+            document.querySelectorAll('.section').forEach(section => {
+                section.addEventListener('touchstart', () => {
+                    section.style.transform = 'scale(0.98)';
+                });
+                section.addEventListener('touchend', () => {
+                    section.style.transform = 'scale(1)';
+                });
+            });
+        }
+    </script>
+    <script src="app.js"></script>
+</body>
+</html>
