@@ -412,6 +412,30 @@
             color: var(--color-text-secondary);
         }
         
+        /* Deep Thinking Section */
+        .deep-thinking {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #e8e8e8;
+            padding: 28px;
+            margin-top: 24px;
+            border-left: 4px solid var(--color-accent);
+        }
+        .deep-thinking-title {
+            font-size: 12px;
+            color: var(--color-accent);
+            letter-spacing: 2px;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .deep-thinking-content {
+            font-size: 14px;
+            line-height: 1.9;
+            color: #ccc;
+            font-style: italic;
+        }
+        
         /* Footer */
         .footer {
             text-align: center;
@@ -485,68 +509,75 @@
             <div class="masthead-label">Daily Intelligence Briefing</div>
             <h1 class="masthead-title">晨间简报</h1>
             <div class="masthead-subtitle">市场脉搏 · 科技前沿 · 地缘政治 · 艺术鉴赏</div>
-            <div class="masthead-date">2026年3月7日 星期六 | 更新于 11:45 CST | 第 67 期</div>
+            <div class="masthead-date" id="brief-date">2026年3月7日 星期六 | 更新于 11:45 CST | 第 67 期</div>
             <div class="weather-line">北京 晴 8°C | 上海 多云 12°C | 深圳 晴 18°C | 香港 晴 20°C</div>
         </header>
 
         <!-- 01 Global Markets -->
-        <section class="section">
+        <section class="section" id="section-markets">
             <div class="section-header">
                 <span class="section-number">01</span>
                 <h2 class="section-title">Global Markets</h2>
-                <span class="section-subtitle">Real-time Data</span>
+                <span class="section-subtitle">全球市场概览</span>
             </div>
             
             <div class="market-grid">
                 <div class="market-item">
                     <div class="market-name">上证指数</div>
-                    <div class="market-value">4,124.19</div>
-                    <div class="market-change up">+0.38%</div>
+                    <div class="market-value" id="market-sh">4,124.19</div>
+                    <div class="market-change up" id="change-sh">+0.38%</div>
                 </div>
                 <div class="market-item">
                     <div class="market-name">深证成指</div>
-                    <div class="market-value">14,172.63</div>
-                    <div class="market-change up">+0.59%</div>
+                    <div class="market-value" id="market-sz">14,172.63</div>
+                    <div class="market-change up" id="change-sz">+0.59%</div>
                 </div>
                 <div class="market-item">
                     <div class="market-name">创业板指</div>
-                    <div class="market-value">3,229.30</div>
-                    <div class="market-change up">+0.38%</div>
+                    <div class="market-value" id="market-cy">3,229.30</div>
+                    <div class="market-change up" id="change-cy">+0.38%</div>
                 </div>
                 <div class="market-item">
                     <div class="market-name">恒生指数</div>
-                    <div class="market-value">24,215.00</div>
-                    <div class="market-change up">+1.23%</div>
+                    <div class="market-value" id="market-hs">24,215.00</div>
+                    <div class="market-change up" id="change-hs">+1.23%</div>
                 </div>
                 <div class="market-item">
                     <div class="market-name">道琼斯</div>
-                    <div class="market-value">42,801.55</div>
-                    <div class="market-change down">-0.95%</div>
+                    <div class="market-value" id="market-dj">42,801.55</div>
+                    <div class="market-change down" id="change-dj">-0.95%</div>
                 </div>
                 <div class="market-item">
                     <div class="market-name">纳斯达克</div>
-                    <div class="market-value">18,432.15</div>
-                    <div class="market-change down">-1.59%</div>
+                    <div class="market-value" id="market-nq">18,432.15</div>
+                    <div class="market-change down" id="change-nq">-1.59%</div>
                 </div>
                 <div class="market-item">
                     <div class="market-name">标普500</div>
-                    <div class="market-value">5,847.23</div>
-                    <div class="market-change down">-1.33%</div>
+                    <div class="market-value" id="market-sp">5,847.23</div>
+                    <div class="market-change down" id="change-sp">-1.33%</div>
                 </div>
                 <div class="market-item">
                     <div class="market-name">日经225</div>
-                    <div class="market-value">38,456.12</div>
-                    <div class="market-change down">-0.41%</div>
+                    <div class="market-value" id="market-nk">38,456.12</div>
+                    <div class="market-change down" id="change-nk">-0.41%</div>
+                </div>
+            </div>
+            
+            <div class="deep-thinking">
+                <div class="deep-thinking-title">💭 深度思考</div>
+                <div class="deep-thinking-content" id="markets-thought">
+                    全球市场正在经历一个微妙的再平衡过程。美股科技股的回调反映了高估值与增长预期之间的张力，而A股的韧性则来自于政策托底和结构性机会。投资者需要思考：当全球流动性周期进入新阶段，哪些资产能在通胀与增长的博弈中脱颖而出？也许答案不在于预测市场方向，而在于构建能适应多种情景的韧性组合。
                 </div>
             </div>
         </section>
 
         <!-- 02 Sector Heatmap -->
-        <section class="section">
+        <section class="section" id="section-sectors">
             <div class="section-header">
                 <span class="section-number">02</span>
                 <h2 class="section-title">Sector Heatmap</h2>
-                <span class="section-subtitle">A-Share Performance</span>
+                <span class="section-subtitle">A股板块表现</span>
             </div>
             
             <div class="card">
@@ -556,7 +587,7 @@
                         <div class="card-meta">周五收盘数据</div>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="sectors-leading">
                     <span style="display: inline-block; padding: 6px 12px; margin: 4px; border: 1px solid #c41e3a; color: #c41e3a; font-size: 12px;">发电机概念 +5.30%</span>
                     <span style="display: inline-block; padding: 6px 12px; margin: 4px; border: 1px solid #c41e3a; color: #c41e3a; font-size: 12px;">人形机器人 +4.20%</span>
                     <span style="display: inline-block; padding: 6px 12px; margin: 4px; border: 1px solid #c41e3a; color: #c41e3a; font-size: 12px;">AI算力 +3.80%</span>
@@ -564,14 +595,21 @@
                     <span style="display: inline-block; padding: 6px 12px; margin: 4px; border: 1px solid #c41e3a; color: #c41e3a; font-size: 12px;">固态电池 +2.50%</span>
                 </div>
             </div>
+            
+            <div class="deep-thinking">
+                <div class="deep-thinking-title">💭 深度思考</div>
+                <div class="deep-thinking-content" id="sectors-thought">
+                    板块轮动的背后，是市场对未来经济形态的预期重构。AI算力的持续上涨不仅是主题炒作，更是对算力基础设施长期需求的押注。人形机器人的崛起则预示着通用人工智能向物理世界的渗透。投资者需要区分：哪些是 lasting change（持久变革），哪些是 passing fad（短暂热潮）？真正的机会往往存在于技术曲线与商业落地的交汇处。
+                </div>
+            </div>
         </section>
 
         <!-- 03 AI专区 -->
-        <section class="section">
+        <section class="section" id="section-ai">
             <div class="section-header">
                 <span class="section-number">03</span>
                 <h2 class="section-title">Artificial Intelligence</h2>
-                <span class="section-subtitle">Tech Frontier</span>
+                <span class="section-subtitle">AI Watch · 科技前沿</span>
             </div>
             
             <div class="card">
@@ -582,7 +620,7 @@
                         <div class="card-meta">发改委详解六大新兴支柱产业</div>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="ai-content-1">
                     <p>十四届全国人大四次会议记者会上，发改委主任郑栅洁详解六大新兴支柱产业与未来产业，预计相关产值2030年有望超十万亿。证监会主席吴清表示将深化创业板改革，增设更包容上市标准以支持新质生产力。</p>
                     <p>娄勤俭以三个"非常"（非常震撼、非常激动、非常自豪）盛赞国产人形机器人，强调2025年是该产业实现技术突破与场景落地的关键一年。</p>
                 </div>
@@ -596,18 +634,25 @@
                         <div class="card-meta">MWC 2026 · 算力规模300Pflops</div>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="ai-content-2">
                     <p>华为在MWC巴塞罗那发布Atlas 950 SuperPoD智算超节点，基于灵衢互联创新，支持上千个计算节点像一台计算机一样工作，算力总规模达300Pflops，内存总带宽达1229TB/S。</p>
+                </div>
+            </div>
+            
+            <div class="deep-thinking">
+                <div class="deep-thinking-title">💭 深度思考</div>
+                <div class="deep-thinking-content" id="ai-thought">
+                    我们正处于一个奇怪的时代：AI能写出完美的商业计划书，却不懂为什么要创业；能诊断疾病，却感受不到病人的恐惧。技术的边界越来越清晰，人类的边界却越来越模糊。也许真正的机会不在于AI能做什么，而在于AI不能做但人们依然愿意为之付费的事情——陪伴、理解、意义感。
                 </div>
             </div>
         </section>
 
         <!-- 04 地缘政治 -->
-        <section class="section">
+        <section class="section" id="section-geo">
             <div class="section-header">
                 <span class="section-number">04</span>
                 <h2 class="section-title">Geopolitics</h2>
-                <span class="section-subtitle">Risk Analysis</span>
+                <span class="section-subtitle">Risk Analysis · 风险分析</span>
             </div>
             
             <div class="card">
@@ -618,7 +663,7 @@
                         <div class="card-meta">特朗普要求伊朗"无条件投降"</div>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="geo-content-1">
                     <p>美以伊战争持续一周，以色列与伊朗持续发动空袭与导弹互击。伊朗已有数百人死亡，地区其他国家数十人遇难，美方称其六名军人阵亡。特朗普要求伊朗"无条件投降"。</p>
                     <p>市场影响：避险情绪升温，黄金一度突破5,158美元，油价本周飙升35%创1983年以来最大单周涨幅，突破92美元/桶。</p>
                 </div>
@@ -632,206 +677,326 @@
                         <div class="card-meta">科技竞争加剧</div>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body" id="geo-content-2">
                     <p>美国官员已起草法规草案，拟限制全球范围内未经美国批准的人工智能芯片发货。拟议法规将要求企业向美国申请许可，才能出口几乎所有英伟达和AMD等公司生产的人工智能加速器。</p>
                 </div>
             </div>
-        </section>        <!-- 05 全球实时监控 -->
-        <section class="section">
-            <div class="section-header">
-                <span class="section-number">05</span>
-                <h2 class="section-title">Global Intelligence</h2>
-                <span class="section-subtitle">Live Monitor · 每5分钟更新</span>
-            </div>
             
-            <!-- 实时监控总览面板 -->
-            <div class="card" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); color: #e8e8e8; border: 1px solid #333;">
-                <!-- 头部信息 -->
-                <div class="card-header" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px;">
-                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-                        <div>
-                            <div style="font-size: 18px; color: #d4af37; margin-bottom: 8px; letter-spacing: 2px;">全球态势感知系统</div>
-                            <div style="font-size: 13px; color: #666; line-height: 1.8;">
-                                数据来源: WorldMonitor.app · ADS-B Exchange · MarineTraffic · USGS · CISA · 多源OSINT
-                            </div>
-                        </div>
-                        <div style="text-align: right;">
-                            <div style="font-size: 11px; color: #444; margin-bottom: 4px;">系统状态</div>
-                            <div style="font-size: 12px; color: #2d5a27; display: flex; align-items: center; gap: 6px;">
-                                <span style="width: 8px; height: 8px; background: #2d5a27; border-radius: 50%; display: inline-block;"></span>
-                                正常运行
-                            </div>
-                            <div style="font-size: 12px; color: #d4af37; margin-top: 8px;" id="global-update-time"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 关键指标卡片 -->
-                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 24px 0;">
-                    <div style="background: rgba(196,30,58,0.08); border: 1px solid rgba(196,30,58,0.3); padding: 16px; text-align: center;">
-                        <div style="font-size: 28px; color: #c41e3a; font-weight: 600;" class="global-stat-value">2</div>
-                        <div style="font-size: 11px; color: #888; margin-top: 4px; letter-spacing: 1px;">HIGH RISK</div>
-                        <div style="font-size: 12px; color: #666; margin-top: 8px;">高危警报</div>
-                    </div>
-                    
-                    <div style="background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.3); padding: 16px; text-align: center;">
-                        <div style="font-size: 28px; color: #d4af37; font-weight: 600;" class="global-stat-value">5</div>
-                        <div style="font-size: 11px; color: #888; margin-top: 4px; letter-spacing: 1px;">ELEVATED</div>
-                        <div style="font-size: 12px; color: #666; margin-top: 8px;">中级关注</div>
-                    </div>
-                    
-                    <div style="background: rgba(45,90,39,0.08); border: 1px solid rgba(45,90,39,0.3); padding: 16px; text-align: center;">
-                        <div style="font-size: 28px; color: #2d5a27; font-weight: 600;" class="global-stat-value">12</div>
-                        <div style="font-size: 11px; color: #888; margin-top: 4px; letter-spacing: 1px;">MONITORING</div>
-                        <div style="font-size: 12px; color: #666; margin-top: 8px;">持续监测</div>
-                    </div>
-                    
-                    <div style="background: rgba(100,100,100,0.08); border: 1px solid rgba(100,100,100,0.3); padding: 16px; text-align: center;">
-                        <div style="font-size: 28px; color: #888; font-weight: 600;" class="global-stat-value">89%</div>
-                        <div style="font-size: 11px; color: #666; margin-top: 4px; letter-spacing: 1px;">NORMAL</div>
-                        <div style="font-size: 12px; color: #666; margin-top: 8px;">系统正常</div>
-                    </div>
-                </div>
-                
-                <!-- 详细警报列表 -->
-                <div style="margin-top: 24px;">
-                    <div style="font-size: 13px; color: #888; margin-bottom: 16px; letter-spacing: 1px;">最新警报 / ACTIVE ALERTS</div>
-                    
-                    <!-- 动态警报容器 -->
-                    <div id="global-alerts-container">
-                    
-                    <!-- 高危警报1 -->
-                    <div style="background: rgba(196,30,58,0.05); border-left: 3px solid #c41e3a; padding: 20px; margin-bottom: 12px;">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
-                            <div>
-                                <div style="font-size: 11px; color: #c41e3a; letter-spacing: 2px; margin-bottom: 6px;">HIGH RISK · 网络威胁</div>
-                                <div style="font-size: 15px; color: #fff; font-weight: 500;">勒索软件新变种攻击亚太金融机构</div>
-                            </div>
-                            <div style="font-size: 11px; color: #666;">14:18 CST</div>
-                        </div>
-                        
-                        <div style="font-size: 13px; color: #aaa; line-height: 1.8; margin-bottom: 12px;">
-                            检测到针对东南亚金融基础设施的协同攻击活动。攻击者利用零日漏洞（CVE-2026-3847）针对SWIFT网络模拟器，新加坡、香港部分金融机构已检测到异常流量。新变种被命名为"LockBit-Black 3.0"，已捕获12个新的C2域名。
-                        </div>
-                        
-                        <div style="background: rgba(0,0,0,0.3); padding: 12px; margin-bottom: 12px;">
-                            <div style="font-size: 11px; color: #666; margin-bottom: 6px;">影响分析</div>
-                            <div style="font-size: 12px; color: #888; line-height: 1.6;">
-                                <strong style="color: #d4af37;">对中国影响：</strong> 中等。香港作为国际金融中心，部分跨境支付可能受影响。建议国内金融机构加强SWIFT系统监控，验证备份系统可用性。A股金融科技板块短期可能承压，网络安全概念股或受关注。
-                            </div>
-                        </div>
-                        
-                        <div style="display: flex; gap: 16px; font-size: 11px; color: #666;">
-                            <span>影响区域: 新加坡、香港、东南亚</span>
-                            <span>|  攻击向量: 零日漏洞</span>
-                            <span>|  防御状态: 已启动自动防御</span>
-                        </div>
-                    </div>
-                    
-                    <!-- 高危警报2 -->
-                    <div style="background: rgba(196,30,58,0.05); border-left: 3px solid #c41e3a; padding: 20px; margin-bottom: 12px;">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
-                            <div>
-                                <div style="font-size: 11px; color: #c41e3a; letter-spacing: 2px; margin-bottom: 6px;">HIGH RISK · 地缘政治</div>
-                                <div style="font-size: 15px; color: #fff; font-weight: 500;">美伊军事对峙升级 · 霍尔木兹海峡航运风险</div>
-                            </div>
-                            <div style="font-size: 11px; color: #666;">持续监控中</div>
-                        </div>
-                        
-                        <div style="font-size: 13px; color: #aaa; line-height: 1.8; margin-bottom: 12px;">
-                            美以伊战争进入第7天，特朗普要求伊朗"无条件投降"。美军在伊朗周边集结兵力，霍尔木兹海峡航运风险显著上升。监测到该海域GPS干扰信号强度较基线上升340%，多艘商船改变航线。
-                        </div>
-                        
-                        <div style="background: rgba(0,0,0,0.3); padding: 12px; margin-bottom: 12px;">
-                            <div style="font-size: 11px; color: #666; margin-bottom: 6px;">影响分析</div>
-                            <div style="font-size: 12px; color: #888; line-height: 1.6;">
-                                <strong style="color: #d4af37;">对中国影响：</strong> 高。中国60%以上原油进口经过霍尔木兹海峡。若冲突升级导致海峡封锁，将直接冲击国内能源供应和油价。建议关注战略石油储备释放信号，以及新能源板块替代逻辑。航运保险费率已飙升，中远海控等航运股成本承压。
-                            </div>
-                        </div>
-                        
-                        <div style="display: flex; gap: 16px; font-size: 11px; color: #666;">
-                            <span>影响区域: 中东、霍尔木兹海峡</span>
-                            <span>|  油价波动: +35%本周</span>
-                            <span>|  GPS干扰: +340%</span>
-                        </div>
-                    </div>
-                    
-                    <!-- 中级警报1 -->
-                    <div style="background: rgba(212,175,55,0.05); border-left: 3px solid #d4af37; padding: 20px; margin-bottom: 12px;">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
-                            <div>
-                                <div style="font-size: 11px; color: #d4af37; letter-spacing: 2px; margin-bottom: 6px;">ELEVATED · 基础设施</div>
-                                <div style="font-size: 15px; color: #fff; font-weight: 500;">GPS信号干扰多区域扩散</div>
-                            </div>
-                            <div style="font-size: 11px; color: #666;">14:12 CST</div>
-                        </div>
-                        
-                        <div style="font-size: 13px; color: #aaa; line-height: 1.8; margin-bottom: 12px;">
-                            黑海海域、波罗的海、南海部分区域检测到异常GPS干扰信号。信号特征与已知电子战设备匹配，疑似军事演习或侦察活动。马六甲海峡东侧昨日亦有短暂干扰报告。
-                        </div>
-                        
-                        <div style="background: rgba(0,0,0,0.3); padding: 12px; margin-bottom: 12px;">
-                            <div style="font-size: 11px; color: #666; margin-bottom: 6px;">影响分析</div>
-                            <div style="font-size: 12px; color: #888; line-height: 1.6;">
-                                <strong style="color: #d4af37;">对中国影响：</strong> 中等。南海部分海域受影响，可能干扰渔业和近海航运。建议相关船只启用备用导航系统（北斗/GLONASS）。北斗导航系统概念股或受关注，高精度定位设备需求可能上升。
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- 中级警报2 -->
-                    <div style="background: rgba(212,175,55,0.05); border-left: 3px solid #d4af37; padding: 20px; margin-bottom: 12px;">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
-                            <div>
-                                <div style="font-size: 11px; color: #d4af37; letter-spacing: 2px; margin-bottom: 6px;">ELEVATED · 气候环境</div>
-                                <div style="font-size: 15px; color: #fff; font-weight: 500;">厄尔尼诺指数突破+2.1°C · 极端天气风险上升</div>
-                            </div>
-                            <div style="font-size: 11px; color: #666;">14:08 CST</div>
-                        </div>
-                        
-                        <div style="font-size: 13px; color: #aaa; line-height: 1.8; margin-bottom: 12px;">
-                            太平洋厄尔尼诺监测站数据显示，尼诺3.4区指数突破+2.1°C，近24小时急升0.4°C。气象模型预测东亚季风模式可能在未来72小时内突变，南方暴雨风险增加。
-                        </div>
-                        
-                        <div style="background: rgba(0,0,0,0.3); padding: 12px; margin-bottom: 12px;">
-                            <div style="font-size: 11px; color: #666; margin-bottom: 6px;">影响分析</div>
-                            <div style="font-size: 12px; color: #888; line-height: 1.6;">
-                                <strong style="color: #d4af37;">对中国影响：</strong> 中高。农业板块直接承压，尤其是南方水稻产区。水利建设、防汛物资、农业保险相关板块或受益。电力需求可能因空调使用激增，煤炭、电力股关注。此外，极端天气可能扰动物流和供应链。
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- 智能摘要 -->
-                </div>
-                    
-                    <div style="background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.3); padding: 20px; margin-top: 24px;">
-                    <div style="font-size: 12px; color: #d4af37; margin-bottom: 12px; letter-spacing: 2px;">INTELLIGENCE SUMMARY / 智能摘要</div>
-                    
-                    <div style="font-size: 14px; color: #ccc; line-height: 1.8;" id="global-summary">
-                        当前全球风险指数处于<strong style="color: #d4af37;">" Elevated "</strong>水平。美伊冲突持续升级是最主要的地缘风险，若霍尔木兹海峡航运受阻将直接冲击中国能源安全。网络安全威胁呈上升趋势，金融机构需提高警惕。气候变化带来的极端天气风险正在累积，建议关注农业和基建相关板块。整体而言，建议增加黄金、原油等避险资产配置，同时关注北斗导航、网络安全、水利建设等主题投资机会。
-                    </div>
-                    
-                    <div style="margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1); font-size: 12px; color: #666;">
-                        <strong>关联板块提示：</strong> 石油开采 · 黄金 · 北斗导航 · 网络安全 · 水利建设 · 农业保险 · 航运
-                    </div>
-                </div>
-                
-                <!-- 底部链接 -->
-                <div style="margin-top: 20px; display: flex; justify-content: space-between; align-items: center;">
-                    <div style="font-size: 12px; color: #444;">
-                        监控覆盖: 164个国家 · 6大洲 · 12类基础设施
-                    </div>
-                    
-                    <a href="http://43.139.1.235/global-monitor.html" target="_blank" style="color: #d4af37; font-size: 13px; text-decoration: none; display: flex; align-items: center; gap: 8px;">
-                        查看完整监控面板
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="opacity: 0.6;">
-                            <path d="M7 17L17 7M17 7H7M17 7V17"/>
-                        </svg>
-                    </a>
+            <div class="deep-thinking">
+                <div class="deep-thinking-title">💭 深度思考</div>
+                <div class="deep-thinking-content" id="geo-thought">
+                    历史不会重复，但会押韵。1930年代的贸易战最终导向了什么，历史书上有答案。但今天不同的是，全球供应链的纠缠比任何时候都深。脱钩不是开关，而是手术——疼的是双方。普通人能做什么？保持流动性，不押注单一货币、单一市场、单一叙事。
                 </div>
             </div>
         </section>
 
+        <!-- 05 加密货币专栏 -->
+        <section class="section" id="section-crypto">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <h2 class="section-title">Crypto Watch</h2>
+                <span class="section-subtitle">Digital Assets · 数字资产</span>
+            </div>
+            
+            <div class="crypto-grid" id="crypto-prices">
+                <div class="crypto-item">
+                    <div class="crypto-icon">₿</div>
+                    <div class="crypto-name">Bitcoin</div>
+                    <div class="crypto-price" id="btc-price">$67,200</div>
+                    <div class="crypto-change down" id="btc-change">-2.3%</div>
+                </div>
+                <div class="crypto-item">
+                    <div class="crypto-icon">Ξ</div>
+                    <div class="crypto-name">Ethereum</div>
+                    <div class="crypto-price" id="eth-price">$1,950</div>
+                    <div class="crypto-change down" id="eth-change">-3.1%</div>
+                </div>
+                <div class="crypto-item">
+                    <div class="crypto-icon">◎</div>
+                    <div class="crypto-name">Solana</div>
+                    <div class="crypto-price" id="sol-price">$142.50</div>
+                    <div class="crypto-change up" id="sol-change">+1.2%</div>
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 24px;">
+                <div class="card-header">
+                    <div>
+                        <div class="card-tag">Market Intelligence</div>
+                        <div class="card-title">市场情绪分析</div>
+                    </div>
+                </div>
+                <div class="card-body" id="crypto-content">
+                    <p>• 😰 恐惧与贪婪指数：14/100（极度恐惧），创近半年新低</p>
+                    <p>• 💰 机构动态：现货比特币ETF上周净流出超3亿美元</p>
+                    <p>• 🔍 链上信号：巨鲸地址数增加，聪明资金在悄悄吸筹</p>
+                    <p>• 📊 市场展望：BTC在6.6-7万美元区间震荡整理，短期观望为主</p>
+                </div>
+            </div>
+            
+            <div class="deep-thinking">
+                <div class="deep-thinking-title">💭 深度思考</div>
+                <div class="deep-thinking-content" id="crypto-thought">
+                    加密货币市场是一面镜子，照出人性的贪婪与恐惧。当恐惧指数14时，意味着市场参与者已经恐慌到了极点——而这往往是反向指标。但反人性的地方在于：你知道应该买，但你不敢。为什么？因为"这次不一样"的念头会占据你的大脑。每次危机，人们都会说"这次不一样"，但历史总是惊人地相似。
+                </div>
+            </div>
+        </section>
+
+        <!-- 06 艺术鉴赏 -->
+        <section class="section" id="section-art">
+            <div class="section-header">
+                <span class="section-number">06</span>
+                <h2 class="section-title">Art Appreciation</h2>
+                <span class="section-subtitle">每日一画 · 美的沉思</span>
+            </div>
+            
+            <div class="artwork">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" 
+                     alt="星月夜" class="artwork-image" id="art-image">
+                <div class="artwork-info">
+                    <div class="artwork-title" id="art-title">《星月夜》</div>
+                    <div class="artwork-artist" id="art-artist">文森特·梵高 | 1889年 | 布面油画 | 纽约现代艺术博物馆</div>
+                    <div class="artwork-desc" id="art-content">
+                        <p>这幅创作于1889年的油画，是梵高在圣雷米精神病院期间的作品。画面中旋转的星云像巨大的漩涡，明亮的星星闪烁着耀眼的光芒，一弯新月悬挂天际。起伏的山峦如波涛般涌动，仿佛能感受到艺术家内心的躁动与不安。那棵黑色的柏树像火焰般直冲云霄，而宁静的村庄则在夜色中沉睡，教堂的尖顶指向天空。</p>
+                        <p>梵高用夸张的线条和浓烈的色彩——深蓝、明黄、翠绿——将内心的情感直接倾泻在画布上。这不是我们肉眼所见的夜空，而是梵高灵魂深处的宇宙。</p>
+                        <p style="margin-top: 16px; font-style: italic; color: var(--color-accent);">💡 艺术不是复制现实，而是表达内心。梵高教会我们：即使身处黑暗，也要仰望星空。那些看似疯狂旋转的笔触，恰恰是对生命最炽热的爱。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="deep-thinking">
+                <div class="deep-thinking-title">💭 深度思考</div>
+                <div class="deep-thinking-content" id="art-thought">
+                    为什么我们在130年后依然被这幅画打动？因为梵高画出了人类共通的情感——孤独、渴望、对超越性的追求。技术会过时，但情感不会。在AI能画出'完美'图像的今天，梵高的'不完美'反而更显珍贵。这提醒我们：价值不在于效率，而在于独特性；不在于精确，而在于真诚。
+                </div>
+            </div>
+        </section>
+
+        <!-- 07 投资心理学 -->
+        <section class="section" id="section-psychology">
+            <div class="section-header">
+                <span class="section-number">07</span>
+                <h2 class="section-title">Investment Psychology</h2>
+                <span class="section-subtitle">心智修炼 · 行为金融</span>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-tag">今日话题</div>
+                        <div class="card-title" id="psych-title">损失厌恶：为什么亏损比盈利更痛</div>
+                    </div>
+                </div>
+                <div class="card-body" id="psych-content">
+                    <p>行为经济学诺贝尔奖得主丹尼尔·卡尼曼发现：人们对损失的敏感度大约是同等收益的两倍。这就是"损失厌恶"——失去100元的痛苦，需要获得200元才能抵消。</p>
+                    <p>在投资中，这导致几种典型错误：1）过早卖出盈利股票（锁定收益的快乐）；2）过久持有亏损股票（逃避实现损失的痛苦）；3）在亏损后加大赌注试图"翻本"。</p>
+                    <p>💡 <strong>今日心法：</strong>意识到损失厌恶是人性的一部分，而非软弱的标志。建立机械化的止损规则，让系统在情绪接管前行动。记住：承认错误是智慧，坚持错误是愚蠢。</p>
+                </div>
+            </div>
+            
+            <div class="deep-thinking">
+                <div class="deep-thinking-title">💭 深度思考</div>
+                <div class="deep-thinking-content" id="psych-thought">
+                    损失厌恶的深层根源是什么？是进化赋予我们的生存机制——在原始社会，失去食物可能意味着死亡，而获得额外食物只是锦上添花。但现代金融市场不是原始森林，这种机制反而成为负担。真正的投资智慧在于：区分"真实的危险"和"感觉上的危险"。有时候，最大的风险不是亏损，而是为了不亏损而错失机会。
+                </div>
+            </div>
+        </section>
+
+        <!-- 08 情感驿站 -->
+        <section class="section" id="section-emotion">
+            <div class="section-header">
+                <span class="section-number">08</span>
+                <h2 class="section-title">Emotional Station</h2>
+                <span class="section-subtitle">心灵角落 · 情感共鸣</span>
+            </div>
+            
+            <div class="quote-block">
+                <div class="quote-text" id="emotion-quote">
+                    "成年人的崩溃，是从计算'再忍忍就下班了'开始的。"
+                </div>
+                <div class="quote-author" id="emotion-author">—— 今日短句</div>
+            </div>
+            
+            <div class="card">
+                <div class="card-header">
+                    <div>
+                        <div class="card-tag">今日话题</div>
+                        <div class="card-title" id="emotion-title">成年人的"情绪劳动"</div>
+                    </div>
+                </div>
+                <div class="card-body" id="emotion-content">
+                    <p>你有没有发现，上班时即使再累也要保持微笑，面对客户的无理要求也要耐心解释，同事甩锅时还要装作大度？这叫"情绪劳动"——为了工作和社交，我们不得不管理、压抑甚至伪装自己的情绪。</p>
+                    <p>社会学研究发现，情绪劳动比体力劳动更消耗人。因为它没有下班时间，你回家后可能还在回味白天那句没怼回去的话。长期的情绪压抑会导致倦怠、焦虑，甚至抑郁。</p>
+                    <p>📝 <strong>今日短句：</strong>"成年人的崩溃，是从计算'再忍忍就下班了'开始的。"</p>
+                </div>
+            </div>
+            
+            <div class="deep-thinking">
+                <div class="deep-thinking-title">💭 深度思考</div>
+                <div class="deep-thinking-content" id="emotion-thought">
+                    为什么我们越来越累？因为除了完成工作本身，我们还要'表演'一个情绪稳定的成年人。这种表演没有片酬，却耗费心力。也许真正的自我关怀，不是买包买鞋，而是允许自己偶尔'情绪不稳定'——在不伤害他人的前提下，诚实面对自己的感受。
+                </div>
+            </div>
+        </section>
+
+        <!-- 09 今日看点 -->
+        <section class="section" id="section-today">
+            <div class="section-header">
+                <span class="section-number">09</span>
+                <h2 class="section-title">Today's Focus</h2>
+                <span class="section-subtitle">今日看点 · 值得关注</span>
+            </div>
+            
+            <ul class="news-list" id="today-list">
+                <li class="news-item">A股春节后首个交易日，关注'开门红'行情是否延续</li>
+                <li class="news-item">1月LPR数据公布，关注利率动向对楼市影响</li>
+                <li class="news-item">特朗普关税细节公布，关注出口链与国产替代板块反应</li>
+                <li class="news-item">英伟达财报即将发布，AI产业链或迎催化剂</li>
+                <li class="news-item">国内1月PMI数据发布，经济复苏成色将受检验</li>
+            </ul>
+            
+            <div class="deep-thinking">
+                <div class="deep-thinking-title">💭 深度思考</div>
+                <div class="deep-thinking-content" id="today-thought">
+                    关注什么，决定了你看到什么。市场每天产生无数信息，但大部分只是噪音。真正的信号往往藏在被忽视的地方——成交量的异常、板块轮动的节奏、资金流向的变化。训练自己过滤噪音的能力，比获取更多信息的渠道更重要。
+                </div>
+            </div>
+        </section>
+
+        <!-- 10 每日财经学习 -->
+        <section class="section" id="section-learn">
+            <div class="section-header">
+                <span class="section-number">10</span>
+                <h2 class="section-title">Daily Financial Learning</h2>
+                <span class="section-subtitle">每天进步一点点</span>
+            </div>
+            
+            <div class="highlight">
+                <div class="highlight-title" id="learn-title">支撑位与压力位</div>
+                <div class="highlight-text" id="learn-content">
+                    就像楼梯的台阶，股价跌到某个位置跌不动了叫"支撑"（有人买），涨到某个位置涨不动了叫"压力"（有人卖）。突破压力可能继续上涨，跌破支撑可能继续下跌。支撑和压力的深层逻辑是什么？是记忆的集体固化。当足够多的人在某个价位有过交易行为，这个价格就被"记住"了。
+                </div>
+            </div>
+            
+            <div class="card" style="margin-top: 24px;">
+                <div class="card-header">
+                    <div>
+                        <div class="card-tag">拓展阅读</div>
+                        <div class="card-title">为什么技术分析有效？</div>
+                    </div>
+                </div>
+                <div class="card-body" id="learn-expand">
+                    <p>技术分析的本质是心理学，是群体行为的规律总结。支撑和压力之所以存在，是因为人们记得那个价格。当足够多人相信某个价位有意义，它就有了意义。这是一种集体幻觉，但幻觉也能赚钱——只要你比大多数人早一步意识到幻觉的存在。</p>
+                    <p>但要注意：技术分析不是预测未来，而是管理概率。它告诉你"如果跌破支撑，下跌概率大"，而不是"一定会跌"。成功的交易者不是预测最准的人，而是风险管理最好的人。</p>
+                </div>
+            </div>
+            
+            <div class="deep-thinking">
+                <div class="deep-thinking-title">💭 深度思考</div>
+                <div class="deep-thinking-content" id="learn-thought">
+                    学习投资知识的真正价值不在于掌握某种"必胜策略"，而在于培养对市场复杂性的敬畏。每一个看似简单的概念背后，都有一套复杂的行为机制在运作。当你理解了"支撑位"背后的心理学，你就能理解为什么市场会"自我实现预言"。这种理解力，比任何具体的技术指标都更有价值。
+                </div>
+            </div>
+        </section>
+
+        
+        <!-- 06 🎨 艺术鉴赏 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">06</span>
+                <h2 class="section-title">🎨 艺术鉴赏</h2>
+            </div>
+            
+            <div class="card">
+                <div class="highlight-box">
+                    <p><strong>【今日赏析】</strong> 《星月夜》——梵高的疯狂与浪漫</p>
+                    <br>
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" alt="《星月夜》——梵高的疯狂与浪漫" class="art-image" onerror="this.style.display='none'">
+                    <p class="art-caption">《星月夜》——梵高的疯狂与浪漫 · 文森特·梵高 (Vincent van Gogh) · 1889</p>
+                    <br>
+                    <p>这幅创作于1889年的油画，是梵高在圣雷米精神病院期间的作品。画面中旋转的星云像巨大的漩涡，明亮的星星闪烁着耀眼的光芒。</p>
+                    <br>
+                    <p><em>💡 为什么我们在130年后依然被这幅画打动？因为梵高画出了人类共通的情感——孤独、渴望、对超越性的追求。技术会过时，但情感不会。</em></p>
+                </div>
+            </div>
+        </section>
+        <!-- 07 🧠 投资心理学 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">07</span>
+                <h2 class="section-title">🧠 投资心理学</h2>
+            </div>
+            
+            <div class="card">
+                <div class="highlight-box">
+                    <p><strong>【今日话题】</strong> FOMO：错失恐惧症的陷阱</p>
+                    <br>
+                    <p>看到别人赚钱就忍不住跟进，结果买在高点。FOMO让你追涨杀跌，成为市场的'接盘侠'。</p>
+                    <br>
+                    <p><strong>💡 应对心法：</strong> 建立自己的投资系统，不随大流。别人的机会不一定是你的机会。</p>
+                    <br>
+                    <p><strong>💭 深度思考</strong></p>
+                    <p><em>市场永远在制造FOMO。从2015年的创业板到2021年的白酒，再到今天的AI，每一轮牛市都有人说'这次不一样'。但历史告诉我们，树不会长到天上去。</em></p>
+                </div>
+            </div>
+        </section>
+        <!-- 08 ❤️ 情感驿站 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">08</span>
+                <h2 class="section-title">❤️ 情感驿站</h2>
+            </div>
+            
+            <div class="card">
+                <div class="highlight-box">
+                    <p><strong>【今日话题】</strong> 成年人的'情绪劳动'</p>
+                    <br>
+                    <p>上班时即使再累也要保持微笑，面对客户的无理要求也要耐心解释。这叫'情绪劳动'——为了工作，我们不得不伪装自己的情绪。</p>
+                    <br>
+                    <p><em>📝 成年人的崩溃，是从计算'再忍忍就下班了'开始的。</em></p>
+                    <br>
+                    <p><strong>💭 深度思考</strong></p>
+                    <p><em>为什么我们越来越累？因为除了完成工作本身，我们还要'表演'一个情绪稳定的成年人。这种表演没有片酬，却耗费心力。</em></p>
+                </div>
+            </div>
+        </section>
+        <!-- 09 👀 今日看点 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">09</span>
+                <h2 class="section-title">👀 今日看点</h2>
+            </div>
+            
+            <div class="card">
+                <ul class="news-list">
+                    <li class="news-item">当日热点板块资金流向</li>
+<li class="news-item">北向资金实时动向</li>
+<li class="news-item">重要个股龙虎榜数据</li>
+                </ul>
+                <br>
+                <p><strong>💭 深度思考</strong></p>
+                <p><em>关注什么，决定了你看到什么。市场每天产生无数信息，但大部分只是噪音。真正的信号往往藏在被忽视的地方——成交量的异常、板块轮动的节奏、资金流向的变化。训练自己过滤噪音的能力，比获取更多信息的渠道更重要。</em></p>
+            </div>
+        </section>
+        <!-- 10 📚 每日财经学习 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">10</span>
+                <h2 class="section-title">📚 每日财经学习</h2>
+            </div>
+            
+            <div class="card">
+                <div class="learn-box">
+                    <div class="learn-title">PE（市盈率）：股票的'性价比'</div>
+                    <p>PE = 股价 ÷ 每股收益。简单来说，就是你多少年能靠公司盈利回本。PE越高，说明市场对公司未来越乐观，但也可能被高估。</p>
+                    <br>
+                    <p><strong>举例说明：</strong> 茅台PE 30倍 vs 银行PE 5倍，不代表茅台贵、银行便宜。不同行业合理PE区间不同。</p>
+                    <br>
+                    <p><strong>💭 深度思考</strong></p>
+                    <p><em>PE只是一个工具，不是真理。低PE可能是价值陷阱，高PE可能是成长溢价。关键不是数字本身，而是理解数字背后的故事。</em></p>
+                </div>
+            </div>
+        </section>
         <!-- Footer -->
         <footer class="footer">
             <div class="footer-logo">晨间简报</div>
@@ -843,24 +1008,5 @@
             </div>
         </footer>
     </div>
-    
-    <script>
-        // 全球监控板块动态更新时间
-        function updateGlobalTime() {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString('zh-CN', { 
-                hour: '2-digit', 
-                minute: '2-digit',
-                timeZone: 'Asia/Shanghai'
-            }) + ' CST';
-            const el = document.getElementById('global-update-time');
-            if (el) el.textContent = timeStr;
-        }
-        updateGlobalTime();
-        setInterval(updateGlobalTime, 60000); // 每分钟更新
-    </script>
-    
-    <!-- 全球监控实时数据模块 -->
-    <script src="realtime-global.js"></script>
 </body>
 </html>

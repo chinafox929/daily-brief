@@ -67,8 +67,8 @@ def get_market_data():
             "SP500": {"value": 5847.23, "change": -1.33, "currency": "USD"},
         },
         "crypto": {
-            "BTC": {"value": 87432.50, "change": +1.24, "currency": "USD", "volume": "28.4B"},
-            "ETH": {"value": 4156.80, "change": +0.89, "currency": "USD", "volume": "12.1B"},
+            "BTC": {"value": 67200.00, "change": -10.2, "currency": "USD", "volume": "28.4B"},
+            "ETH": {"value": 1985.00, "change": -8.5, "currency": "USD", "volume": "12.1B"},
             "SOL": {"value": 128.50, "change": -12.3, "currency": "USD"},
         },
         "commodities": {
