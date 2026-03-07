@@ -1,11 +1,12 @@
 #!/usr/bin/env python3
 """
 突发新闻自动抓取脚本
-每30分钟抓取一次热搜和突发新闻，更新 breaking-news.json
+每30分钟抓取一次热搜和突发新闻，更新 breaking-news.json 并直接同步到腾讯服务器
 """
 
 import json
 import requests
+import subprocess
 from datetime import datetime, timedelta
 from pathlib import Path
 import re
@@ -13,6 +14,12 @@ import re
 # 配置
 NEWS_FILE = Path("/root/.openclaw/workspace/daily-brief/breaking-news.json")
 MAX_NEWS = 10  # 最多保留多少条
+
+# 腾讯云服务器配置
+TENCENT_SERVER = "43.139.1.235"
+TENCENT_USER = "ubuntu"
+TENCENT_PASSWORD = "Open123456"  # 从环境变量或配置文件读取更安全
+REMOTE_PATH = "/var/www/daily-brief/data/breaking-news.json"
 
 # 新闻源配置
 SOURCES = {
@@ -29,9 +36,31 @@ def load_existing_news():
     return {"lastUpdate": "", "breakingNews": []}
 
 def save_news(data):
-    """保存新闻"""
+    """保存新闻到本地"""
     with open(NEWS_FILE, 'w', encoding='utf-8') as f:
         json.dump(data, f, ensure_ascii=False, indent=2)
+
+def sync_to_tencent():
+    """同步文件到腾讯服务器"""
+    try:
+        # 使用 sshpass + scp 直接推送文件
+        cmd = [
+            "sshpass", "-p", TENCENT_PASSWORD,
+            "scp", "-o", "StrictHostKeyChecking=no",
+            str(NEWS_FILE),
+            f"{TENCENT_USER}@{TENCENT_SERVER}:{REMOTE_PATH}"
+        ]
+        result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+        
+        if result.returncode == 0:
+            print(f"[{datetime.now()}] ✅ 已同步到腾讯服务器: {REMOTE_PATH}")
+            return True
+        else:
+            print(f"[{datetime.now()}] ❌ 同步失败: {result.stderr}")
+            return False
+    except Exception as e:
+        print(f"[{datetime.now()}] ❌ 同步异常: {e}")
+        return False
 
 def fetch_weibo_hot():
     """抓取微博热搜"""
@@ -106,7 +135,7 @@ def generate_mock_news():
     return result
 
 def update_breaking_news():
-    """更新突发新闻"""
+    """更新突发新闻并同步到腾讯服务器"""
     print(f"[{datetime.now()}] 开始更新突发新闻...")
     
     # 加载现有数据
@@ -144,9 +173,17 @@ def update_breaking_news():
     # 更新时间
     data["lastUpdate"] = datetime.now().isoformat()
     
-    # 保存
+    # 保存到本地
     save_news(data)
-    print(f"[{datetime.now()}] 更新完成，共 {len(data['breakingNews'])} 条新闻")
+    print(f"[{datetime.now()}] ✅ 本地更新完成，共 {len(data['breakingNews'])} 条新闻")
+    
+    # 同步到腾讯服务器
+    sync_success = sync_to_tencent()
+    
+    if sync_success:
+        print(f"[{datetime.now()}] ✅ 突发新闻已直接同步到腾讯服务器")
+    else:
+        print(f"[{datetime.now()}] ⚠️ 同步失败，但本地文件已保存")
     
     return data
 

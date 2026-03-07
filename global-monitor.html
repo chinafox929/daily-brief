@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="refresh" content="300">
+    <title>全球实时监控</title>
+    <style>
+        body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; background: #0a0a0a; color: #e8e8e8; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 30px; }
+        .header { text-align: center; padding: 40px 0; border-bottom: 1px solid #333; margin-bottom: 30px; }
+        .header-title { font-size: 28px; color: #d4af37; letter-spacing: 4px; margin-bottom: 10px; }
+        .header-subtitle { color: #666; font-size: 14px; letter-spacing: 2px; }
+        .update-time { color: #444; font-size: 12px; margin-top: 15px; }
+        .summary-box { background: linear-gradient(135deg, rgba(212,175,55,0.1) 0%, rgba(212,175,55,0.05) 100%); padding: 25px; border-left: 4px solid #d4af37; margin-bottom: 40px; }
+        .summary-title { color: #d4af37; font-size: 12px; letter-spacing: 2px; margin-bottom: 10px; }
+        .summary-text { color: #ccc; font-size: 16px; line-height: 1.8; }
+        .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+        .panel { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); }
+        .panel-header { padding: 20px; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .panel-title { font-size: 14px; color: #888; letter-spacing: 1px; }
+        .panel-count { float: right; color: #d4af37; font-size: 12px; }
+        .panel-body { padding: 20px; }
+        .alert-item { padding: 15px; border-left: 2px solid; margin-bottom: 12px; background: rgba(0,0,0,0.2); }
+        .alert-item:last-child { margin-bottom: 0; }
+        .alert-item.high { border-color: #c41e3a; }
+        .alert-item.elevated { border-color: #d4af37; }
+        .alert-item.monitoring { border-color: #2d5a27; }
+        .alert-title { font-size: 14px; color: #fff; margin-bottom: 5px; display: flex; align-items: center; }
+        .alert-badge { font-size: 10px; padding: 2px 8px; margin-left: 10px; border-radius: 2px; }
+        .alert-badge.high { background: rgba(196,30,58,0.2); color: #c41e3a; }
+        .alert-badge.elevated { background: rgba(212,175,55,0.2); color: #d4af37; }
+        .alert-badge.monitoring { background: rgba(45,90,39,0.2); color: #2d5a27; }
+        .alert-meta { font-size: 12px; color: #555; }
+        .empty { color: #333; text-align: center; padding: 40px; font-style: italic; }
+        .stats-row { display: flex; justify-content: center; gap: 40px; padding: 30px; border-top: 1px solid #333; margin-top: 40px; }
+        .stat-item { text-align: center; }
+        .stat-value { font-size: 32px; color: #d4af37; font-weight: 300; }
+        .stat-label { font-size: 12px; color: #666; margin-top: 5px; letter-spacing: 1px; }
+        .footer { text-align: center; padding: 40px; color: #333; border-top: 1px solid #222; margin-top: 40px; }
+        @media (max-width: 768px) { .grid { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="header-title">全球实时监控中心</div>
+            <div class="header-subtitle">Global Intelligence Monitor</div>
+            <div class="update-time">数据更新于: 2026-03-07 14:12:30 | 每5分钟自动刷新</div>
+        </div>
+        
+        <div class="summary-box">
+            <div class="summary-title">智能摘要 / INTELLIGENCE SUMMARY</div>
+            <div class="summary-text">当前全球局势总体平稳。美伊冲突持续但未见重大升级，中东地区保持高度关注。GPS信号干扰在多区域被检测到，建议航运及航空业注意导航备份。加密货币市场波动加剧，需留意风险。</div>
+        </div>
+        
+        <div class="grid">
+            <!-- 军事冲突 -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">军事冲突热点</span>
+                    <span class="panel-count">2 活跃</span>
+                </div>
+                <div class="panel-body">
+                    <div class="alert-item high">
+                        <div class="alert-title">美伊军事对峙升级<span class="alert-badge high">HIGH</span></div>
+                        <div class="alert-meta">中东地区 · 持续监控中 · 影响: 原油供应</div>
+                    </div>
+                    <div class="alert-item elevated">
+                        <div class="alert-title">南海军事活动增加<span class="alert-badge elevated">ELEVATED</span></div>
+                        <div class="alert-meta">亚太地区 · 航路安全</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 基础设施 -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">基础设施警报</span>
+                    <span class="panel-count">3 监测中</span>
+                </div>
+                <div class="panel-body">
+                    <div class="alert-item elevated">
+                        <div class="alert-title">GPS信号干扰<span class="alert-badge elevated">ELEVATED</span></div>
+                        <div class="alert-meta">多区域检测 · 航运/航空注意</div>
+                    </div>
+                    <div class="alert-item monitoring">
+                        <div class="alert-title">互联网中断<span class="alert-badge monitoring">MONITOR</span></div>
+                        <div class="alert-meta">东欧部分地区</div>
+                    </div>
+                    <div class="alert-item monitoring">
+                        <div class="alert-title">海底电缆维护<span class="alert-badge monitoring">MONITOR</span></div>
+                        <div class="alert-meta">亚太航线 · 备用路由正常</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 网络安全 -->
+            <div class="panel">
+                <div class="panel-header">
+                    <span class="panel-title">网络威胁情报</span>
+                    <span class="panel-count">1 活跃</span>
+                </div>
+                <div class="panel-body">
+                    <div class="alert-item elevated">
+                        <div class="alert-title">勒索软件攻击增多<span class="alert-badge elevated">ELEVATED</span></div>
+                        <div class="alert-meta">全球金融/医疗行业 · 建议加固备份</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="stats-row">
+            <div class="stat-item">
+                <div class="stat-value">6</div>
+                <div class="stat-label">活跃警报</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">12</div>
+                <div class="stat-label">监控区域</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">2</div>
+                <div class="stat-label">高风险</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-value">89%</div>
+                <div class="stat-label">系统正常</div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>数据来源: WorldMonitor.app / ADS-B Exchange / MarineTraffic / USGS</p>
+            <p style="margin-top: 10px; font-size: 12px;">本监控页面仅供情报参考，不构成投资建议</p>
+        </div>
+    </div>
+</body>
+</html>

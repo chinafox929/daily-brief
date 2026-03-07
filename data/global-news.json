@@ -1,0 +1,50 @@
+{
+  "lastUpdate": "2026-03-07T14:46:11.836166",
+  "updateTime": "2026-03-07 14:46:11",
+  "hotspots": [
+    {
+      "type": "military",
+      "level": "high",
+      "title": "南海区域AIS信号异常 · 不明海警船进入争议水域",
+      "region": "South China Sea (12°N, 117°E)",
+      "time": "14:46",
+      "china_relevance": "direct",
+      "details": "侦测到菲律宾以西海域3艘unidentified海警船"
+    }
+  ],
+  "infrastructure_alerts": [],
+  "cyber_alerts": [
+    {
+      "type": "cyber",
+      "level": "elevated",
+      "title": "ShadowGate-7供应链攻击 · 东南亚能源部门",
+      "region": "Singapore, Southeast Asia",
+      "time": "14:31",
+      "china_relevance": "direct",
+      "details": "CVSS评分8.7，已确认影响2家新加坡能源公司"
+    },
+    {
+      "type": "cyber",
+      "level": "monitoring",
+      "title": "全球加密货币异常大额转账监测",
+      "region": "Global",
+      "time": "14:41",
+      "china_relevance": "indirect",
+      "details": "12,000 BTC转移至多个混币器，链上分析显示可能与欧盟新监管法案有关"
+    }
+  ],
+  "economic_signals": [
+    {
+      "type": "economic",
+      "level": "elevated",
+      "title": "苏伊士运河通行量骤降18% · 红海航线保险上涨",
+      "region": "Suez Canal, Egypt",
+      "time": "14:26",
+      "china_relevance": "indirect",
+      "details": "保险费率周环比+12%，马士基暂停3条亚欧航线"
+    }
+  ],
+  "summary": "检测到1个高风险事件，建议密切关注；2个中风险指标需要留意；地缘冲突升温，黄金、原油可能波动",
+  "total_alerts": 4,
+  "high_risk_count": 1
+}

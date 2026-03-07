@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>现代艺术馆 | 云上美术馆</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: #fff;
+            min-height: 100vh;
+            line-height: 1.8;
+        }
+        .navbar {
+            position: fixed; top: 0; left: 0; right: 0;
+            background: rgba(10,10,10,0.95); padding: 15px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            z-index: 1000; border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        .logo { font-size: 24px; font-weight: 300; letter-spacing: 4px; color: #fff; text-decoration: none; }
+        .nav-links { display: flex; gap: 30px; }
+        .nav-links a { color: #aaa; text-decoration: none; transition: color 0.3s; }
+        .nav-links a:hover, .nav-links a.active { color: #c4a882; }
+        .header {
+            padding: 120px 40px 60px; text-align: center;
+            background: radial-gradient(ellipse at center, rgba(196,168,130,0.1) 0%, transparent 70%);
+        }
+        .header h1 { font-size: 48px; font-weight: 300; margin-bottom: 20px; letter-spacing: 6px; }
+        .header p { color: #888; font-size: 18px; max-width: 600px; margin: 0 auto; }
+        
+        .artwork-detail {
+            max-width: 1200px; margin: 0 auto; padding: 60px 40px;
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px;
+        }
+        .artwork-image {
+            background: linear-gradient(135deg, #1a1a2e 0%, #0f0f23 100%);
+            border-radius: 12px; padding: 20px;
+            display: flex; flex-direction: column; align-items: center;
+            border: 1px solid rgba(196,168,130,0.2);
+        }
+        .artwork-image img {
+            width: 100%; max-height: 500px; object-fit: contain;
+            border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+        .artwork-info h2 { font-size: 36px; margin-bottom: 10px; color: #c4a882; }
+        .artwork-meta { color: #888; margin-bottom: 30px; font-size: 16px; }
+        .artwork-info h3 { font-size: 20px; margin: 30px 0 15px; color: #fff; border-left: 3px solid #c4a882; padding-left: 15px; }
+        .artwork-info p { color: #ccc; margin-bottom: 15px; font-size: 16px; }
+        .artwork-info ul { margin-left: 20px; color: #ccc; }
+        .artwork-info li { margin-bottom: 10px; }
+        
+        .related-works {
+            max-width: 1200px; margin: 0 auto; padding: 60px 40px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        .related-works h2 { font-size: 28px; margin-bottom: 40px; text-align: center; }
+        .works-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px;
+        }
+        .work-card {
+            background: rgba(255,255,255,0.03); border-radius: 12px; overflow: hidden;
+            transition: transform 0.3s; cursor: pointer;
+        }
+        .work-card:hover { transform: translateY(-5px); }
+        .work-card img { width: 100%; height: 200px; object-fit: cover; }
+        .work-info { padding: 20px; }
+        .work-info h4 { font-size: 18px; margin-bottom: 5px; }
+        .work-info p { color: #888; font-size: 14px; }
+        
+        .breadcrumb {
+            max-width: 1200px; margin: 0 auto; padding: 100px 40px 0;
+            color: #666; font-size: 14px;
+        }
+        .breadcrumb a { color: #888; text-decoration: none; }
+        .breadcrumb a:hover { color: #c4a882; }
+        
+        @media (max-width: 768px) {
+            .artwork-detail { grid-template-columns: 1fr; }
+            .header h1 { font-size: 32px; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <a href="index.html" class="logo">云上美术馆</a>
+        <div class="nav-links">
+            <a href="index.html">首页</a>
+            <a href="modern.html" class="active">现代艺术</a>
+            <a href="chinese.html">中国书画</a>
+            <a href="impressionism.html">印象派</a>
+        </div>
+    </nav>
+
+    <div class="breadcrumb">
+        <a href="index.html">首页</a> / <span>现代艺术馆</span>
+    </div>
+
+    <header class="header">
+        <h1>现代艺术馆</h1>
+        <p>表现主义、立体主义、超现实主义——20世纪艺术革命的先锋</p>
+    </header>
+
+    <!-- 呐喊 详情 -->
+    <section class="artwork-detail" id="scream">
+        <div class="artwork-image">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/c/c5/Edvard_Munch%2C_1893%2C_The_Scream%2C_oil%2C_tempera_and_pastel_on_cardboard%2C_91_x_73_cm%2C_National_Gallery_of_Norway.jpg" 
+                 alt="《呐喊》- 爱德华·蒙克 1893年"
+                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22><rect width=%22400%22 height=%22300%22 fill=%22%23333%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%23fff%22 text-anchor=%22middle%22>《呐喊》</text></svg>'">
+            <p style="color: #666; font-size: 12px; margin-top: 15px; text-align: center;">爱德华·蒙克《呐喊》1893年 | 挪威国家美术馆藏</p>
+        </div>
+        
+        <div class="artwork-info">
+            <h2>《呐喊》</h2>
+            <div class="artwork-meta">爱德华·蒙克 (Edvard Munch) | 1893年 | 油画、蛋彩、蜡笔纸板 | 91 x 73 cm | 挪威国家美术馆</div>
+            
+            <h3>作品介绍</h3>
+            <p>《呐喊》（挪威语：Skrik）是挪威表现主义画家爱德华·蒙克的代表作，被誉为"表现主义艺术的巅峰之作"。画面中，一个面容扭曲的人物站在桥上，双手捂耳，嘴巴大张，发出无声的尖叫。</p>
+            
+            <h3>艺术特色</h3>
+            <ul>
+                <li><strong>色彩运用：</strong>血红色的天空与深蓝色峡湾形成强烈对比，传递出焦虑与恐惧的情绪。</li>
+                <li><strong>线条表现：</strong>扭曲、波浪状的线条贯穿整个画面，增强了画面的动荡感。</li>
+                <li><strong>构图创新：</strong>将人物置于画面中央偏左，通过透视引导观者视线深入画面。</li>
+            </ul>
+            
+            <h3>创作背景</h3>
+            <p>蒙克在一次散步中看到了血红色的天空，感受到一种"穿透自然的尖叫"。这种体验成为《呐喊》的灵感来源。蒙克一生创作了四个版本的《呐喊》，包括油画、蛋彩画和石版画。</p>
+            
+            <h3>历史意义</h3>
+            <p>《呐喊》是现代人类焦虑的视觉象征，被誉为"现代版的蒙娜丽莎"。2012年，其中一幅版本在苏富比拍卖会上以1.199亿美元成交，创当时艺术品拍卖纪录。</p>
+            
+            <h3>艺术价值</h3>
+            <p>一百多年后的今天，当我们面对现代生活的压力与不安，依然能从这幅画中感受到强烈的共鸣——那是人类共通的存在焦虑。艺术不是复制现实，而是表达内心。</p>
+        </div>
+    </section>
+
+    <!-- 格尔尼卡 -->
+    <section class="artwork-detail" id="guernica" style="border-top: 1px solid rgba(255,255,255,0.1);">
+        <div class="artwork-image">
+            <img src="https://upload.wikimedia.org/wikipedia/en/7/74/PicassoGuernica.jpg" 
+                 alt="《格尔尼卡》- 毕加索 1937年"
+                 style="max-height: 400px;"
+                 onerror="this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22><rect width=%22400%22 height=%22300%22 fill=%22%23333%22/><text x=%2250%25%22 y=%2250%25%22 fill=%22%23fff%22 text-anchor=%22middle%22>《格尔尼卡》</text></svg>'">
+            <p style="color: #666; font-size: 12px; margin-top: 15px; text-align: center;">毕加索《格尔尼卡》1937年 | 马德里索菲亚王后艺术中心</p>
+        </div>
+        
+        <div class="artwork-info">
+            <h2>《格尔尼卡》</h2>
+            <div class="artwork-meta">巴勃罗·毕加索 (Pablo Picasso) | 1937年 | 油画 | 349.3cm × 776.6cm | 西班牙马德里索菲亚王后国家艺术中心</div>
+            
+            <h3>作品介绍</h3>
+            <p>《格尔尼卡》是毕加索最著名的作品，也是20世纪最重要的反战画作。这幅巨大的壁画描绘了1937年德国纳粹空军轰炸西班牙小镇格尔尼卡的惨状。</p>
+            
+            <h3>艺术特色</h3>
+            <ul>
+                <li><strong>立体主义：</strong>将物体分解重组，多角度同时呈现，打破传统透视法则。</li>
+                <li><strong>黑白灰调：</strong>摒弃色彩，仅用黑白灰三色，强化战争的残酷与沉重。</li>
+                <li><strong>象征符号：</strong>公牛代表残暴，马代表受难的人民，灯泡代表毁灭之眼的注视。</li>
+            </ul>
+            
+            <h3>历史意义</h3>
+            <p>《格尔尼卡》是艺术的政治宣言，毕加索通过这幅作品控诉战争的罪恶。这幅画曾在世界各地展出，为反战运动筹集资金，成为和平的象征。</p>
+        </div>
+    </section>
+
+    <section class="related-works">
+        <h2>更多现代艺术作品</h2>
+        
+        <div class="works-grid">
+            <div class="work-card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/d/dd/The_Persistence_of_Memory.jpg" 
+                     alt="《记忆的永恒》- 达利"
+                     onerror="this.style.display='none'">
+                <div class="work-info">
+                    <h4>《记忆的永恒》</h4>
+                    <p>达利 | 超现实主义 | 1931年</p>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" 
+                     alt="《星月夜》- 梵高"
+                     onerror="this.style.display='none'">
+                <div class="work-info">
+                    <h4>《星月夜》</h4>
+                    <p>梵高 | 后印象派 | 1889年</p>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <img src="https://upload.wikimedia.org/wikipedia/en/4/4c/Les_Demoiselles_d%27Avignon.jpg" 
+                     alt="《亚维农少女》- 毕加索"
+                     onerror="this.style.display='none'">
+                <div class="work-info">
+                    <h4>《亚维农少女》</h4>
+                    <p>毕加索 | 立体主义 | 1907年</p>
+                </div>
+            </div>
+
+            <div class="work-card">
+                <div style="height: 200px; background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #1e3c72 100%); display: flex; align-items: center; justify-content: center; font-size: 60px;">🌊</div>
+                <div class="work-info">
+                    <h4>《神奈川冲浪里》</h4>
+                    <p>葛饰北斋 | 浮世绘 | 1831年</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="text-align: center; padding: 40px; border-top: 1px solid rgba(255,255,255,0.1); color: #666;">
+        <p>© 2026 云上美术馆 · 现代艺术馆</p>
+        <p style="font-size: 12px; margin-top: 10px;">图片来源于Wikimedia Commons公开领域</p>
+    </footer>
+</body>
+</html>
