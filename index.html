@@ -1,3 +1,494 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <title>晨间简报 | Morning Brief — 2026.3.7</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --color-bg: #faf9f7;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #666;
+            --color-accent: #c9a96e;
+            --color-accent-light: #e8d5b5;
+            --color-border: #e5e5e5;
+            --color-success: #2d5a27;
+            --color-danger: #c41e3a;
+            --font-serif: 'Cormorant Garamond', Georgia, serif;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: var(--font-sans);
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.7;
+            font-weight: 400;
+            -webkit-font-smoothing: antialiased;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+        
+        /* Breaking News Ticker */
+        .ticker-wrap {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: white;
+            z-index: 9999;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        .ticker-label {
+            background: var(--color-accent);
+            color: white;
+            padding: 0 16px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            white-space: nowrap;
+            z-index: 10;
+        }
+        .ticker {
+            display: flex;
+            animation: ticker 30s linear infinite;
+            white-space: nowrap;
+        }
+        .ticker-item {
+            padding: 0 40px;
+            font-size: 13px;
+            display: flex;
+            align-items: center;
+        }
+        .ticker-item::before {
+            content: "▸";
+            margin-right: 8px;
+            color: var(--color-accent);
+        }
+        @keyframes ticker {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .ticker-wrap:hover .ticker {
+            animation-play-state: paused;
+        }
+        
+        /* Masthead */
+        .masthead {
+            text-align: center;
+            padding: 60px 0 50px;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 50px;
+            margin-top: 20px;
+        }
+        .masthead-label {
+            font-size: 11px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+        .masthead-title {
+            font-family: var(--font-serif);
+            font-size: 52px;
+            font-weight: 400;
+            letter-spacing: 8px;
+            margin-bottom: 12px;
+        }
+        .masthead-subtitle {
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            letter-spacing: 2px;
+            margin-bottom: 8px;
+        }
+        .masthead-date {
+            font-size: 13px;
+            color: var(--color-text-secondary);
+            letter-spacing: 1px;
+        }
+        .weather-line {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid var(--color-border);
+        }
+        
+        /* Section */
+        .section {
+            margin-bottom: 56px;
+        }
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            gap: 16px;
+            margin-bottom: 28px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .section-number {
+            font-size: 12px;
+            color: var(--color-accent);
+            font-weight: 600;
+        }
+        .section-title {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            font-weight: 400;
+            letter-spacing: 2px;
+        }
+        .section-subtitle {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-left: auto;
+            letter-spacing: 1px;
+        }
+        
+        /* Cards */
+        .card {
+            background: white;
+            border: 1px solid var(--color-border);
+            padding: 28px;
+            margin-bottom: 20px;
+        }
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        .card-tag {
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            font-weight: 600;
+            padding: 4px 10px;
+            background: var(--color-accent-light);
+            border-radius: 2px;
+        }
+        .card-title {
+            font-size: 15px;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+        .card-meta {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            letter-spacing: 0.5px;
+        }
+        .card-body {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+        }
+        .card-body p + p {
+            margin-top: 12px;
+        }
+        
+        /* Market Grid */
+        .market-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1px;
+            background: var(--color-border);
+            border: 1px solid var(--color-border);
+            margin-bottom: 24px;
+        }
+        .market-item {
+            background: white;
+            padding: 20px 16px;
+            text-align: center;
+        }
+        .market-name {
+            font-size: 10px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            color: var(--color-text-secondary);
+            margin-bottom: 6px;
+        }
+        .market-value {
+            font-family: var(--font-serif);
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 4px;
+        }
+        .market-change {
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .market-change.up { color: var(--color-danger); }
+        .market-change.down { color: var(--color-success); }
+        
+        /* Lists */
+        .news-list {
+            list-style: none;
+        }
+        .news-item {
+            padding: 12px 0;
+            border-bottom: 1px dashed var(--color-border);
+            position: relative;
+            padding-left: 20px;
+            font-size: 14px;
+            color: var(--color-text-secondary);
+            line-height: 1.7;
+        }
+        .news-item:last-child {
+            border-bottom: none;
+        }
+        .news-item::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            color: var(--color-accent);
+        }
+        
+        /* Highlight Box */
+        .highlight {
+            background: linear-gradient(135deg, #f8f6f3 0%, #f0ece5 100%);
+            border-left: 3px solid var(--color-accent);
+            padding: 24px 28px;
+            margin: 24px 0;
+        }
+        .highlight-title {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--color-accent);
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+        .highlight-text {
+            font-family: var(--font-serif);
+            font-size: 17px;
+            line-height: 1.6;
+            font-style: italic;
+        }
+        
+        /* Quote Block */
+        .quote-block {
+            background: white;
+            border: 1px solid var(--color-border);
+            padding: 40px;
+            text-align: center;
+            margin: 32px 0;
+        }
+        .quote-text {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            line-height: 1.5;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .quote-author {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            letter-spacing: 1px;
+        }
+        
+        /* Artwork */
+        .artwork {
+            background: white;
+            border: 1px solid var(--color-border);
+        }
+        .artwork-image {
+            width: 100%;
+            aspect-ratio: 16/9;
+            object-fit: cover;
+            filter: grayscale(15%) contrast(1.02);
+        }
+        .artwork-info {
+            padding: 28px;
+        }
+        .artwork-title {
+            font-family: var(--font-serif);
+            font-size: 22px;
+            margin-bottom: 6px;
+        }
+        .artwork-artist {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        .artwork-desc {
+            font-size: 14px;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+        }
+        
+        /* Crypto Grid */
+        .crypto-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .crypto-item {
+            background: white;
+            border: 1px solid var(--color-border);
+            padding: 20px;
+            text-align: center;
+        }
+        .crypto-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+        }
+        .crypto-name {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            margin-bottom: 4px;
+        }
+        .crypto-price {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            margin-bottom: 4px;
+        }
+        .crypto-change {
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .crypto-change.up { color: var(--color-danger); }
+        .crypto-change.down { color: var(--color-success); }
+        
+        /* Data Table */
+        .data-table {
+            width: 100%;
+            font-size: 13px;
+            border-collapse: collapse;
+        }
+        .data-table th {
+            text-align: left;
+            padding: 12px 8px;
+            font-weight: 500;
+            color: var(--color-text-secondary);
+            border-bottom: 1px solid var(--color-border);
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+        .data-table td {
+            padding: 12px 8px;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .data-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        /* Daily Section Special */
+        .daily-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .daily-card {
+            background: white;
+            border: 1px solid var(--color-border);
+            padding: 24px;
+        }
+        .daily-card-title {
+            font-family: var(--font-serif);
+            font-size: 16px;
+            margin-bottom: 12px;
+            color: var(--color-accent);
+        }
+        .daily-card-body {
+            font-size: 13px;
+            line-height: 1.8;
+            color: var(--color-text-secondary);
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 50px 0 40px;
+            border-top: 1px solid var(--color-border);
+            margin-top: 60px;
+        }
+        .footer-logo {
+            font-family: var(--font-serif);
+            font-size: 20px;
+            letter-spacing: 4px;
+            margin-bottom: 16px;
+        }
+        .footer-text {
+            font-size: 12px;
+            color: var(--color-text-secondary);
+            letter-spacing: 1px;
+            line-height: 1.8;
+        }
+        
+        /* Links */
+        a {
+            color: var(--color-accent);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.2s;
+        }
+        a:hover {
+            border-bottom-color: var(--color-accent);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .masthead-title { font-size: 36px; }
+            .market-grid { grid-template-columns: repeat(2, 1fr); }
+            .crypto-grid { grid-template-columns: 1fr; }
+            .daily-grid { grid-template-columns: 1fr; }
+            .section-subtitle { display: none; }
+            .ticker-item { padding: 0 20px; font-size: 12px; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Breaking News Ticker -->
+    <div class="ticker-wrap">
+        <div class="ticker-label">突发新闻 LIVE</div>
+        <div class="ticker">
+            <div class="ticker-item">🔥 美伊局势持续紧张，特朗普要求伊朗"无条件投降"</div>
+            <div class="ticker-item">📈 本周油价飙升35%，创1983年以来最大单周涨幅，突破92美元</div>
+            <div class="ticker-item">💰 美股周五收跌，道指跌0.95%，纳指跌1.59%，标普跌1.33%</div>
+            <div class="ticker-item">🪙 比特币跌破7万美元，24小时跌幅超10%，以太坊失守2000美元</div>
+            <div class="ticker-item">🇨🇳 两会进行时：政府工作报告首提"稳住股市"，AI产业再迎政策利好</div>
+            <div class="ticker-item">⚡ 华为发布Atlas 950 SuperPoD，算力规模达300Pflops</div>
+            <div class="ticker-item">🚗 比亚迪发布新车型，新能源车价格战白热化</div>
+            <div class="ticker-item">🌏 美以伊战争进入第7天，中东油轮保险费率飙升</div>
+            <!-- Duplicate for seamless loop -->
+            <div class="ticker-item">🔥 美伊局势持续紧张，特朗普要求伊朗"无条件投降"</div>
+            <div class="ticker-item">📈 本周油价飙升35%，创1983年以来最大单周涨幅，突破92美元</div>
+            <div class="ticker-item">💰 美股周五收跌，道指跌0.95%，纳指跌1.59%，标普跌1.33%</div>
+            <div class="ticker-item">🪙 比特币跌破7万美元，24小时跌幅超10%，以太坊失守2000美元</div>
+            <div class="ticker-item">🇨🇳 两会进行时：政府工作报告首提"稳住股市"，AI产业再迎政策利好</div>
+            <div class="ticker-item">⚡ 华为发布Atlas 950 SuperPoD，算力规模达300Pflops</div>
+            <div class="ticker-item">🚗 比亚迪发布新车型，新能源车价格战白热化</div>
+            <div class="ticker-item">🌏 美以伊战争进入第7天，中东油轮保险费率飙升</div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Masthead -->
+        <header class="masthead">
+            <div class="masthead-label">Daily Intelligence Briefing</div>
+            <h1 class="masthead-title">晨间简报</h1>
+            <div class="masthead-subtitle">市场脉搏 · 科技前沿 · 地缘政治 · 艺术鉴赏</div>
+            <div class="masthead-date">2026年3月7日 星期六 | 更新于 11:45 CST | 第 67 期</div>
+            <div class="weather-line">北京 晴 8°C | 上海 多云 12°C | 深圳 晴 18°C | 香港 晴 20°C</div>
+        </header>
+
 
         <!-- 01 每周回顾 -->
         <section class="section">
@@ -433,5 +924,38 @@
         }
     </script>
     <script src="app.js"></script>
+</body>
+</html>
+
+<!-- Footer -->
+        <footer class="footer">
+            <div class="footer-logo">晨间简报</div>
+            <div class="footer-text">
+                Curated for you · Updated daily at 08:00 & 11:45 CST<br>
+                <a href="http://43.139.1.235:8080/">云上美术馆 →</a> · 
+                <a href="http://43.139.1.235/data/breaking-news.json">突发新闻数据 →</a><br><br>
+                <span style="font-size: 11px; color: #999;">Disclaimer: 本简报仅供参考，不构成投资建议。投资有风险，入市需谨慎。</span>
+            </div>
+        </footer>
+    </div>
+    
+    <script>
+        // 全球监控板块动态更新时间
+        function updateGlobalTime() {
+            const now = new Date();
+            const timeStr = now.toLocaleTimeString('zh-CN', { 
+                hour: '2-digit', 
+                minute: '2-digit',
+                timeZone: 'Asia/Shanghai'
+            }) + ' CST';
+            const el = document.getElementById('global-update-time');
+            if (el) el.textContent = timeStr;
+        }
+        updateGlobalTime();
+        setInterval(updateGlobalTime, 60000); // 每分钟更新
+    </script>
+    
+    <!-- 全球监控实时数据模块 -->
+    <script src="realtime-global.js"></script>
 </body>
 </html>
