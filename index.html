@@ -1,494 +1,3 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <title>晨间简报 | Morning Brief — 2026.03.07</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --color-bg: #faf9f7;
-            --color-text: #1a1a1a;
-            --color-text-secondary: #666;
-            --color-accent: #c9a96e;
-            --color-accent-light: #e8d5b5;
-            --color-border: #e5e5e5;
-            --color-success: #2d5a27;
-            --color-danger: #c41e3a;
-            --font-serif: 'Cormorant Garamond', Georgia, serif;
-            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-        }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: var(--font-sans);
-            background: var(--color-bg);
-            color: var(--color-text);
-            line-height: 1.7;
-            font-weight: 400;
-            -webkit-font-smoothing: antialiased;
-        }
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 40px 24px;
-        }
-        
-        /* Breaking News Ticker */
-        .ticker-wrap {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            background: linear-gradient(90deg, #1a1a1a 0%, #2d2d2d 100%);
-            color: white;
-            z-index: 9999;
-            height: 40px;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-        }
-        .ticker-label {
-            background: var(--color-accent);
-            color: white;
-            padding: 0 16px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            white-space: nowrap;
-            z-index: 10;
-        }
-        .ticker {
-            display: flex;
-            animation: ticker 30s linear infinite;
-            white-space: nowrap;
-        }
-        .ticker-item {
-            padding: 0 40px;
-            font-size: 13px;
-            display: flex;
-            align-items: center;
-        }
-        .ticker-item::before {
-            content: "▸";
-            margin-right: 8px;
-            color: var(--color-accent);
-        }
-        @keyframes ticker {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-        .ticker-wrap:hover .ticker {
-            animation-play-state: paused;
-        }
-        
-        /* Masthead */
-        .masthead {
-            text-align: center;
-            padding: 60px 0 50px;
-            border-bottom: 1px solid var(--color-border);
-            margin-bottom: 50px;
-            margin-top: 20px;
-        }
-        .masthead-label {
-            font-size: 11px;
-            letter-spacing: 4px;
-            text-transform: uppercase;
-            color: var(--color-accent);
-            margin-bottom: 16px;
-            font-weight: 500;
-        }
-        .masthead-title {
-            font-family: var(--font-serif);
-            font-size: 52px;
-            font-weight: 400;
-            letter-spacing: 8px;
-            margin-bottom: 12px;
-        }
-        .masthead-subtitle {
-            font-size: 14px;
-            color: var(--color-text-secondary);
-            letter-spacing: 2px;
-            margin-bottom: 8px;
-        }
-        .masthead-date {
-            font-size: 13px;
-            color: var(--color-text-secondary);
-            letter-spacing: 1px;
-        }
-        .weather-line {
-            font-size: 12px;
-            color: var(--color-text-secondary);
-            margin-top: 16px;
-            padding-top: 16px;
-            border-top: 1px solid var(--color-border);
-        }
-        
-        /* Section */
-        .section {
-            margin-bottom: 56px;
-        }
-        .section-header {
-            display: flex;
-            align-items: baseline;
-            gap: 16px;
-            margin-bottom: 28px;
-            padding-bottom: 12px;
-            border-bottom: 1px solid var(--color-border);
-        }
-        .section-number {
-            font-size: 12px;
-            color: var(--color-accent);
-            font-weight: 600;
-        }
-        .section-title {
-            font-family: var(--font-serif);
-            font-size: 22px;
-            font-weight: 400;
-            letter-spacing: 2px;
-        }
-        .section-subtitle {
-            font-size: 12px;
-            color: var(--color-text-secondary);
-            margin-left: auto;
-            letter-spacing: 1px;
-        }
-        
-        /* Cards */
-        .card {
-            background: white;
-            border: 1px solid var(--color-border);
-            padding: 28px;
-            margin-bottom: 20px;
-        }
-        .card-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 16px;
-        }
-        .card-tag {
-            font-size: 10px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--color-accent);
-            font-weight: 600;
-            padding: 4px 10px;
-            background: var(--color-accent-light);
-            border-radius: 2px;
-        }
-        .card-title {
-            font-size: 15px;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
-        }
-        .card-meta {
-            font-size: 12px;
-            color: var(--color-text-secondary);
-            letter-spacing: 0.5px;
-        }
-        .card-body {
-            font-size: 14px;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-        }
-        .card-body p + p {
-            margin-top: 12px;
-        }
-        
-        /* Market Grid */
-        .market-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 1px;
-            background: var(--color-border);
-            border: 1px solid var(--color-border);
-            margin-bottom: 24px;
-        }
-        .market-item {
-            background: white;
-            padding: 20px 16px;
-            text-align: center;
-        }
-        .market-name {
-            font-size: 10px;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            color: var(--color-text-secondary);
-            margin-bottom: 6px;
-        }
-        .market-value {
-            font-family: var(--font-serif);
-            font-size: 24px;
-            font-weight: 400;
-            margin-bottom: 4px;
-        }
-        .market-change {
-            font-size: 12px;
-            font-weight: 500;
-        }
-        .market-change.up { color: var(--color-danger); }
-        .market-change.down { color: var(--color-success); }
-        
-        /* Lists */
-        .news-list {
-            list-style: none;
-        }
-        .news-item {
-            padding: 12px 0;
-            border-bottom: 1px dashed var(--color-border);
-            position: relative;
-            padding-left: 20px;
-            font-size: 14px;
-            color: var(--color-text-secondary);
-            line-height: 1.7;
-        }
-        .news-item:last-child {
-            border-bottom: none;
-        }
-        .news-item::before {
-            content: "•";
-            position: absolute;
-            left: 0;
-            color: var(--color-accent);
-        }
-        
-        /* Highlight Box */
-        .highlight {
-            background: linear-gradient(135deg, #f8f6f3 0%, #f0ece5 100%);
-            border-left: 3px solid var(--color-accent);
-            padding: 24px 28px;
-            margin: 24px 0;
-        }
-        .highlight-title {
-            font-size: 11px;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            color: var(--color-accent);
-            margin-bottom: 12px;
-            font-weight: 600;
-        }
-        .highlight-text {
-            font-family: var(--font-serif);
-            font-size: 17px;
-            line-height: 1.6;
-            font-style: italic;
-        }
-        
-        /* Quote Block */
-        .quote-block {
-            background: white;
-            border: 1px solid var(--color-border);
-            padding: 40px;
-            text-align: center;
-            margin: 32px 0;
-        }
-        .quote-text {
-            font-family: var(--font-serif);
-            font-size: 22px;
-            line-height: 1.5;
-            font-style: italic;
-            margin-bottom: 20px;
-        }
-        .quote-author {
-            font-size: 12px;
-            color: var(--color-text-secondary);
-            letter-spacing: 1px;
-        }
-        
-        /* Artwork */
-        .artwork {
-            background: white;
-            border: 1px solid var(--color-border);
-        }
-        .artwork-image {
-            width: 100%;
-            aspect-ratio: 16/9;
-            object-fit: cover;
-            filter: grayscale(15%) contrast(1.02);
-        }
-        .artwork-info {
-            padding: 28px;
-        }
-        .artwork-title {
-            font-family: var(--font-serif);
-            font-size: 22px;
-            margin-bottom: 6px;
-        }
-        .artwork-artist {
-            font-size: 12px;
-            color: var(--color-text-secondary);
-            letter-spacing: 1px;
-            margin-bottom: 16px;
-        }
-        .artwork-desc {
-            font-size: 14px;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-        }
-        
-        /* Crypto Grid */
-        .crypto-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 16px;
-        }
-        .crypto-item {
-            background: white;
-            border: 1px solid var(--color-border);
-            padding: 20px;
-            text-align: center;
-        }
-        .crypto-icon {
-            font-size: 24px;
-            margin-bottom: 8px;
-        }
-        .crypto-name {
-            font-size: 12px;
-            color: var(--color-text-secondary);
-            margin-bottom: 4px;
-        }
-        .crypto-price {
-            font-family: var(--font-serif);
-            font-size: 20px;
-            margin-bottom: 4px;
-        }
-        .crypto-change {
-            font-size: 12px;
-            font-weight: 500;
-        }
-        .crypto-change.up { color: var(--color-danger); }
-        .crypto-change.down { color: var(--color-success); }
-        
-        /* Data Table */
-        .data-table {
-            width: 100%;
-            font-size: 13px;
-            border-collapse: collapse;
-        }
-        .data-table th {
-            text-align: left;
-            padding: 12px 8px;
-            font-weight: 500;
-            color: var(--color-text-secondary);
-            border-bottom: 1px solid var(--color-border);
-            font-size: 11px;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-        .data-table td {
-            padding: 12px 8px;
-            border-bottom: 1px solid var(--color-border);
-        }
-        .data-table tr:last-child td {
-            border-bottom: none;
-        }
-        
-        /* Daily Section Special */
-        .daily-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .daily-card {
-            background: white;
-            border: 1px solid var(--color-border);
-            padding: 24px;
-        }
-        .daily-card-title {
-            font-family: var(--font-serif);
-            font-size: 16px;
-            margin-bottom: 12px;
-            color: var(--color-accent);
-        }
-        .daily-card-body {
-            font-size: 13px;
-            line-height: 1.8;
-            color: var(--color-text-secondary);
-        }
-        
-        /* Footer */
-        .footer {
-            text-align: center;
-            padding: 50px 0 40px;
-            border-top: 1px solid var(--color-border);
-            margin-top: 60px;
-        }
-        .footer-logo {
-            font-family: var(--font-serif);
-            font-size: 20px;
-            letter-spacing: 4px;
-            margin-bottom: 16px;
-        }
-        .footer-text {
-            font-size: 12px;
-            color: var(--color-text-secondary);
-            letter-spacing: 1px;
-            line-height: 1.8;
-        }
-        
-        /* Links */
-        a {
-            color: var(--color-accent);
-            text-decoration: none;
-            border-bottom: 1px solid transparent;
-            transition: border-color 0.2s;
-        }
-        a:hover {
-            border-bottom-color: var(--color-accent);
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .masthead-title { font-size: 36px; }
-            .market-grid { grid-template-columns: repeat(2, 1fr); }
-            .crypto-grid { grid-template-columns: 1fr; }
-            .daily-grid { grid-template-columns: 1fr; }
-            .section-subtitle { display: none; }
-            .ticker-item { padding: 0 20px; font-size: 12px; }
-        }
-    </style>
-</head>
-<body>
-    <!-- Breaking News Ticker -->
-    <div class="ticker-wrap">
-        <div class="ticker-label">突发新闻 LIVE</div>
-        <div class="ticker">
-            <div class="ticker-item">🔥 美伊局势持续紧张，特朗普要求伊朗"无条件投降"</div>
-            <div class="ticker-item">📈 本周油价飙升35%，创1983年以来最大单周涨幅，突破92美元</div>
-            <div class="ticker-item">💰 美股周五收跌，道指跌0.95%，纳指跌1.59%，标普跌1.33%</div>
-            <div class="ticker-item">🪙 比特币跌破7万美元，24小时跌幅超10%，以太坊失守2000美元</div>
-            <div class="ticker-item">🇨🇳 两会进行时：政府工作报告首提"稳住股市"，AI产业再迎政策利好</div>
-            <div class="ticker-item">⚡ 华为发布Atlas 950 SuperPoD，算力规模达300Pflops</div>
-            <div class="ticker-item">🚗 比亚迪发布新车型，新能源车价格战白热化</div>
-            <div class="ticker-item">🌏 美以伊战争进入第7天，中东油轮保险费率飙升</div>
-            <!-- Duplicate for seamless loop -->
-            <div class="ticker-item">🔥 美伊局势持续紧张，特朗普要求伊朗"无条件投降"</div>
-            <div class="ticker-item">📈 本周油价飙升35%，创1983年以来最大单周涨幅，突破92美元</div>
-            <div class="ticker-item">💰 美股周五收跌，道指跌0.95%，纳指跌1.59%，标普跌1.33%</div>
-            <div class="ticker-item">🪙 比特币跌破7万美元，24小时跌幅超10%，以太坊失守2000美元</div>
-            <div class="ticker-item">🇨🇳 两会进行时：政府工作报告首提"稳住股市"，AI产业再迎政策利好</div>
-            <div class="ticker-item">⚡ 华为发布Atlas 950 SuperPoD，算力规模达300Pflops</div>
-            <div class="ticker-item">🚗 比亚迪发布新车型，新能源车价格战白热化</div>
-            <div class="ticker-item">🌏 美以伊战争进入第7天，中东油轮保险费率飙升</div>
-        </div>
-    </div>
-
-    <div class="container">
-        <!-- Masthead -->
-        <header class="masthead">
-            <div class="masthead-label">Daily Intelligence Briefing</div>
-            <h1 class="masthead-title">晨间简报</h1>
-            <div class="masthead-subtitle">市场脉搏 · 科技前沿 · 地缘政治 · 艺术鉴赏</div>
-            <div class="masthead-date">2026年03月07日 星期六 | 更新于 11:45 CST | 第 67 期</div>
-            <div class="weather-line">北京 晴 8°C | 上海 多云 12°C | 深圳 晴 18°C | 香港 晴 20°C</div>
-        </header>
-
 
         <!-- 01 每周回顾 -->
         <section class="section">
@@ -556,19 +65,6 @@
         <div class="card">
             <div class="card-header">
                 <div>
-                    <div class="card-tag">Tech War</div>
-                    <div class="card-title">美国拟扩大AI芯片出口管制至全球</div>
-                    <div class="card-meta">科技竞争加剧</div>
-                </div>
-            </div>
-            <div class="card-body">
-            <p>美国官员已起草法规草案，拟限制全球范围内未经美国批准的人工智能芯片发货。拟议法规将要求企业向美国申请许可，才能出口几乎所有英伟达和AMD等公司生产的人工智能加速器。</p>
-            </div>
-        </div>
-        
-        <div class="card">
-            <div class="card-header">
-                <div>
                     <div class="card-tag">Asia Pacific</div>
                     <div class="card-title">南海局势：12艘不明船只聚集美济礁</div>
                     <div class="card-meta">全球监控系统检测到异常</div>
@@ -577,6 +73,20 @@
             <div class="card-body">
             <p>根据ADS-B和AIS信号分析，南海美济礁西北15海里处发现12艘未识别的海上民兵船只聚集，伴随中国海警船5304舰。态势等级维持"Elevated"。</p>
             <p>影响分析：南海航线保险费率可能上升，相关航运股关注。区域紧张局势对半导体供应链构成潜在威胁。</p>
+            </div>
+        </div>
+        
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-tag">Middle East</div>
+                    <div class="card-title">美伊战争进入第7天</div>
+                    <div class="card-meta">特朗普要求伊朗"无条件投降"</div>
+                </div>
+            </div>
+            <div class="card-body">
+            <p>美以伊战争持续一周，以色列与伊朗持续发动空袭与导弹互击。伊朗已有数百人死亡，地区其他国家数十人遇难，美方称其六名军人阵亡。特朗普要求伊朗"无条件投降"。</p>
+            <p>市场影响：避险情绪升温，黄金一度突破5,158美元，油价本周飙升35%创1983年以来最大单周涨幅，突破92美元/桶。</p>
             </div>
         </div>
         
@@ -589,7 +99,7 @@
                 <span class="section-number">04</span>
                 <h2 class="section-title">国际热点</h2>
             </div>
-            <ul class='news-list'><li class='news-item'>英伟达财报后连续暴跌，两日累计跌超10%，拖累全球科技股估值承压</li><li class='news-item'>特朗普与泽连斯基白宫激烈争吵，美乌矿产协议告吹，西方阵营分歧加剧</li><li class='news-item'>联合国安理会通过涉乌决议，呼吁迅速结束俄乌冲突，敦促双方达成持久和平</li><li class='news-item'>菲律宾台风MARCE来袭，马尼拉证券交易所发布明日可能休市预警</li></ul>
+            <ul class='news-list'><li class='news-item'>英伟达财报后连续暴跌，两日累计跌超10%，拖累全球科技股估值承压</li><li class='news-item'>联合国安理会通过涉乌决议，呼吁迅速结束俄乌冲突，敦促双方达成持久和平</li><li class='news-item'>美国宣布对墨西哥、加拿大加征25%关税将于3月4日如期生效，引发市场避险情绪</li><li class='news-item'>特朗普与泽连斯基白宫激烈争吵，美乌矿产协议告吹，西方阵营分歧加剧</li></ul>
         </section>
         
 
@@ -612,7 +122,7 @@
                 <span class="section-number">06</span>
                 <h2 class="section-title">科技新鲜事</h2>
             </div>
-            <ul class='news-list'><li class='news-item'>魅族宣布战略转型，暂停国内手机新产品自研硬件项目，将聚焦AI领域</li><li class='news-item'>苹果发布M4 Ultra芯片，性能超越M2 Ultra 50%，专为AI工作站设计</li><li class='news-item'>SpaceX星舰第八次试飞成功，首次实现海上平台回收</li></ul>
+            <ul class='news-list'><li class='news-item'>SpaceX星舰第八次试飞成功，首次实现海上平台回收</li><li class='news-item'>苹果发布M4 Ultra芯片，性能超越M2 Ultra 50%，专为AI工作站设计</li><li class='news-item'>中国载人航天2026年任务公布，将深化推进空间站应用与发展和载人月球探测两大任务</li></ul>
         </section>
         
 
@@ -686,26 +196,26 @@
                             <div style="font-size: 12px; color: #2d5a27; display: flex; align-items: center; gap: 6px;">
                                 <span style="width: 8px; height: 8px; background: #2d5a27; border-radius: 50%;"></span>正常运行
                             </div>
-                            <div style="font-size: 12px; color: #d4af37; margin-top: 8px;">16:50 CST</div>
+                            <div style="font-size: 12px; color: #d4af37; margin-top: 8px;">08:07 CST</div>
                         </div>
                     </div>
                 </div>
                 
                 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 24px 0;">
                     <div style="background: rgba(196,30,58,0.08); border: 1px solid rgba(196,30,58,0.3); padding: 16px; text-align: center;">
-                        <div style="font-size: 28px; color: #c41e3a; font-weight: 600;">1</div>
+                        <div style="font-size: 28px; color: #c41e3a; font-weight: 600;">2</div>
                         <div style="font-size: 11px; color: #888; margin-top: 4px;">HIGH RISK</div>
                     </div>
                     <div style="background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.3); padding: 16px; text-align: center;">
-                        <div style="font-size: 28px; color: #d4af37; font-weight: 600;">5</div>
+                        <div style="font-size: 28px; color: #d4af37; font-weight: 600;">4</div>
                         <div style="font-size: 11px; color: #888; margin-top: 4px;">ELEVATED</div>
                     </div>
                     <div style="background: rgba(45,90,39,0.08); border: 1px solid rgba(45,90,39,0.3); padding: 16px; text-align: center;">
-                        <div style="font-size: 28px; color: #2d5a27; font-weight: 600;">10</div>
+                        <div style="font-size: 28px; color: #2d5a27; font-weight: 600;">11</div>
                         <div style="font-size: 11px; color: #888; margin-top: 4px;">MONITORING</div>
                     </div>
                     <div style="background: rgba(100,100,100,0.08); border: 1px solid rgba(100,100,100,0.3); padding: 16px; text-align: center;">
-                        <div style="font-size: 28px; color: #888; font-weight: 600;">91%</div>
+                        <div style="font-size: 28px; color: #888; font-weight: 600;">86%</div>
                         <div style="font-size: 11px; color: #666; margin-top: 4px;">NORMAL</div>
                     </div>
                 </div>
@@ -713,6 +223,17 @@
                 <div style="margin-top: 24px;">
                     <div style="font-size: 13px; color: #888; margin-bottom: 16px;">最新警报 / ACTIVE ALERTS</div>
                     
+                    <div style="background: rgba(196,30,58,0.05); border-left: 3px solid #c41e3a; padding: 20px; margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                            <div>
+                                <div style="font-size: 11px; color: #c41e3a; letter-spacing: 2px; margin-bottom: 6px;">HIGH · 基础设施</div>
+                                <div style="font-size: 15px; color: #fff; font-weight: 500;">波罗的海天然气管道压力骤降15%</div>
+                            </div>
+                            <div style="font-size: 11px; color: #666;">13:45 CST</div>
+                        </div>
+                        <div style="font-size: 13px; color: #aaa; line-height: 1.8;">Balticconnector管道芬兰段检测到异常压力下降，流量自动切断。疑似第三方破坏，芬兰边防已派遣无人机巡查。</div>
+                    </div>
+        
                     <div style="background: rgba(212,175,55,0.05); border-left: 3px solid #d4af37; padding: 20px; margin-bottom: 12px;">
                         <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
                             <div>
@@ -722,17 +243,6 @@
                             <div style="font-size: 11px; color: #666;">14:12 CST</div>
                         </div>
                         <div style="font-size: 13px; color: #aaa; line-height: 1.8;">根据ADS-B和AIS信号分析，美济礁西北15海里处发现12艘未识别的海上民兵船只，伴随中国海警船5304舰。</div>
-                    </div>
-        
-                    <div style="background: rgba(212,175,55,0.05); border-left: 3px solid #d4af37; padding: 20px; margin-bottom: 12px;">
-                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
-                            <div>
-                                <div style="font-size: 11px; color: #d4af37; letter-spacing: 2px; margin-bottom: 6px;">ELEVATED · 公共卫生</div>
-                                <div style="font-size: 15px; color: #fff; font-weight: 500;">沙特新增3例MERS确诊病例</div>
-                            </div>
-                            <div style="font-size: 11px; color: #666;">12:30 CST</div>
-                        </div>
-                        <div style="font-size: 13px; color: #aaa; line-height: 1.8;">沙特卫生部报告利雅得新增3例MERS-CoV确诊病例，其中1例为医护人员。WHO已启动早期预警机制。</div>
                     </div>
         
                     <div style="background: rgba(196,30,58,0.05); border-left: 3px solid #c41e3a; padding: 20px; margin-bottom: 12px;">
@@ -779,8 +289,8 @@
             </div>
             
     <div class="highlight">
-        <div class="highlight-title">今日话题：锚定效应 (Anchoring Effect)</div>
-        <div class="highlight-text">人们在决策时过度依赖最先获得的信息（锚点）。例如，股票买入价成为心理锚点，影响后续的卖出决策，即使基本面已发生变化。</div>
+        <div class="highlight-title">今日话题：损失厌恶 (Loss Aversion)</div>
+        <div class="highlight-text">损失厌恶是指人们面对同样数量的收益和损失时，认为损失更加令他们难以忍受。研究表明，同等数量的损失带来的痛苦感约为同等收益带来的快乐感的2-2.5倍。</div>
     </div>
     <p><em>💡 今日心法：投资要克服心理陷阱——别天天看账户，设定合理的止盈止损点，不要让情绪左右决策。</em></p>
     
@@ -795,7 +305,7 @@
             </div>
             
     <div class="quote-block">
-        <div class="quote-text">"恐慌和贪婪是投资最大的敌人。当所有人都恐慌时，机会往往就在其中；当所有人都贪婪时，风险也在悄然积累。"</div>
+        <div class="quote-text">"投资是一场马拉松，不是百米冲刺。短期的波动不应影响长期的判断。保持耐心，坚持自己的投资策略。"</div>
     </div>
     <p><em>📝 周末是放松和反思的好时机。无论这周盈亏如何，都把它放下。市场永远在那里，但生活不止有K线。</em></p>
     
@@ -821,10 +331,10 @@
             
     <div class="card">
         <div class="card-header">
-            <div class="card-title">成交量 (Trading Volume)</div>
+            <div class="card-title">北向资金</div>
         </div>
         <div class="card-body">
-            <p>成交量是指在一定时间内股票成交的总手数或总金额。它是判断市场活跃度和趋势强度的重要指标。量价关系口诀：量增价涨（上涨趋势确认，健康）、量缩价涨（上涨乏力，警惕回调）、量增价跌（恐慌抛售，可能见底）、量缩价跌（无人问津，继续观望）。</p>
+            <p>北向资金是指通过沪港通、深港通机制从香港流入内地股市的国际资金。由于外资机构通常具有较强的研究能力和长期投资视角，北向资金的流向被视为观察外资对A股态度的重要指标。</p>
         </div>
     </div>
     
@@ -839,7 +349,7 @@
             </div>
             
     <div class="highlight">
-        <div class="highlight-text" style="text-align: center;">不要被短期的涨跌影响情绪，也不要被他人的观点左右判断。建立自己的投资体系，严格执行。</div>
+        <div class="highlight-text" style="text-align: center;">市场大跌时，记住三句话：1. 不要用急用的钱投资；2. 不要借钱炒股；3. 不要把所有鸡蛋放在一个篮子里。</div>
     </div>
     
         </section>
@@ -933,38 +443,5 @@
         }
     </script>
     <script src="app.js"></script>
-</body>
-</html>
-
-<!-- Footer -->
-        <footer class="footer">
-            <div class="footer-logo">晨间简报</div>
-            <div class="footer-text">
-                Curated for you · Updated daily at 08:00 & 11:45 CST<br>
-                <a href="http://43.139.1.235:8080/">云上美术馆 →</a> · 
-                <a href="http://43.139.1.235/data/breaking-news.json">突发新闻数据 →</a><br><br>
-                <span style="font-size: 11px; color: #999;">Disclaimer: 本简报仅供参考，不构成投资建议。投资有风险，入市需谨慎。</span>
-            </div>
-        </footer>
-    </div>
-    
-    <script>
-        // 全球监控板块动态更新时间
-        function updateGlobalTime() {
-            const now = new Date();
-            const timeStr = now.toLocaleTimeString('zh-CN', { 
-                hour: '2-digit', 
-                minute: '2-digit',
-                timeZone: 'Asia/Shanghai'
-            }) + ' CST';
-            const el = document.getElementById('global-update-time');
-            if (el) el.textContent = timeStr;
-        }
-        updateGlobalTime();
-        setInterval(updateGlobalTime, 60000); // 每分钟更新
-    </script>
-    
-    <!-- 全球监控实时数据模块 -->
-    <script src="realtime-global.js"></script>
 </body>
 </html>
