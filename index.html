@@ -3,349 +3,459 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
-    <meta http-equiv="Pragma" content="no-cache">
-    <meta http-equiv="Expires" content="0">
-    <title>每日简报 | 2026年3月9日 周一 [v3]</title>
-    <link rel="stylesheet" href="styles.css?v=202603091000">
+    <title>晨间简报 | Morning Brief - 2026年3月10日</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
         :root {
-            --bg-primary: #faf9f7;
-            --bg-secondary: #f5f3f0;
-            --text-primary: #2c2c2c;
-            --text-secondary: #5a4a3a;
-            --accent: #c9a96e;
-            --border: #e0d8cd;
+            --bg-color: #faf9f7;
+            --text-primary: #1a1a1a;
+            --text-secondary: #666;
+            --accent-gold: #c9a96e;
+            --border-light: #e8e4df;
         }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: var(--bg-color);
             color: var(--text-primary);
-            line-height: 1.8;
+            line-height: 1.7;
+            font-size: 15px;
         }
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
-        .header { text-align: center; padding: 60px 0 40px; border-bottom: 1px solid #d4c9b8; margin-bottom: 40px; }
-        .date { font-size: 14px; color: #8b7355; letter-spacing: 3px; margin-bottom: 10px; }
-        .title { font-size: 32px; font-weight: 300; color: #2c2c2c; letter-spacing: 8px; }
-        .subtitle { font-size: 13px; color: #a09080; margin-top: 15px; letter-spacing: 2px; }
-        .zen-circle { width: 80px; height: 80px; border: 2px solid #c4b8a8; border-radius: 50%; margin: 30px auto; position: relative; opacity: 0.6; }
-        .zen-circle::before { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; border: 1px solid #d4c9b8; border-radius: 50%; }
-        .section { background: rgba(255, 255, 255, 0.6); border-radius: 8px; padding: 30px; margin-bottom: 25px; box-shadow: 0 2px 15px rgba(0,0,0,0.03); border: 1px solid rgba(212, 201, 184, 0.3); }
-        .section-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #e0d8cd; }
-        .section-number { font-size: 12px; color: #c9a96e; font-weight: 600; letter-spacing: 2px; }
-        .section-title { font-size: 18px; color: #5a4a3a; font-weight: 500; }
-        .card { background: rgba(255,255,255,0.8); border-radius: 8px; padding: 24px; margin-bottom: 20px; border: 1px solid rgba(212,201,184,0.4); }
-        .card-header { margin-bottom: 16px; }
-        .card-tag { font-size: 11px; color: #c9a96e; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; }
-        .card-title { font-size: 17px; color: #2c2c2c; font-weight: 500; margin-bottom: 6px; }
-        .card-meta { font-size: 12px; color: #8b7355; }
-        .card-body { font-size: 14px; color: #5a4a3a; line-height: 1.9; }
-        .card-body p { margin-bottom: 12px; }
-        .news-list { list-style: none; }
-        .news-item { padding: 12px 0; border-bottom: 1px dashed #e0d8cd; position: relative; padding-left: 20px; }
-        .news-item:last-child { border-bottom: none; }
-        .news-item::before { content: "•"; position: absolute; left: 0; color: #a09080; }
-        .highlight { background: linear-gradient(135deg, #faf8f5 0%, #f5f2ed 100%); border-left: 3px solid #c9a96e; padding: 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
-        .highlight-title { font-size: 14px; color: #8b7355; margin-bottom: 10px; }
-        .highlight-text { font-size: 14px; color: #5a4a3a; line-height: 1.9; }
-        .quote-block { background: #f9f7f4; padding: 30px; border-radius: 8px; border: 1px solid #e8e0d5; text-align: center; margin: 20px 0; }
-        .quote-text { font-size: 16px; color: #5a4a3a; font-style: italic; line-height: 1.9; }
-        .artwork { background: linear-gradient(135deg, #f5f0e8 0%, #ebe5dc 100%); padding: 30px; border-radius: 8px; text-align: center; }
-        .artwork-title { font-size: 18px; color: #2c2c2c; margin-bottom: 8px; }
-        .artwork-artist { font-size: 13px; color: #8b7355; margin-bottom: 15px; }
-        .artwork-desc { font-size: 14px; color: #5a4a3a; line-height: 1.8; }
-        .footer { text-align: center; padding: 40px 0; color: #a09080; font-size: 12px; letter-spacing: 2px; }
-        .stock-table { width:100%; border-collapse: collapse; margin: 1rem 0; }
-        .stock-table th { text-align: left; padding: 0.5rem; border-bottom: 1px solid #e5e5e5; }
-        .stock-table td { padding: 0.5rem; border-bottom: 1px solid #f0f0f0; }
-        .stock-up { color: #16a34a; }
-        .stock-down { color: #dc2626; }
-        .badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; margin-right: 5px; }
-        .badge-red { background: #fee2e2; color: #dc2626; }
-        .badge-yellow { background: #fef3c7; color: #d97706; }
-        .badge-green { background: #d1fae5; color: #16a34a; }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 60px 24px;
+        }
+        
+        header {
+            text-align: center;
+            margin-bottom: 60px;
+            padding-bottom: 40px;
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        .date-label {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent-gold);
+            margin-bottom: 12px;
+        }
+        
+        h1 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 48px;
+            font-weight: 400;
+            letter-spacing: -0.5px;
+            margin-bottom: 16px;
+        }
+        
+        .subtitle {
+            font-size: 16px;
+            color: var(--text-secondary);
+            font-weight: 300;
+        }
+        
+        .section {
+            margin-bottom: 48px;
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: baseline;
+            margin-bottom: 24px;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        .section-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            color: var(--accent-gold);
+            margin-right: 16px;
+            line-height: 1;
+        }
+        
+        .section-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 24px;
+            font-weight: 600;
+        }
+        
+        .section-content {
+            padding-left: 48px;
+        }
+        
+        .highlight-box {
+            background: white;
+            border-left: 3px solid var(--accent-gold);
+            padding: 20px 24px;
+            margin: 20px 0;
+        }
+        
+        .highlight-box p {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 18px;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+        
+        .news-list {
+            list-style: none;
+        }
+        
+        .news-list li {
+            padding: 12px 0;
+            border-bottom: 1px dotted var(--border-light);
+            position: relative;
+            padding-left: 20px;
+        }
+        
+        .news-list li:before {
+            content: "◆";
+            position: absolute;
+            left: 0;
+            color: var(--accent-gold);
+            font-size: 8px;
+            top: 16px;
+        }
+        
+        .news-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .tag {
+            display: inline-block;
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            background: var(--accent-gold);
+            color: white;
+            margin-right: 8px;
+        }
+        
+        .quote {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 20px;
+            font-style: italic;
+            text-align: center;
+            padding: 40px;
+            margin: 40px 0;
+            border-top: 1px solid var(--border-light);
+            border-bottom: 1px solid var(--border-light);
+        }
+        
+        .artwork {
+            margin: 40px 0;
+            text-align: center;
+        }
+        
+        .artwork img {
+            max-width: 100%;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .artwork-caption {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 14px;
+            color: var(--text-secondary);
+            margin-top: 12px;
+            font-style: italic;
+        }
+        
+        footer {
+            text-align: center;
+            padding-top: 60px;
+            margin-top: 60px;
+            border-top: 1px solid var(--border-light);
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
         
         @media (max-width: 600px) {
-            .container { padding: 20px 15px; }
-            .header { padding: 40px 0 30px; }
-            .title { font-size: 24px; letter-spacing: 4px; }
-            .section { padding: 20px; }
+            .container {
+                padding: 40px 20px;
+            }
+            
+            h1 {
+                font-size: 36px;
+            }
+            
+            .section-content {
+                padding-left: 0;
+            }
+            
+            .section-number {
+                font-size: 24px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header class="header">
-            <div class="date">2026年3月9日 · 周一</div>
-            <h1 class="title">每日简报</h1>
-            <div class="subtitle">晨间情报简报 · Morning Brief</div>
-            <div class="zen-circle"></div>
+        <header>
+            <div class="date-label">Tuesday, March 10, 2026</div>
+            <h1>晨间简报</h1>
+            <div class="subtitle">Morning Brief · 第 03-10 期</div>
         </header>
 
-        <!-- 01 要闻概览 -->
+        <!-- 每周回顾 -->
         <section class="section">
             <div class="section-header">
                 <span class="section-number">01</span>
-                <h2 class="section-title">要闻概览</h2>
+                <h2 class="section-title">每周回顾</h2>
             </div>
-            
-            <div class="highlight">
-                <div class="highlight-title">📌 今日关注</div>
-                <div class="highlight-text">
-                    全国人大四次会议第二次全体会议今日举行；伊朗新任最高领袖确定；A股三大指数早盘集体上涨，固态电池与AI算力板块领涨；OpenClaw"龙虾"热潮持续升温
+            <div class="section-content">
+                <div class="highlight-box">
+                    <p>"当战争"基本结束"四个字从特朗普口中说出，油价一日暴跌30美元——这不是和平的确定性，而是市场对于不确定性的重新定价。"</p>
                 </div>
+                <ul class="news-list">
+                    <li><span class="tag">A股</span>昨日三大指数震荡收跌，全市场约4000只个股下跌，成交额2.65万亿元。成长赛道获利盘兑现明显，AI、半导体、光伏领跌，能源板块受地缘冲突推动逆势上涨。</li>
+                    <li><span class="tag">美股</span>周一上演大逆转，早盘道指一度跌近900点，尾盘逆转收涨。道指+0.5%，纳指+1.38%，标普+0.83%。芯片股大涨，费城半导体指数涨3.93%。</li>
+                    <li><span class="tag">汇率</span>美元指数震荡，人民币汇率保持稳定。国际油价从119美元高位暴跌至87美元，单日跌幅超10%，创近年最大单日跌幅。</li>
+                    <li><span class="tag">板块</span>能源板块因地缘冲突持续活跃；科技股从早盘大跌中反弹，显示市场对AI叙事的信心仍在；防御性板块公用事业、医药受资金青睐。</li>
+                </ul>
             </div>
-
-            <p><strong>【国内要闻】</strong></p>
-            <p>• 🏛️ 全国人大四次会议第二次全体会议今日上午9时举行，听取全国人大常委会工作报告和"两高"工作报告</p>
-            <p>• 📊 发改委解读"十五五"规划纲要草案：GDP增长目标采用定型表述，探索延长义务教育年限至11.7年</p>
-            <p>• 🤖 深圳龙岗拟首发"AI龙虾十条"：免费部署OpenClaw、送三个月算力、补三成大模型调用费</p>
-            <p>• 💰 财政部：今年中央财政专门安排1000亿元推出财政金融协同促内需一揽子政策</p>
-            <p>• 🏆 中国2月末黄金储备环比增加3万盎司，连续16个月增持</p>
-            <br>
-            <p><strong>【国际要闻】</strong></p>
-            <p>• 🇮🇷 伊朗专家会议推举穆杰塔巴·哈梅内伊为伊朗新任最高领袖</p>
-            <p>• ⚔️ 伊朗伊斯兰革命卫队称具备进行至少六个月高强度战争的能力</p>
-            <p>• 🚢 霍尔木兹海峡停航之际，中国"铁娘子"号货轮顺利通过，至少10艘商船跟风伪装"中国籍"</p>
-            <p>• 🛢️ 阿联酋、科威特宣布减产，沙特阿美股票一度涨至4.3%</p>
-            <p>• 🇺🇸 美国2月非农就业人口净减少9.2万，创2020年以来第二次单月负增长</p>
         </section>
 
-        <!-- 02 股市行情 -->
+        <!-- AI专区 -->
         <section class="section">
             <div class="section-header">
                 <span class="section-number">02</span>
-                <h2 class="section-title">股市行情</h2>
+                <h2 class="section-title">AI专区</h2>
             </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <div>
-                        <div class="card-tag">Market Data · 10:40 CST</div>
-                        <div class="card-title">A股早盘表现强劲 固态电池领涨</div>
-                        <div class="card-meta">北向资金净流入23.56亿元 · 成交额较昨日同期+12.3%</div>
-                    </div>
+            <div class="section-content">
+                <div class="highlight-box">
+                    <p>"38分钟完成大模型国产芯片部署——这不仅是技术突破，更标志着中国AI算力自主可控进入了'咖啡时间'级别的敏捷时代。"</p>
                 </div>
-                <div class="card-body">
-                    <table class="stock-table">
-                        <thead>
-                            <tr>
-                                <th>指数</th>
-                                <th style="text-align: right;">点位</th>
-                                <th style="text-align: right;">涨跌</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>上证指数</td>
-                                <td style="text-align: right; font-weight: 600;">3,247.85</td>
-                                <td style="text-align: right;" class="stock-up">+0.38%</td>
-                            </tr>
-                            <tr>
-                                <td>深证成指</td>
-                                <td style="text-align: right; font-weight: 600;">10,586.43</td>
-                                <td style="text-align: right;" class="stock-up">+0.68%</td>
-                            </tr>
-                            <tr>
-                                <td>创业板指</td>
-                                <td style="text-align: right; font-weight: 600;">2,156.92</td>
-                                <td style="text-align: right;" class="stock-up">+0.41%</td>
-                            </tr>
-                            <tr>
-                                <td>科创50</td>
-                                <td style="text-align: right; font-weight: 600;">892.34</td>
-                                <td style="text-align: right;" class="stock-down">-0.24%</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                    <p><strong>领涨板块：</strong></p>
-                    <p>🥇 <span class="badge badge-green">+3.24%</span> 固态电池（宁德时代+2.84%，比亚迪+1.9%）</p>
-                    <p>🥈 <span class="badge badge-green">+2.87%</span> AI算力基建（中科曙光+4.2%，浪潮信息+3.1%）</p>
-                    <p>🥉 <span class="badge badge-green">+2.15%</span> 人形机器人（汇川技术+5.3%，埃斯顿+3.8%）</p>
-                    <br>
-                    <p><strong>活跃个股：</strong></p>
-                    <p>• 赛力斯 +5.67% 突破年线 | 贵州茅台 -0.35% | 宁德时代 +2.84%</p>
-                    <p>• 北向资金实时净流入: <span class="stock-up">+23.56亿元</span>（沪股通+12.1亿，深股通+11.46亿）</p>
-                </div>
+                <ul class="news-list">
+                    <li><span class="tag">突破</span>深圳智子芯元公司38分钟完成DeepSeek-OCR-2模型在华为昇腾平台的全自动部署，打破AI模型适配国产芯片的时间纪录。</li>
+                    <li><span class="tag">融资</span>银河通用机器人完成25亿元融资，投资方包括国家人工智能产业投资基金、中石化等，累计融资额稳居中国具身智能领域首位。</li>
+                    <li><span class="tag">赛事</span>全球首个人形机器人半程马拉松在北京举行，20支机器人队伍与人类同场竞技，展示具身智能最新进展。</li>
+                    <li><span class="tag">政策</span>共青团中央两会提案：积极应对AI影响，完善青年就业支持体系。2026年高校毕业生预计1270万人，AI人才缺口超500万。</li>
+                </ul>
             </div>
         </section>
 
-        <!-- 03 AI专区 -->
+        <!-- 地缘政治分析 -->
         <section class="section">
             <div class="section-header">
                 <span class="section-number">03</span>
-                <h2 class="section-title">AI 专区</h2>
+                <h2 class="section-title">地缘政治分析</h2>
             </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <div>
-                        <div class="card-tag">Trending</div>
-                        <div class="card-title">"养龙虾"热潮席卷科技圈</div>
-                        <div class="card-meta">OpenClaw成为顶流 · 智能经济新形态首入政府工作报告</div>
-                    </div>
+            <div class="section-content">
+                <div class="highlight-box">
+                    <p>"霍尔木兹海峡的油轮正在重新启航，但地缘政治的风险溢价并未消失——它只是从'战争计价'切换到了'战后重建计价'。"</p>
                 </div>
-                <div class="card-body">
-                    <p>"养龙虾"成为AI圈热词，指用户对OpenClaw智能体的长期培育和养成。因OpenClaw的图标是一只红色龙虾，用户遂将对其智能体的长期培育戏称为"养虾"。这一过程的实质是通过与智能体长期交流，积累记忆，将其慢慢"养"成具备时间感知、邮件发送、内容创作等功能的超级助手。</p>
-                    <p>3月6日，深圳腾讯大厦门口排起超长队伍，数百名开发者、AI爱好者在腾讯云工程师协助下现场完成OpenClaw云端部署，直观印证"养龙虾"热度。</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <div>
-                        <div class="card-tag">Policy</div>
-                        <div class="card-title">"智能经济新形态"首次写入政府工作报告</div>
-                        <div class="card-meta">AI发展迈入产业深度融合新阶段</div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p>2026年开年，以"一人公司（OPC）"为代表的"智能经济新形态"正萌芽生长。今年政府工作报告首次写入"智能经济新形态"，从倡导"人工智能+"到布局"智能经济新形态"，政策脉络演进传递出鲜明信号：我国人工智能发展已从技术研发、场景应用时期，正式迈入产业深度融合、全面赋能经济增长的新阶段。</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <div>
-                        <div class="card-tag">Robotics</div>
-                        <div class="card-title">宇树开源OmniXtreme人形机器人架构</div>
-                        <div class="card-meta">成功率91.08% · 攻克高动态动作难题</div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p>北京通用人工智能研究院、宇树科技、上海交通大学等联合发布OmniXtreme新框架，通过基于流匹配的生成式控制策略与驱动感知的残差强化学习两阶段训练，让宇树G1机器人学会执行连续翻转、极限平衡、霹雳舞等24种高难度动作，157次试验整体成功率高达91.08%。相关论文、模型检查点及代码已正式开源。</p>
-                </div>
+                <ul class="news-list">
+                    <li><span class="tag">中东</span>特朗普称对伊朗战争"基本结束"，表示伊朗已失去海军、空军和通讯能力。美国正在考虑接管霍尔木兹海峡。</li>
+                    <li><span class="tag">能源</span>国际油价从119美元暴跌至87美元，跌幅超10%。G7财长达成共识暂不释放石油战储，但日本已下令做好释放准备。</li>
+                    <li><span class="tag">外交</span>普京与特朗普通话讨论中东局势及乌克兰问题。王毅同巴林、科威特外交大臣通话，中方积极推动地区和平。</li>
+                    <li><span class="tag">人道</span>70余名滞留中东台胞经大陆中转返台，创近期中东局势升级以来中转返台人数之最。</li>
+                </ul>
             </div>
         </section>
 
-        <!-- 04 地缘政治 -->
+        <!-- 国际热点 -->
         <section class="section">
             <div class="section-header">
                 <span class="section-number">04</span>
-                <h2 class="section-title">地缘政治分析</h2>
+                <h2 class="section-title">国际热点</h2>
             </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <div>
-                        <div class="card-tag" style="background: #dc2626; color: white;">Middle East</div>
-                        <div class="card-title">伊朗最高领袖更替 中东局势持续紧张</div>
-                        <div class="card-meta">哈梅内伊之子接任 · 以色列威胁继续打击</div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p><strong>核心事件：</strong>当地时间3月9日，伊朗专家会议以压倒性多数票推举穆杰塔巴·哈梅内伊（已故最高领袖赛义德·阿里·哈梅内伊之子）为伊朗伊斯兰共和国第三任最高领袖。</p>
-                    <p><strong>各方反应：</strong></p>
-                    <p>• 🇮🇱 以色列国防军重申：将视哈梅内伊继任者为目标</p>
-                    <p>• 🇺🇸 特朗普：已排除库尔德武装参战可能，部署地面部队需要"非常好的理由"</p>
-                    <p>• 🇮🇷 伊朗革命卫队：已储备大规模武器装备，具备以当前节奏持续进行至少六个月高强度战争的能力</p>
-                    <p><strong>市场影响：</strong>避险情绪持续升温，黄金突破5400美元/盎司，布伦特原油突破92美元/桶。霍尔木兹海峡停航导致至少10艘商船伪装"中国籍"以期通关。</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <div>
-                        <div class="card-tag">Asia Pacific</div>
-                        <div class="card-title">南海局势动态监测</div>
-                        <div class="card-meta">全球监控系统实时跟踪</div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p>根据全球监控系统数据，南海区域持续监测到异常活动：</p>
-                    <p>• 西沙群岛附近12艘unidentified海上民兵船只异常聚集，正向中建岛方向移动</p>
-                    <p>• 黄岩岛东南40海里处3艘商船AIS信号异常中断</p>
-                    <p>• 北纬22°14'东经115°32'区域发现多艘舰艇呈战术编队向东南方向机动</p>
-                </div>
+            <div class="section-content">
+                <ul class="news-list">
+                    <li><span class="tag">美国</span>特朗普政府考虑进一步放宽对俄罗斯石油制裁，研究出口限制和税收豁免以平抑油价。</li>
+                    <li><span class="tag">日本</span>日本失去全球最大债权国地位，34年来首次滑落至全球第二，被德国超越。</li>
+                    <li><span class="tag">韩国</span>大选民调显示李在明领先近13个百分点，选情进入冲刺阶段。</li>
+                    <li><span class="tag">科技</span>亚马逊机器人部门裁员至少100人，新项目Blue Jay被叫停。</li>
+                </ul>
             </div>
         </section>
 
-        <!-- 05 国内动态 -->
+        <!-- 国内动态 -->
         <section class="section">
             <div class="section-header">
                 <span class="section-number">05</span>
                 <h2 class="section-title">国内动态</h2>
             </div>
-            <ul class='news-list'>
-                <li class='news-item'><strong>两会热点：</strong>"智能经济新形态"首入政府工作报告，六大新兴支柱产业2030年产值有望超十万亿</li>
-                <li class='news-item'><strong>资本市场：</strong>证监会主席吴清表示将完善中国特色稳市机制建设，推出储架发行</li>
-                <li class='news-item'><strong>货币政策：</strong>潘功胜表示将引导和调控好利率水平，无意通过汇率贬值获取贸易竞争优势</li>
-                <li class='news-item'><strong>财政政策：</strong>蓝佛安表示今年继续坚持更加积极的基调，专门安排1000亿元促内需</li>
-                <li class='news-item'><strong>地方政策：</strong>深圳龙岗推出"AI龙虾十条"，免费提供OpenClaw部署服务</li>
-                <li class='news-item'><strong>航天进展：</strong>航天员中心正在牵头申报地外生存地基研究设施，攻关外星长期生存问题</li>
-            </ul>
+            <div class="section-content">
+                <ul class="news-list">
+                    <li><span class="tag">两会</span>政府工作报告首提"打造智能经济新形态"。2026年首批储蓄国债今日发行，三年期利率1.63%，五年期1.70%。</li>
+                    <li><span class="tag">地方</span>重庆加速建设"两院一湾"（人工智能学院、通用人工智能研究院、人工智能湾区），打造全国人工智能应用高地。</li>
+                    <li><span class="tag">产业</span>国资委发力生物医药，打造国家队，重点布局创新药、医疗器械，推动国产医疗设备替代率提升至80%。</li>
+                    <li><span class="tag">体育</span>中国女足亚洲杯三连胜，以小组头名出线。</li>
+                </ul>
+            </div>
         </section>
 
-        <!-- 06 突发事件市场影响 -->
+        <!-- 科技新鲜事 -->
         <section class="section">
             <div class="section-header">
                 <span class="section-number">06</span>
-                <h2 class="section-title">突发事件市场影响简报</h2>
+                <h2 class="section-title">科技新鲜事</h2>
             </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <div>
-                        <div class="card-tag" style="background: #dc2626; color: white;">War Conflict</div>
-                        <div class="card-title">美伊战争持续 · 伊朗最高领袖更替</div>
-                        <div class="card-meta">霍尔木兹海峡封锁 · 全球供应链冲击</div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p><strong>最新进展：</strong>美以伊战争持续，伊朗最高领袖哈梅内伊在袭击中遇害后，其子穆杰塔巴·哈梅内伊接任。伊朗宣布关闭霍尔木兹海峡（全球20%原油运输通道）。</p>
-                    <p><strong>市场影响：</strong></p>
-                    <p>• 💎 现货黄金涨近3%至<strong style="color: #c9a96e;">$5,400/盎司</strong></p>
-                    <p>• 🛢️ 布伦特原油突破<strong>$92/桶</strong>，本周飙升35%创1983年以来最大单周涨幅</p>
-                    <p>• 📉 美股波动加剧，做空ETF仓位创五年内最大增幅</p>
-                </div>
-            </div>
-            
-            <div class="card">
-                <div class="card-header">
-                    <div>
-                        <div class="card-tag" style="background: #16a34a; color: white;">Policy</div>
-                        <div class="card-title">两会政策利好新质生产力</div>
-                        <div class="card-meta">AI产业再迎政策春风</div>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <p><strong>政策要点：</strong>政府工作报告首提"稳住股市"，人形机器人、商业航天、6G被写入政府工作报告，"智能经济新形态"首次入报告。</p>
-                    <p><strong>投资机会：</strong>关注固态电池、AI算力、人形机器人、商业航天等新质生产力主线。北向资金连续净流入A股，外资策略转向"吃股息+等复苏"。</p>
-                </div>
+            <div class="section-content">
+                <ul class="news-list">
+                    <li><span class="tag">机器人</span>中国研发出"半人马机器人"，可与人背部连接实现全向跟随，负重20kg时人体代谢成本降低35%。</li>
+                    <li><span class="tag">AI</span>OpenAI推迟ChatGPT"成人模式"上线，称当前有更重要工作，包括提升模型智能和优化个性表现。</li>
+                    <li><span class="tag">商业</span>镜识科技与京东达成机器人业务深度合作，加速消费级和行业级机器人量产落地。</li>
+                </ul>
             </div>
         </section>
 
-        <!-- 07 今日关注 -->
+        <!-- A股重点 -->
         <section class="section">
             <div class="section-header">
                 <span class="section-number">07</span>
-                <h2 class="section-title">今日关注</h2>
+                <h2 class="section-title">A股重点</h2>
             </div>
-            <div class="highlight">
-                <div class="highlight-title">📅 重要日程</div>
-                <div class="highlight-text">
-                    • 全国人大四次会议第二次全体会议（上午9时）<br>
-                    • 中国2月金融数据公布<br>
-                    • 中国2月CPI、PPI数据<br>
-                    • 香港计划发放首批稳定币牌照<br>
-                    • 韩美军方3月9日至19日举行联合军演
+            <div class="section-content">
+                <div class="highlight-box">
+                    <p>"当外围利空来袭，成长股的获利盘如退潮般涌出——这不是估值的崩溃，而是资金从'讲故事'向'数现金'的集体迁徙。"</p>
                 </div>
+                <ul class="news-list">
+                    <li><span class="tag">大盘</span>昨日A股震荡收跌，沪指跌0.82%，深成指跌0.74%，创业板指跌0.82%。全市场上涨1423只，下跌3964只。</li>
+                    <li><span class="tag">成交</span>两市合计成交额约2.65万亿元，较上一交易日增量4474亿元，放量下跌显示资金分歧加剧。</li>
+                    <li><span class="tag">板块</span>能源板块逆势上涨，石油石化、煤炭受地缘冲突刺激；AI、半导体、光伏等成长赛道大幅回调。</li>
+                    <li><span class="tag">北向</span>北向资金净流出约42亿元，结束两日流入，显示外资对短期波动持谨慎态度。</li>
+                </ul>
             </div>
-            <br>
-            <p><strong>投资建议：</strong></p>
-            <p>• 短线关注：黄金ETF、军工板块、固态电池、AI算力</p>
-            <p>• 中线布局：半导体设备国产替代、人形机器人产业链</p>
-            <p>• 风险提示：关注美伊局势演变、霍尔木兹海峡通航情况</p>
-            <br>
-            <p><em>💭 深度思考：政策底已现，市场底需要时间确认。两会释放的政策信号明确支持新质生产力和AI产业发展，短期震荡不改中期向好趋势。控制好仓位，精选个股，重点关注有业绩支撑的AI应用端和高端制造标的。</em></p>
         </section>
 
-        <footer class="footer">
-            <p>每日简报 · Morning Brief</p>
-            <p style="margin-top: 10px; font-size: 11px;">数据截止 2026年3月9日 10:40 CST · 仅供参考</p>
+        <!-- 其他市场 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">08</span>
+                <h2 class="section-title">其他市场</h2>
+            </div>
+            <div class="section-content">
+                <ul class="news-list">
+                    <li><span class="tag">港股</span>恒生指数、国企指数随外围震荡，科技股波动较大。</li>
+                    <li><span class="tag">美股</span>周一逆转收涨，芯片股领涨。英伟达+2.72%，AMD+5.33%，博通+4.62%。中概股金山云涨超19%。</li>
+                    <li><span class="tag">商品</span>黄金震荡于5130-5160美元/盎司；白银大涨，突破87美元/盎司，日内涨幅超3%。</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 加密货币专栏 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">09</span>
+                <h2 class="section-title">加密货币专栏</h2>
+            </div>
+            <div class="section-content">
+                <div class="highlight-box">
+                    <p>"比特币在7万美元附近徘徊，既是对'数字黄金'叙事的坚守，也是对'机构化'进程中波动率被压缩的无声抗议。"</p>
+                </div>
+                <ul class="news-list">
+                    <li><span class="tag">行情</span>比特币在7万美元附近波动，以太坊约2080美元。市场在地缘冲突和避险情绪间摇摆。</li>
+                    <li><span class="tag">ETF</span>美国现货比特币ETF周一、周二净流入超6.8亿美元，显示机构逢低买入意愿强烈。</li>
+                    <li><span class="tag">预测</span>有分析师预测比特币可能在2026年10月跌至3.8-5万美元区间，但摩根大通等仍看好长期走势。</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 艺术鉴赏 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">10</span>
+                <h2 class="section-title">艺术鉴赏</h2>
+            </div>
+            <div class="section-content">
+                <div class="artwork">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/1280px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg" alt="星月夜">
+                    <div class="artwork-caption">文森特·梵高《星月夜》(The Starry Night), 1889 | 现藏于纽约现代艺术博物馆(MoMA)</div>
+                </div>
+                <div class="highlight-box">
+                    <p>"在这幅画中，梵高用漩涡般的笔触描绘了圣雷米疗养院窗外的夜空。动荡的云层、旋转的星辰、宁静的小镇——这种'动与静'的张力，恰如今日 markets 中战争与和平、恐慌与贪婪的交织。"</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 投资心理学 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">11</span>
+                <h2 class="section-title">投资心理学</h2>
+            </div>
+            <div class="section-content">
+                <div class="highlight-box">
+                    <p>"损失厌恶让我们对下跌格外敏感，却容易忽视反弹时的犹豫成本。昨日美股的大逆转，是对那些早盘割肉者的最好警示——情绪化的止损往往比止损本身更致命。"</p>
+                </div>
+                <p>损失厌恶（Loss Aversion）是行为经济学中的核心概念，指人们对损失的敏感度约为同等收益的两倍。这在投资中表现为：股票跌10%的痛苦 > 股票涨10%的快乐。</p>
+                <p>今日思考：当道指早盘跌900点时，你在想什么？当尾盘翻红时，你又错过了什么？</p>
+            </div>
+        </section>
+
+        <!-- 情感驿站 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">12</span>
+                <h2 class="section-title">情感驿站</h2>
+            </div>
+            <div class="section-content">
+                <div class="highlight-box">
+                    <p>"凌晨四点，MU704航班降落在浦东。70多名台胞，隔着海峡的牵挂，在战火与和平的缝隙中找到归途。有时候，家不是一个地方，而是一种确定——知道有人在等你回来。"</p>
+                </div>
+                <p>今日春分将至未至，窗外寒意未散。市场的涨跌如季节的更替，有它自己的节律。不必为今日的浮亏懊恼，也不必为昨日的错过追悔。在这个信息爆炸的时代，保持内心的平静，或许是最难也最重要的修行。</p>
+            </div>
+        </section>
+
+        <!-- 今日看点 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">13</span>
+                <h2 class="section-title">今日看点</h2>
+            </div>
+            <div class="section-content">
+                <ul class="news-list">
+                    <li><span class="tag">关注</span>中东局势后续发展，霍尔木兹海峡通航情况</li>
+                    <li><span class="tag">数据</span>美国CPI数据预告，通胀预期变化</li>
+                    <li><span class="tag">政策</span>两会后续政策落地，智能经济相关细则</li>
+                    <li><span class="tag">市场</span>A股能否在外围回暖带动下企稳反弹</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- 每日财经学习 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">14</span>
+                <h2 class="section-title">每日财经学习</h2>
+            </div>
+            <div class="section-content">
+                <p><strong>今日概念：地缘风险溢价 (Geopolitical Risk Premium)</strong></p>
+                <p>就像外卖软件在雨天会加收配送费一样，国际原油市场也会为"不确定性"定价。当霍尔木兹海峡传来炮火声，油价里就多了一份"风险溢价"——这是买家愿意为"可能发生供应中断"支付的保险费。</p>
+                <p>昨天油价从119美元暴跌到87美元，跌去的32美元里，很大一部分就是地缘风险溢价的蒸发。当特朗普说"战争基本结束"，市场就像听到"雨停了"，配送费自然也就取消了。</p>
+            </div>
+        </section>
+
+        <!-- 每日一提醒 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">15</span>
+                <h2 class="section-title">每日一提醒</h2>
+            </div>
+            <div class="section-content">
+                <div class="quote">
+                    "当所有人都在讨论战争何时结束时，聪明钱已经在计算和平的成本。市场总是提前反应，而消息只是验证。"
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>晨间简报 Morning Brief · 2026年3月10日</p>
+            <p style="margin-top: 8px; font-size: 12px;">数据来源：新浪财经、财新网、央视新闻、华尔街见闻等</p>
+            <p style="margin-top: 4px; font-size: 12px;">投资有风险，入市需谨慎。本简报仅供参考，不构成投资建议。</p>
         </footer>
     </div>
 </body>
