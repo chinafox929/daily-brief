@@ -1,181 +1,39 @@
 {
-  "last_update": "2026-03-08T09:16:23.642521",
-  "stocks": [
+  "markets": [
     {
-      "symbol": "sh000001",
       "name": "上证指数",
-      "price": 4124.194,
-      "change": 0.38,
-      "indicators": {
-        "change_pct": 0.38,
-        "amplitude": 1.06,
-        "position": 87.9,
-        "trend": "上涨",
-        "volume_status": "放量"
-      },
-      "signal": {
-        "signal": "卖出",
-        "confidence": "中",
-        "score": -1,
-        "action": "建议减仓避险，等待企稳",
-        "reasons": [
-          "接近当日高点，追高风险"
-        ]
-      },
-      "update_time": "2026-03-06 15:30:39"
+      "price": "4129.10",
+      "change": "-0.10%",
+      "trend": "down"
     },
     {
-      "symbol": "sz399001",
       "name": "深证成指",
-      "price": 14172.627,
-      "change": 0.59,
-      "indicators": {
-        "change_pct": 0.59,
-        "amplitude": 1.73,
-        "position": 83.5,
-        "trend": "上涨",
-        "volume_status": "放量"
-      },
-      "signal": {
-        "signal": "卖出",
-        "confidence": "中",
-        "score": -1,
-        "action": "建议减仓避险，等待企稳",
-        "reasons": [
-          "接近当日高点，追高风险"
-        ]
-      },
-      "update_time": "2026-03-06 15:00:03"
+      "price": "14374.87",
+      "change": "-0.63%",
+      "trend": "down"
     },
     {
-      "symbol": "sz399006",
       "name": "创业板指",
-      "price": 3229.302,
-      "change": 0.38,
-      "indicators": {
-        "change_pct": 0.38,
-        "amplitude": 2.21,
-        "position": 72.4,
-        "trend": "上涨",
-        "volume_status": "放量"
-      },
-      "signal": {
-        "signal": "持有",
-        "confidence": "中",
-        "score": 0,
-        "action": "趋势不明，建议观望",
-        "reasons": []
-      },
-      "update_time": "2026-03-06 15:00:03"
+      "price": "3317.52",
+      "change": "-0.96%",
+      "trend": "down"
     },
     {
-      "symbol": "sh600519",
-      "name": "贵州茅台",
-      "price": 1402.0,
-      "change": 0.21,
-      "indicators": {
-        "change_pct": 0.21,
-        "amplitude": 1.39,
-        "position": 71.8,
-        "trend": "上涨",
-        "volume_status": "放量"
-      },
-      "signal": {
-        "signal": "持有",
-        "confidence": "中",
-        "score": 0,
-        "action": "趋势不明，建议观望",
-        "reasons": []
-      },
-      "update_time": "2026-03-06 15:00:03"
-    },
-    {
-      "symbol": "sz000858",
-      "name": "五粮液",
-      "price": 102.4,
-      "change": 0.94,
-      "indicators": {
-        "change_pct": 0.94,
-        "amplitude": 1.42,
-        "position": 93.8,
-        "trend": "上涨",
-        "volume_status": "放量"
-      },
-      "signal": {
-        "signal": "卖出",
-        "confidence": "中",
-        "score": -1,
-        "action": "建议减仓避险，等待企稳",
-        "reasons": [
-          "接近当日高点，追高风险"
-        ]
-      },
-      "update_time": "2026-03-06 15:00:00"
-    },
-    {
-      "symbol": "sh601318",
-      "name": "中国平安",
-      "price": 62.67,
-      "change": 0.95,
-      "indicators": {
-        "change_pct": 0.95,
-        "amplitude": 2.72,
-        "position": 59.8,
-        "trend": "上涨",
-        "volume_status": "放量"
-      },
-      "signal": {
-        "signal": "持有",
-        "confidence": "中",
-        "score": 0,
-        "action": "趋势不明，建议观望",
-        "reasons": []
-      },
-      "update_time": "2026-03-06 15:00:03"
-    },
-    {
-      "symbol": "sz002594",
-      "name": "比亚迪",
-      "price": 93.62,
-      "change": -0.9,
-      "indicators": {
-        "change_pct": -0.9,
-        "amplitude": 2.91,
-        "position": 13.5,
-        "trend": "下跌",
-        "volume_status": "放量"
-      },
-      "signal": {
-        "signal": "持有",
-        "confidence": "中",
-        "score": 1,
-        "action": "趋势不明，建议观望",
-        "reasons": [
-          "接近当日低点，或有支撑"
-        ]
-      },
-      "update_time": "2026-03-06 15:00:00"
-    },
-    {
-      "symbol": "sh600036",
-      "name": "招商银行",
-      "price": 39.2,
-      "change": 0.13,
-      "indicators": {
-        "change_pct": 0.13,
-        "amplitude": 0.95,
-        "position": 67.6,
-        "trend": "上涨",
-        "volume_status": "放量"
-      },
-      "signal": {
-        "signal": "持有",
-        "confidence": "中",
-        "score": 0,
-        "action": "趋势不明，建议观望",
-        "reasons": []
-      },
-      "update_time": "2026-03-06 15:00:03"
+      "name": "北证50",
+      "price": "1315.42",
+      "change": "-1.12%",
+      "trend": "down"
     }
-  ]
+  ],
+  "analysis": {
+    "summary": "A股三大指数震荡收跌，超3800只个股下跌。煤炭板块逆势大涨4.28%，风电、化纤板块涨幅居前；工程机械、航天军工跌幅居前。",
+    "key_points": [
+      "成交额缩量至2.46万亿",
+      "煤炭板块大涨超4%",
+      "地缘冲突影响市场",
+      "能源股受益避险需求"
+    ],
+    "sentiment": "谨慎观望",
+    "updated_at": "2026-03-12 15:30"
+  }
 }
