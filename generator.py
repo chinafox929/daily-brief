@@ -553,58 +553,127 @@ def generate_brief():
 def generate_html(data):
     """生成HTML文件"""
     
-    # 格式化列表
-    international = "\n".join([f'<li class="news-item">{item}</li>' for item in data["international"]])
-    domestic = "\n".join([f'<li class="news-item">{item}</li>' for item in data["domestic"]])
-    tech = "\n".join([f'<li class="news-item">{item}</li>' for item in data["tech"]])
-    other_markets = "\n".join([f'<li class="news-item">{item}</li>' for item in data["other_markets"]])
-    today_focus = "\n".join([f'<li class="news-item">{item}</li>' for item in data["today_focus"]])
-    geopolitics_news = "\n".join([f'<p>{item}</p>' for item in data["geopolitics_news"]])
-    ai_news = "\n".join([f'<p>{item}</p>' for item in data["ai_news"]])
-    weekly_review = "\n".join([f'<p>{item}</p>' for item in data["weekly_review"]])
-    crypto_news = "\n".join([f'<p>{item}</p>' for item in data.get("crypto_news", [])])
+    # 处理新的 content.json 结构
+    # international
+    if "international_hot" in data and "items" in data["international_hot"]:
+        international = "\n".join([f'<li class="news-item"><strong>[{item.get("tag", "国际")}]</strong> {item.get("title", "")} - {item.get("content", "")}</li>' for item in data["international_hot"]["items"]])
+    elif "international" in data:
+        international = "\n".join([f'<li class="news-item">{item}</li>' for item in data["international"]])
+    else:
+        international = "<li class='news-item'>暂无国际热点数据</li>"
+    
+    # domestic
+    if "domestic" in data and isinstance(data["domestic"], dict) and "items" in data["domestic"]:
+        domestic = "\n".join([f'<li class="news-item"><strong>[{item.get("tag", "国内")}]</strong> {item.get("title", "")} - {item.get("content", "")}</li>' for item in data["domestic"]["items"]])
+    elif "domestic" in data:
+        domestic = "\n".join([f'<li class="news-item">{item}</li>' for item in data["domestic"]])
+    else:
+        domestic = "<li class='news-item'>暂无国内动态数据</li>"
+    
+    # tech - 从 ai_section 获取
+    if "ai_section" in data and "news" in data["ai_section"]:
+        tech = "\n".join([f'<li class="news-item"><strong>{item.get("title", "")}</strong> - {item.get("content", "")}</li>' for item in data["ai_section"]["news"]])
+    elif "tech" in data:
+        tech = "\n".join([f'<li class="news-item">{item}</li>' for item in data["tech"]])
+    else:
+        tech = "<li class='news-item'>暂无科技新闻</li>"
+    
+    # other_markets
+    if "other_markets" in data:
+        other_markets = "\n".join([f'<li class="news-item">{item}</li>' for item in data["other_markets"]])
+    else:
+        other_markets = "<li class='news-item'>暂无其他市场数据</li>"
+    
+    # today_focus
+    if "today_focus" in data and "items" in data["today_focus"]:
+        today_focus = "\n".join([f'<li class="news-item">{item}</li>' for item in data["today_focus"]["items"]])
+    elif "today_focus" in data:
+        today_focus = "\n".join([f'<li class="news-item">{item}</li>' for item in data["today_focus"]])
+    else:
+        today_focus = "<li class='news-item'>暂无今日看点</li>"
+    
+    # geopolitics_news
+    if "geopolitics" in data and isinstance(data["geopolitics"], dict):
+        geo = data["geopolitics"]
+        geopolitics_news = f'<p>{geo.get("news", "")}</p>'
+    elif "geopolitics_news" in data:
+        geopolitics_news = "\n".join([f'<p>{item}</p>' for item in data["geopolitics_news"]])
+    else:
+        geopolitics_news = "<p>暂无地缘政治新闻</p>"
+    
+    # ai_news
+    if "ai_section" in data and "news" in data["ai_section"]:
+        ai_news = "\n".join([f'<p><strong>{item.get("title", "")}</strong>：{item.get("content", "")}</p>' for item in data["ai_section"]["news"]])
+    elif "ai_news" in data:
+        ai_news = "\n".join([f'<p>{item}</p>' for item in data["ai_news"]])
+    else:
+        ai_news = "<p>暂无AI新闻</p>"
+    
+    # weekly_review
+    if "week_review" in data and isinstance(data["week_review"], dict):
+        wr = data["week_review"]
+        weekly_parts = [
+            f'<p>📈 A股：{wr.get("a_share", "")}</p>',
+            f'<p>🌍 国际：{wr.get("global", "")}</p>',
+            f'<p>💰 汇率：{wr.get("forex", "")}</p>',
+            f'<p>🏆 板块：{wr.get("sectors", "")}</p>',
+            f'<p>📊 成交：{wr.get("volume", "")}</p>'
+        ]
+        weekly_review = "\n".join(weekly_parts)
+    elif "weekly_review" in data:
+        weekly_review = "\n".join([f'<p>{item}</p>' for item in data["weekly_review"]])
+    else:
+        weekly_review = "<p>暂无每周回顾</p>"
+    
+    # crypto_news
+    if "crypto" in data and "news" in data["crypto"]:
+        crypto_news = "\n".join([f'<p>{item}</p>' for item in data["crypto"]["news"]])
+    elif "crypto_news" in data:
+        crypto_news = "\n".join([f'<p>{item}</p>' for item in data.get("crypto_news", [])])
+    else:
+        crypto_news = "<p>暂无加密货币新闻</p>"
     
     html = HTML_TEMPLATE.format(
-        date=data["date"],
+        date=data.get("date", datetime.now().strftime("%Y年%m月%d日")),
         weekly_review=weekly_review,
-        weekly_thought=data.get("weekly_thought", "市场永远在变化，保持学习和适应的能力。"),
+        weekly_thought=data.get("week_review", {}).get("deep_thinking") or data.get("weekly_thought", "市场永远在变化，保持学习和适应的能力。"),
         ai_news=ai_news,
-        ai_analysis=data["ai_analysis"],
-        ai_thought=data.get("ai_thought", "AI正在改变我们的工作和生活方式。"),
+        ai_analysis=data.get("ai_section", {}).get("investment") or data.get("ai_investment") or data.get("ai_analysis", "AI 板块持续高热，建议关注算力基建、大模型应用、AI赋能传统行业。"),
+        ai_thought=data.get("ai_investment") or data.get("ai_thought", "AI正在改变我们的工作和生活方式。"),
         geopolitics_news=geopolitics_news,
-        geopolitics_analysis=data["geopolitics_analysis"],
-        geopolitics_thought=data.get("geopolitics_thought", "地缘政治风险需要持续关注。"),
+        geopolitics_analysis=data.get("geopolitics", {}).get("analysis") or data.get("geopolitics_analysis", "地缘政治风险需要持续关注。"),
+        geopolitics_thought=data.get("geopolitics", {}).get("deep_thinking") or data.get("geopolitics_thought", "地缘政治风险需要持续关注。"),
         international=international,
-        international_thought=data.get("international_thought", "国际市场相互关联，需要全局视角。"),
+        international_thought=data.get("international_hot", {}).get("deep_thinking") or data.get("international_thought", "国际市场相互关联，需要全局视角。"),
         domestic=domestic,
-        domestic_thought=data.get("domestic_thought", "政策导向对市场有重要影响。"),
+        domestic_thought=data.get("domestic", {}).get("deep_thinking") or data.get("domestic_thought", "政策导向对市场有重要影响。"),
         tech=tech,
         tech_thought=data.get("tech_thought", "技术创新是推动社会进步的核心动力。"),
-        stock=data["stock"],
-        stock_thought=data.get("stock_thought", "投资需要理性和耐心。"),
+        stock=data.get("stock", {}).get("summary") or data.get("a_share", {}).get("summary") or "A股今日行情数据待更新。",
+        stock_thought=data.get("stock", {}).get("deep_thinking") or data.get("stock_thought", "投资需要理性和耐心。"),
         other_markets=other_markets,
         other_thought=data.get("other_thought", "多元化投资可以分散风险。"),
         crypto_news=crypto_news,
-        crypto_analysis=data.get("crypto_analysis", "加密市场波动较大，投资需谨慎。"),
-        crypto_thought=data.get("crypto_thought", "加密市场反映了人性的贪婪与恐惧。"),
-        art_title=data.get("art_title", "今日艺术赏析"),
-        art_image=data.get("art_image", ""),
-        art_content=data.get("art_content", "艺术是人类情感的表达。"),
-        art_insight=data.get("art_insight", "用心感受艺术之美。"),
-        art_thought=data.get("art_thought", "艺术的价值在于触动人心。"),
-        psych_title=data.get("psych_title", "投资心理"),
-        psych_content=data.get("psych_content", "保持理性，控制情绪。"),
-        psych_tip=data.get("psych_tip", "💡 今日心法：冷静思考，理性决策。"),
-        psych_thought=data.get("psych_thought", "理解自己的心理是投资成功的关键。"),
-        emotion_title=data.get("emotion_title", "今日情感话题"),
-        emotion_content=data.get("emotion_content", "关注自己的情感需求。"),
-        emotion_poem=data.get("emotion_poem", "📝 今日短句：善待自己。"),
-        emotion_thought=data.get("emotion_thought", "情感是人类最真实的体验。"),
+        crypto_analysis=data.get("crypto", {}).get("analysis") or data.get("crypto_analysis", "加密市场波动较大，投资需谨慎。"),
+        crypto_thought=data.get("crypto", {}).get("deep_thinking") or data.get("crypto_thought", "加密市场反映了人性的贪婪与恐惧。"),
+        art_title=data.get("art", {}).get("title") or data.get("art_title", "今日艺术赏析"),
+        art_image=data.get("art", {}).get("image") or data.get("art_image", ""),
+        art_content=data.get("art", {}).get("content") or data.get("art_content", "艺术是人类情感的表达。"),
+        art_insight=data.get("art", {}).get("insight") or data.get("art_insight", "用心感受艺术之美。"),
+        art_thought=data.get("art", {}).get("deep_thinking") or data.get("art_thought", "艺术的价值在于触动人心。"),
+        psych_title=data.get("psychology", {}).get("title") or data.get("psych_title", "投资心理"),
+        psych_content=data.get("psychology", {}).get("content") or data.get("psych_content", "保持理性，控制情绪。"),
+        psych_tip=data.get("psychology", {}).get("tip") or data.get("psych_tip", "💡 今日心法：冷静思考，理性决策。"),
+        psych_thought=data.get("psychology", {}).get("deep_thinking") or data.get("psych_thought", "理解自己的心理是投资成功的关键。"),
+        emotion_title=data.get("emotion", {}).get("title") or data.get("emotion_title", "今日情感话题"),
+        emotion_content=data.get("emotion", {}).get("content") or data.get("emotion_content", "关注自己的情感需求。"),
+        emotion_poem=data.get("emotion", {}).get("poem") or data.get("emotion_poem", "📝 今日短句：善待自己。"),
+        emotion_thought=data.get("emotion", {}).get("deep_thinking") or data.get("emotion_thought", "情感是人类最真实的体验。"),
         today_focus=today_focus,
-        today_thought=data.get("today_thought", "关注重要信息，过滤市场噪音。"),
-        learn_title=data["learn_title"],
-        learn_content=data["learn_content"],
-        reminder=data["reminder"]
+        today_thought=data.get("today_focus", {}).get("deep_thinking") or data.get("today_thought", "关注重要信息，过滤市场噪音。"),
+        learn_title=data.get("learn", {}).get("title") or data.get("learn_title", "每日财经学习"),
+        learn_content=data.get("learn", {}).get("content") or data.get("learn_content", "持续学习是投资成功的基础。"),
+        reminder=data.get("reminder", {}).get("text") or data.get("reminder", "保持理性，祝投资顺利！")
     )
     
     return html
