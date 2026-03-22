@@ -1,321 +1,360 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>每日简报 | 2026年3月22日 周日</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", sans-serif;
-            background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-            min-height: 100vh;
-            color: var(--text-primary);
-            line-height: 1.8;
-        }
-        .container { max-width: 800px; margin: 0 auto; padding: 40px 20px; }
-        .header { text-align: center; padding: 60px 0 40px; border-bottom: 1px solid #d4c9b8; margin-bottom: 40px; }
-        .date { font-size: 14px; color: #8b7355; letter-spacing: 3px; margin-bottom: 10px; }
-        .title { font-size: 32px; font-weight: 300; color: #2c2c2c; letter-spacing: 8px; }
-        .zen-circle { width: 80px; height: 80px; border: 2px solid #c4b8a8; border-radius: 50%; margin: 30px auto; position: relative; opacity: 0.6; }
-        .zen-circle::before { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 40px; height: 40px; border: 1px solid #d4c9b8; border-radius: 50%; }
-        .section { background: rgba(255, 255, 255, 0.6); border-radius: 8px; padding: 30px; margin-bottom: 25px; box-shadow: 0 2px 15px rgba(0,0,0,0.03); border: 1px solid rgba(212, 201, 184, 0.3); }
-        .section-title { font-size: 18px; color: #5a4a3a; margin-bottom: 20px; padding-bottom: 12px; border-bottom: 1px solid #e0d8cd; display: flex; align-items: center; gap: 10px; }
-        .news-list { list-style: none; }
-        .news-item { padding: 12px 0; border-bottom: 1px dashed #e0d8cd; position: relative; padding-left: 20px; }
-        .news-item:last-child { border-bottom: none; }
-        .news-item::before { content: "•"; position: absolute; left: 0; color: #a09080; }
-        .highlight-box { background: linear-gradient(135deg, #faf8f5 0%, #f5f2ed 100%); border-left: 3px solid #c4a882; padding: 20px; margin: 15px 0; border-radius: 0 8px 8px 0; }
-        .learn-box { background: #f9f7f4; padding: 20px; border-radius: 8px; border: 1px solid #e8e0d5; }
-        .learn-title { font-size: 14px; color: #8b7355; margin-bottom: 10px; }
-        .reminder { background: linear-gradient(135deg, #f5f0e8 0%, #ebe5dc 100%); padding: 20px; border-radius: 8px; text-align: center; font-size: 15px; color: #5a4a3a; }
-        .art-image { width: 100%; max-width: 600px; margin: 20px auto; display: block; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .art-caption { text-align: center; font-size: 13px; color: #8b7355; margin-top: 10px; font-style: italic; }
-        .footer { text-align: center; padding: 40px 0; color: #a09080; font-size: 12px; letter-spacing: 2px; }
-        .nav { text-align: center; margin-bottom: 30px; }
-        .nav a { color: #8b7355; text-decoration: none; margin: 0 15px; font-size: 14px; }
-        .nav a:hover { color: #5a4a3a; }
+
+        <!-- 01 每周回顾 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">每周回顾</h2>
+            </div>
+            
+        <p><strong>【本周市场回顾】</strong></p>
+        <p>• 📈 A股：本周整体呈现震荡走势，沪指围绕3300点展开争夺</p>
+        <p>• 🤖 AI板块：人形机器人概念持续活跃，两会政策利好不断</p>
+        <p>• 🌍 国际：美伊局势紧张，全球避险情绪升温，黄金油价大涨</p>
+        <p>• 💰 汇率：人民币对美元保持相对稳定，北向资金波动较大</p>
+        <p>• 📊 成交：沪深两市日均成交额维持在万亿水平</p>
+        <br>
+        <p><em>💭 深度思考：周末市场休市，但全球地缘风险仍在发酵。下周关注两会政策落地情况及美伊局势演变。</em></p>
         
-        /* 滚动渐显动画 */
-        .section {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.6s ease-out;
-        }
-        .section.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        </section>
         
-        /* 鼠标光标效果 - 电脑端 */
-        .cursor {
-            width: 20px;
-            height: 20px;
-            border: 2px solid #c4a882;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            transition: transform 0.1s ease, opacity 0.3s ease;
-            opacity: 0;
-        }
-        .cursor.active {
-            opacity: 1;
-            transform: scale(1.5);
-            background: rgba(196, 168, 130, 0.1);
-        }
-        .cursor-dot {
-            width: 6px;
-            height: 6px;
-            background: #c4a882;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            z-index: 9999;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-        .cursor-dot.active {
-            opacity: 1;
-        }
-        
-        /* 悬停效果 */
-        .section:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
-        }
-        
-        /* 移动端触摸优化 */
-        @media (hover: none) {
-            .cursor, .cursor-dot { display: none; }
-            .section { 
-                opacity: 1;
-                transform: none;
-                transition: transform 0.3s ease;
-            }
-        }
-        
-        /* 平滑滚动 */
-        html {
-            scroll-behavior: smooth;
-        }
-        
-        /* 加载动画 */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .header {
-            animation: fadeIn 0.8s ease-out;
-        }
-        
-        @media (max-width: 600px) { .title { font-size: 24px; letter-spacing: 4px; } .section { padding: 20px; } }
-    </style>
-</head>
-<body class="theme-zen">
-    <div class="container">
-        <div class="nav">
-            <a href="index.html">今日</a>
-            <a href="archive.html">归档</a>
-            <a href="about.html">关于</a>
+
+        <!-- 02 AI 专区 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">AI 专区</h2>
+            </div>
+            
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-tag">Breakthrough</div>
+                    <div class="card-title">DeepSeek发布多模态大模型V3</div>
+                    <div class="card-meta">2026.3.6 · 中文理解能力超越GPT-4</div>
+                </div>
+            </div>
+            <div class="card-body">
+            <p>DeepSeek最新发布的V3多模态大模型在多项中文理解测试中超越GPT-4，特别是在古诗词理解和中文逻辑推理方面表现突出。模型已开源，开发者可免费商用。</p>
+            </div>
         </div>
         
-        <header class="header">
-            <div class="date">2026年3月22日 周日</div>
-            <h1 class="title">每日简报</h1>
-            <div class="zen-circle"></div>
-            <div class="subtitle">专属信息网 · 禅意生活</div>
-        </header>
-        
-        <section class="section">
-            <h2 class="section-title">📅 每周回顾</h2>
-            <div class="highlight-box">
-                <p><strong>【上周市场回顾】</strong></p>
-                <p>📈 A股：本周A股震荡下行，沪指累跌3.38%失守4000点大关。周五沪指跌1.24%报3957点，深成指跌0.25%，创业板指逆势涨1.30%。两市日均成交约2.1万亿元。</p>
-<p>🌍 国际：美股连续第四周下跌，道指本周跌2.11%，纳指跌2.07%，标普500跌1.91%。科技股大幅回调，市场受中东局势和美联储政策预期影响承压。</p>
-<p>💰 汇率：美元指数维持强势，人民币汇率在7.25附近波动。英国央行鹰派表态，市场预计美联储今年降息预期大幅降温。</p>
-<p>🏆 板块：本周光伏设备、能源金属板块逆势上涨，IT服务、通信服务、软件板块跌幅居前。主力资金净流出IT服务、半导体板块。</p>
-<p>📊 成交：本周沪深两市日均成交额约2.1万亿元，周五放量至2.3万亿元。市场恐慌情绪有所释放，抄底资金开始介入。</p>
-                <br><br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>本周市场的关键词是'破'——沪指破4000点，美股破连涨纪录，油价破110美元。但破而后立，往往是市场规律。从估值看，沪深300市盈率仅12倍，处于历史低位；从政策面看，央行'适度宽松'基调未变。历史经验告诉我们，当所有人都在谈论风险时，机会往往正在孕育。</em></p>
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-tag">Policy</div>
+                    <div class="card-title">两会AI政策暖风强劲</div>
+                    <div class="card-meta">发改委详解六大新兴支柱产业</div>
+                </div>
             </div>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">🤖 AI 专区</h2>
-            <div class="highlight-box">
-                <p><strong>【AI 快讯】</strong></p>
-                <p><strong>图灵奖首次颁给量子物理学家</strong>：2026年图灵奖打破六十年惯例，首次颁给量子物理领域。美国物理学家查尔斯·贝内特和加拿大计算机科学家吉勒·布拉萨德共享殊荣，表彰其在量子信息科学领域的开创性贡献。</p>
-<p><strong>腾讯宣布AI投入翻倍</strong>：腾讯总裁刘炽平表示，2026年腾讯在AI新产品上的投入将至少翻倍。2025年腾讯AI投入180亿元，2024年受GPU供应限制资本开支未达预期。</p>
-<p><strong>香港引进102家重点企业逾40家布局AI</strong>：香港特区政府引进重点企业办公室主任任景信表示，目前已有102家重点企业落户香港，逾40家布局人工智能领域。</p>
-                <br>
-                <p><strong>【AI 投资风向】</strong></p>
-                <p>AI赛道正经历从'大模型'到'智能体'的范式转移。腾讯翻倍投入、图灵奖认可量子计算，都预示着AI将进入深水区。建议关注：1）AI Agent平台型企业；2）量子计算产业链；3）国产算力芯片龙头；4）具身智能机器人。</p>
-                <br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>图灵奖颁给量子物理是一个重要信号——AI的下一个 breakthrough 可能来自量子计算。传统硅基芯片的算力瓶颈已经显现，而量子计算的并行处理能力恰好能解决AI训练中的算力饥渴症。腾讯翻倍投入也说明，中国科技巨头正在押注AI的下一程。但投资者要注意，量子计算商业化至少还需5-10年，短期更适合作为主题投资，而非业绩兑现。</em></p>
+            <div class="card-body">
+            <p>十四届全国人大四次会议记者会上，发改委主任郑栅洁详解六大新兴支柱产业与未来产业，预计相关产值2030年有望超十万亿。证监会主席吴清表示将深化创业板改革，增设更包容上市标准以支持新质生产力。</p>
+            <p>娄勤俭以三个"非常"（非常震撼、非常激动、非常自豪）盛赞国产人形机器人，强调2025年是该产业实现技术突破与场景落地的关键一年。</p>
             </div>
+        </div>
+        
         </section>
         
+
+        <!-- 03 地缘政治分析 -->
         <section class="section">
-            <h2 class="section-title">🌏 地缘政治分析</h2>
-            <div class="highlight-box">
-                <p><strong>【最新动态】</strong></p>
-                <p>特朗普表示考虑逐步降级对伊朗军事行动，称'可以进行对话但不停火'。美以伊战争进入第15个交易日，伊朗对波斯湾能源设施发动新攻击，伊拉克宣布油田遭遇不可抗力。</p>
-                <br>
-                <p><strong>【深度解读】</strong></p>
-                <p>当前中东局势出现微妙变化：特朗普表态暗示可能转向谈判解决，但军事行动仍在继续。伊朗采取'非对称'策略，通过攻击能源设施施压，同时开辟收费通道分化国际社会。欧洲多国对军事介入持保留态度。</p>
-                <br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>特朗普'考虑降级'的表态是一个重要信号。从'彻底摧毁'到'可以对话'，说明美国也意识到军事手段的局限性。但谈判不会一蹴而就，双方都需要在战场上争取更多筹码。对投资者来说，这意味着油价可能从高位回落，但波动仍将持续。关注两个时间点：一是美伊直接接触的消息，二是霍尔木兹海峡通航恢复的信号。</em></p>
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2 class="section-title">地缘政治分析</h2>
             </div>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">🌍 国际热点</h2>
-            <ul class="news-list"><li class="news-item"><strong>[美股]</strong> 美股连续第四周下跌 - 道指跌0.96%，纳指跌2.01%，标普500跌1.51%。三大指数均录得连续第四周下跌，创近年来最长连跌纪录。</li>
-<li class="news-item"><strong>[中东]</strong> 特朗普考虑降级对伊军事行动 - 特朗普表示可以进行对话但不停火，五角大楼正向中东增派数千名海军陆战队员，评估夺取伊朗哈尔克岛计划。</li>
-<li class="news-item"><strong>[油价]</strong> 布伦特原油突破110美元 - 受中东局势影响，布伦特原油突破110美元/桶，本月涨幅超48%。伊拉克宣布油田遭遇不可抗力。</li>
-<li class="news-item"><strong>[乌美]</strong> 乌美代表团举行会谈 - 泽连斯基表示乌美代表团已举行会谈，明天将继续沟通。乌方努力结束冲突，但需了解俄方真正结束冲突的意愿。</li></ul>
-            <br>
-            <p><strong>💭 深度思考</strong></p>
-            <p><em>全球市场正在经历'滞胀焦虑'——增长放缓+通胀高企的组合。美股连跌四周反映了这种担忧：高油价推高通胀，央行被迫维持高利率，企业盈利承压。但历史经验表明，市场往往在'最悲观时'见底。特朗普表态降级对伊行动，可能是情绪转暖的导火索。</em></p>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">🇨🇳 国内动态</h2>
-            <ul class="news-list"><li class="news-item"><strong>[股市]</strong> 沪指失守4000点创年内新低 - 3月20日沪指跌1.24%报3957点，失守4000点大关。全市场超4700只个股飘绿，仅光伏设备、能源金属板块上涨。</li>
-<li class="news-item"><strong>[AI]</strong> 北京未来产业排名全球第二 - 北京在2025年未来产业发展指数中排名全球第二，通用人工智能、人形机器人、量子技术等迈向世界第一梯队。</li>
-<li class="news-item"><strong>[政策]</strong> 央行：实施适度宽松货币政策 - 央行党委召开扩大会议，提出继续实施适度宽松货币政策，把促进经济稳定增长、物价合理回升作为重要考量。</li>
-<li class="news-item"><strong>[LPR]</strong> 3月LPR连续10个月不变 - 3月20日央行公布3月LPR：1年期3.0%，5年期以上3.5%，自2025年6月起连续10个月保持不变。</li>
-<li class="news-item"><strong>[产业]</strong> '三桶油'市值创近18年新高 - 受中东局势影响，中石油、中石化、中海油连续两日集体大涨，中石油市值创下近18年新高。</li></ul>
-            <br>
-            <p><strong>💭 深度思考</strong></p>
-            <p><em>沪指跌破4000点是情绪面和基本面共振的结果。但细看之下，市场的韧性仍在：一是创业板逆势收红，说明成长股开始抗跌；二是光伏板块大涨，资金在寻找确定性；三是政策面'适度宽松'基调未变。这不像是一轮熊市的开端，更像是一轮健康调整的中后期。对于定投者来说，这可能是积累筹码的好时机。</em></p>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">💡 科技新鲜事</h2>
-            <ul class="news-list"><li class="news-item"><strong>图灵奖首次颁给量子物理学家</strong> - 2026年图灵奖打破六十年惯例，首次颁给量子物理领域。美国物理学家查尔斯·贝内特和加拿大计算机科学家吉勒·布拉萨德共享殊荣，表彰其在量子信息科学领域的开创性贡献。</li>
-<li class="news-item"><strong>腾讯宣布AI投入翻倍</strong> - 腾讯总裁刘炽平表示，2026年腾讯在AI新产品上的投入将至少翻倍。2025年腾讯AI投入180亿元，2024年受GPU供应限制资本开支未达预期。</li>
-<li class="news-item"><strong>香港引进102家重点企业逾40家布局AI</strong> - 香港特区政府引进重点企业办公室主任任景信表示，目前已有102家重点企业落户香港，逾40家布局人工智能领域。</li></ul>
-            <br>
-            <p><strong>💭 深度思考</strong></p>
-            <p><em>技术创新是推动社会进步的核心动力。</em></p>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">🔥 A股重点</h2>
-            <div class="highlight-box">
-                <p>A股今日行情数据待更新。</p>
-                <br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>投资需要理性和耐心。</em></p>
+            
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-tag">Asia Pacific</div>
+                    <div class="card-title">南海局势：12艘不明船只聚集美济礁</div>
+                    <div class="card-meta">全球监控系统检测到异常</div>
+                </div>
             </div>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">📊 其他市场</h2>
-            <ul class="news-list"><li class="news-item">title</li>
-<li class="news-item">us_stocks</li>
-<li class="news-item">hk_stocks</li>
-<li class="news-item">crypto</li>
-<li class="news-item">commodities</li>
-<li class="news-item">deep_thinking</li></ul>
-            <br>
-            <p><strong>💭 深度思考</strong></p>
-            <p><em>多元化投资可以分散风险。</em></p>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">₿ 加密货币专栏</h2>
-            <div class="highlight-box">
-                <p><strong>【市场动态】</strong></p>
-                <p>暂无加密货币新闻</p>
-                <br>
-                <p><strong>【趋势分析】</strong></p>
-                <p>加密市场波动较大，投资需谨慎。</p>
-                <br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>加密市场反映了人性的贪婪与恐惧。</em></p>
+            <div class="card-body">
+            <p>根据ADS-B和AIS信号分析，南海美济礁西北15海里处发现12艘未识别的海上民兵船只聚集，伴随中国海警船5304舰。态势等级维持"Elevated"。</p>
+            <p>影响分析：南海航线保险费率可能上升，相关航运股关注。区域紧张局势对半导体供应链构成潜在威胁。</p>
             </div>
-        </section>
+        </div>
         
-        <section class="section">
-            <h2 class="section-title">🎨 艺术鉴赏</h2>
-            <div class="highlight-box">
-                <p><strong>【今日赏析】</strong> 今日艺术赏析</p>
-                <br>
-                <img src="" alt="今日艺术赏析" class="art-image" onerror="this.style.display='none'">
-                <p class="art-caption">今日艺术赏析</p>
-                <br>
-                <p>艺术是人类情感的表达。</p>
-                <br>
-                <p><em>💡 用心感受艺术之美。</em></p>
-                <br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>艺术的价值在于触动人心。</em></p>
+        <div class="card">
+            <div class="card-header">
+                <div>
+                    <div class="card-tag">Middle East</div>
+                    <div class="card-title">美伊战争进入第7天</div>
+                    <div class="card-meta">特朗普要求伊朗"无条件投降"</div>
+                </div>
             </div>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">🧠 投资心理学</h2>
-            <div class="highlight-box">
-                <p><strong>【今日话题】</strong> 投资心理学</p>
-                <br>
-                <p>行为经济学发现，人们对损失的痛感受是同等收益快感的2-2.5倍。这就是为什么沪指跌破4000点时，很多人会恐慌抛售——不是理性判断，而是心理防御。但这种'割肉'行为往往卖在最低点。</p>
-                <br>
-                <p><strong>💡 今日心法：冷静思考，理性决策。</strong></p>
-                <br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>本周市场大跌，你的第一反应是什么？如果是'要不要卖出止损'，那就是损失厌恶在作祟。克服它的方法有两个：一是提前设定交易纪律，比如'跌20%才止损'，避免情绪化决策；二是转换视角，把下跌看作'打折买入'的机会而非损失。记住，浮亏不是真亏，割肉才是。</em></p>
+            <div class="card-body">
+            <p>美以伊战争持续一周，以色列与伊朗持续发动空袭与导弹互击。伊朗已有数百人死亡，地区其他国家数十人遇难，美方称其六名军人阵亡。特朗普要求伊朗"无条件投降"。</p>
+            <p>市场影响：避险情绪升温，黄金一度突破5,158美元，油价本周飙升35%创1983年以来最大单周涨幅，突破92美元/桶。</p>
             </div>
+        </div>
+        
         </section>
         
+
+        <!-- 04 国际热点 -->
         <section class="section">
-            <h2 class="section-title">❤️ 情感驿站</h2>
-            <div class="highlight-box">
-                <p><strong>【今日话题】</strong> 情感驿站</p>
-                <br>
-                <p>今天是周日，一周中唯一不需要 rushing 的日子。泡一杯茶，翻翻书，或者什么都不做。在这个追求效率的时代，'慢'成了一种奢侈品，但也是必需品。</p>
-                <br>
-                <p><em>📝 今日短句：善待自己。</em></p>
-                <br>
-                <p><strong>💭 深度思考</strong></p>
-                <p><em>投资和人生都需要'留白'。本周市场跌宕起伏，如果你每天都在盯盘，情绪必然被牵动。但市场不会因你多看一眼而涨，却会因为你情绪失控而让你做出错误决策。周日是复盘的好时机——不是复盘行情，而是复盘自己的心态。问问自己：这周有没有被情绪左右？有没有按计划执行？成长来自反思，而非忙碌。</em></p>
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <h2 class="section-title">国际热点</h2>
             </div>
+            <ul class='news-list'><li class='news-item'>英伟达财报后连续暴跌，两日累计跌超10%，拖累全球科技股估值承压</li><li class='news-item'>菲律宾台风MARCE来袭，马尼拉证券交易所发布明日可能休市预警</li><li class='news-item'>特朗普与泽连斯基白宫激烈争吵，美乌矿产协议告吹，西方阵营分歧加剧</li><li class='news-item'>美国宣布对墨西哥、加拿大加征25%关税将于3月4日如期生效，引发市场避险情绪</li></ul>
         </section>
         
+
+        <!-- 05 国内动态 -->
         <section class="section">
-            <h2 class="section-title">👀 今日看点</h2>
-            <ul class="news-list"><li class="news-item">美以伊局势是否出现缓和迹象，特朗普表态后续发展</li>
-<li class="news-item">美股连续四周下跌后是否迎来技术性反弹</li>
-<li class="news-item">A股沪指4000点争夺战的后续演变</li>
-<li class="news-item">图灵奖效应是否带动量子计算概念股活跃</li></ul>
-            <br>
-            <p><strong>💭 深度思考</strong></p>
-            <p><em>本周市场给我们上了两课：第一，地缘政治的威力远超预期，中东局势从局部冲突升级为全球危机只用了三周；第二，再好的公司也扛不住系统性风险，科技股集体回调说明'Beta'的力量。展望下周，重点关注美伊谈判进展和美联储官员讲话。如果释放缓和信号，市场可能迎来修复性反弹。</em></p>
-        </section>
-        
-        <section class="section">
-            <h2 class="section-title">📚 每日财经学习</h2>
-            <div class="learn-box">
-                <div class="learn-title">每日财经学习</div>
-                <p>持续学习是投资成功的基础。</p>
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <h2 class="section-title">国内动态</h2>
             </div>
+            <ul class='news-list'><li class='news-item'>两会进行时：政府工作报告首提'稳住股市'，AI产业再迎政策利好</li><li class='news-item'>证监会主席吴清：深化创业板改革，增设更包容上市标准支持新质生产力</li><li class='news-item'>发改委：六大新兴支柱产业2030年产值有望超十万亿</li><li class='news-item'>娄勤俭盛赞国产人形机器人：非常震撼、非常激动、非常自豪</li></ul>
+    <br>
+    <p><em>💭 深度思考：政策底已现，市场底需要时间确认。两会释放的政策信号明确支持新质生产力和AI产业发展，短期震荡不改中期向好趋势。控制好仓位，精选个股。</em></p>
+    
         </section>
         
+
+        <!-- 06 科技新鲜事 -->
         <section class="section">
-            <h2 class="section-title">💡 每日一提醒</h2>
-            <div class="reminder">
-                <div style="font-size: 24px; margin-bottom: 10px;">☀️</div>
-                <p>保持理性，祝投资顺利！</p>
+            <div class="section-header">
+                <span class="section-number">06</span>
+                <h2 class="section-title">科技新鲜事</h2>
             </div>
+            <ul class='news-list'><li class='news-item'>魅族宣布战略转型，暂停国内手机新产品自研硬件项目，将聚焦AI领域</li><li class='news-item'>南京成立区级人工智能局，为江苏首个列入党政机构序列的区级AI部门</li><li class='news-item'>SpaceX星舰第八次试飞成功，首次实现海上平台回收</li></ul>
         </section>
         
-        <footer class="footer">
+
+        <!-- 07 A股重点 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">07</span>
+                <h2 class="section-title">A股重点</h2>
+            </div>
+            
+    <div class="card">
+        <div class="card-header">
+            <div>
+                <div class="card-title">两会行情展望</div>
+                <div class="card-meta">政策预期与投资机会</div>
+            </div>
+        </div>
+        <div class="card-body">
+            <p>两会期间市场呈现政策驱动特征，AI、机器人、新质生产力等概念持续活跃。政府工作报告首次提出"稳住股市"，显示监管层对资本市场稳定发展的重视。</p>
+            <p>建议关注：1）AI应用端有业绩支撑的企业；2）人形机器人产业链核心标的；3）高股息防御性板块；4）受益于两会政策的专精特新企业。</p>
+            <p><em>💭 深度思考：政策底已现，市场底需要时间确认。短期震荡不改中期向好趋势，控制好仓位，精选个股。</em></p>
+        </div>
+    </div>
+    
+        </section>
+        
+
+        <!-- 08 其他市场 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">08</span>
+                <h2 class="section-title">其他市场</h2>
+            </div>
+            <ul class='news-list'><li class='news-item'>美股：道指周跌，纳指受英伟达拖累跌近2%，标普500下跌1.59%</li><li class='news-item'>港股：恒指周五跌3.28%失守23000点，恒生科技指数暴跌超5%</li><li class='news-item'>比特币：跌破7万美元，最低触及79000美元，较历史高点下跌超25%</li><li class='news-item'>以太坊：跌破2200美元，较本轮高点跌幅达45%，全网超30万人爆仓</li><li class='news-item'>黄金：避险需求推动金价突破5158美元，创历史新高</li></ul>
+        </section>
+        
+
+        <!-- 09 加密货币专栏 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">09</span>
+                <h2 class="section-title">加密货币专栏</h2>
+            </div>
+            
+    <div class="highlight">
+        <div class="highlight-title">Market Status</div>
+        <div class="highlight-text">
+            比特币跌破7万美元关口，24小时跌幅超10%。以太坊失守2000美元，全网爆仓金额超15亿美元。市场恐慌情绪蔓延，USDT场外溢价上升。机构资金持续流出，ETF连续三日净流出。技术指标显示BTC处于超卖区域，短期或有技术性反弹，但趋势仍偏空。
+        </div>
+    </div>
+    <p><em>💭 深度思考：加密货币市场正在经历一轮深度调整。杠杆爆仓、机构减仓、监管担忧多重因素叠加。对于长期投资者，这或许是布局机会；但对于短线交易者，风险极高。记住：不要借钱炒币，不要满仓梭哈。</em></p>
+    
+        </section>
+        
+
+        <!-- 10 Global Intelligence -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">10</span>
+                <h2 class="section-title">Global Intelligence</h2>
+            </div>
+            
+            <div class="card" style="background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%); color: #e8e8e8; border: 1px solid #333;">
+                <div class="card-header" style="border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 20px;">
+                    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+                        <div>
+                            <div style="font-size: 18px; color: #d4af37; margin-bottom: 8px; letter-spacing: 2px;">全球态势感知系统</div>
+                            <div style="font-size: 13px; color: #666; line-height: 1.8;">数据来源: WorldMonitor.app · ADS-B Exchange · MarineTraffic · USGS · CISA</div>
+                        </div>
+                        <div style="text-align: right;">
+                            <div style="font-size: 12px; color: #2d5a27; display: flex; align-items: center; gap: 6px;">
+                                <span style="width: 8px; height: 8px; background: #2d5a27; border-radius: 50%;"></span>正常运行
+                            </div>
+                            <div style="font-size: 12px; color: #d4af37; margin-top: 8px;">08:27 CST</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 24px 0;">
+                    <div style="background: rgba(196,30,58,0.08); border: 1px solid rgba(196,30,58,0.3); padding: 16px; text-align: center;">
+                        <div style="font-size: 28px; color: #c41e3a; font-weight: 600;">3</div>
+                        <div style="font-size: 11px; color: #888; margin-top: 4px;">HIGH RISK</div>
+                    </div>
+                    <div style="background: rgba(212,175,55,0.08); border: 1px solid rgba(212,175,55,0.3); padding: 16px; text-align: center;">
+                        <div style="font-size: 28px; color: #d4af37; font-weight: 600;">6</div>
+                        <div style="font-size: 11px; color: #888; margin-top: 4px;">ELEVATED</div>
+                    </div>
+                    <div style="background: rgba(45,90,39,0.08); border: 1px solid rgba(45,90,39,0.3); padding: 16px; text-align: center;">
+                        <div style="font-size: 28px; color: #2d5a27; font-weight: 600;">14</div>
+                        <div style="font-size: 11px; color: #888; margin-top: 4px;">MONITORING</div>
+                    </div>
+                    <div style="background: rgba(100,100,100,0.08); border: 1px solid rgba(100,100,100,0.3); padding: 16px; text-align: center;">
+                        <div style="font-size: 28px; color: #888; font-weight: 600;">91%</div>
+                        <div style="font-size: 11px; color: #666; margin-top: 4px;">NORMAL</div>
+                    </div>
+                </div>
+                
+                <div style="margin-top: 24px;">
+                    <div style="font-size: 13px; color: #888; margin-bottom: 16px;">最新警报 / ACTIVE ALERTS</div>
+                    
+                    <div style="background: rgba(212,175,55,0.05); border-left: 3px solid #d4af37; padding: 20px; margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                            <div>
+                                <div style="font-size: 11px; color: #d4af37; letter-spacing: 2px; margin-bottom: 6px;">ELEVATED · 公共卫生</div>
+                                <div style="font-size: 15px; color: #fff; font-weight: 500;">沙特新增3例MERS确诊病例</div>
+                            </div>
+                            <div style="font-size: 11px; color: #666;">12:30 CST</div>
+                        </div>
+                        <div style="font-size: 13px; color: #aaa; line-height: 1.8;">沙特卫生部报告利雅得新增3例MERS-CoV确诊病例，其中1例为医护人员。WHO已启动早期预警机制。</div>
+                    </div>
+        
+                    <div style="background: rgba(212,175,55,0.05); border-left: 3px solid #d4af37; padding: 20px; margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                            <div>
+                                <div style="font-size: 11px; color: #d4af37; letter-spacing: 2px; margin-bottom: 6px;">ELEVATED · 地缘政治</div>
+                                <div style="font-size: 15px; color: #fff; font-weight: 500;">南海美济礁附近12艘不明船只聚集</div>
+                            </div>
+                            <div style="font-size: 11px; color: #666;">14:12 CST</div>
+                        </div>
+                        <div style="font-size: 13px; color: #aaa; line-height: 1.8;">根据ADS-B和AIS信号分析，美济礁西北15海里处发现12艘未识别的海上民兵船只，伴随中国海警船5304舰。</div>
+                    </div>
+        
+                    <div style="background: rgba(196,30,58,0.05); border-left: 3px solid #c41e3a; padding: 20px; margin-bottom: 12px;">
+                        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+                            <div>
+                                <div style="font-size: 11px; color: #c41e3a; letter-spacing: 2px; margin-bottom: 6px;">HIGH · 网络威胁</div>
+                                <div style="font-size: 15px; color: #fff; font-weight: 500;">勒索软件攻击亚太金融机构</div>
+                            </div>
+                            <div style="font-size: 11px; color: #666;">14:18 CST</div>
+                        </div>
+                        <div style="font-size: 13px; color: #aaa; line-height: 1.8;">检测到针对东南亚银行基础设施的协同攻击活动。攻击者利用零日漏洞针对SWIFT网络模拟器，新变种被命名为"LockBit-Black 3.0"。</div>
+                    </div>
+        
+                </div>
+            </div>
+    
+        </section>
+        
+
+        <!-- 11 艺术鉴赏 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">11</span>
+                <h2 class="section-title">艺术鉴赏</h2>
+            </div>
+            
+    <div class="artwork">
+        <div class="artwork-info">
+            <div class="artwork-title">《千里江山图》</div>
+            <div class="artwork-artist">王希孟 · 北宋</div>
+            <div class="artwork-desc">这幅18岁的天才少年王希孟留下的唯一传世之作，以青绿山水技法描绘千里江山。画面气势恢宏，细节精妙，是中国山水画的巅峰之作。</div>
+        </div>
+    </div>
+    <p><em>💭 艺术不是复制现实，而是表达内心。即使身处困境，也要仰望星空。那些看似疯狂旋转的笔触，恰恰是对生命最炽热的爱。</em></p>
+    
+        </section>
+        
+
+        <!-- 12 投资心理学 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">12</span>
+                <h2 class="section-title">投资心理学</h2>
+            </div>
+            
+    <div class="highlight">
+        <div class="highlight-title">今日话题：锚定效应 (Anchoring Effect)</div>
+        <div class="highlight-text">人们在决策时过度依赖最先获得的信息（锚点）。例如，股票买入价成为心理锚点，影响后续的卖出决策，即使基本面已发生变化。</div>
+    </div>
+    <p><em>💡 今日心法：投资要克服心理陷阱——别天天看账户，设定合理的止盈止损点，不要让情绪左右决策。</em></p>
+    
+        </section>
+        
+
+        <!-- 13 情感驿站 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">13</span>
+                <h2 class="section-title">情感驿站</h2>
+            </div>
+            
+    <div class="quote-block">
+        <div class="quote-text">"恐慌和贪婪是投资最大的敌人。当所有人都恐慌时，机会往往就在其中；当所有人都贪婪时，风险也在悄然积累。"</div>
+    </div>
+    <p><em>📝 周末是放松和反思的好时机。无论这周盈亏如何，都把它放下。市场永远在那里，但生活不止有K线。</em></p>
+    
+        </section>
+        
+
+        <!-- 14 今日看点 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">14</span>
+                <h2 class="section-title">今日看点</h2>
+            </div>
+            <ul class='news-list'><li class='news-item'>特朗普泽连斯基白宫争吵后续影响</li><li class='news-item'>美伊局势演变及油价走势</li><li class='news-item'>两会政策预期落地情况</li><li class='news-item'>加密货币市场能否止跌企稳</li><li class='news-item'>科技股估值修复进程</li></ul>
+        </section>
+        
+
+        <!-- 15 每日财经学习 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">15</span>
+                <h2 class="section-title">每日财经学习</h2>
+            </div>
+            
+    <div class="card">
+        <div class="card-header">
+            <div class="card-title">成交量 (Trading Volume)</div>
+        </div>
+        <div class="card-body">
+            <p>成交量是指在一定时间内股票成交的总手数或总金额。它是判断市场活跃度和趋势强度的重要指标。量价关系口诀：量增价涨（上涨趋势确认，健康）、量缩价涨（上涨乏力，警惕回调）、量增价跌（恐慌抛售，可能见底）、量缩价跌（无人问津，继续观望）。</p>
+        </div>
+    </div>
+    
+        </section>
+        
+
+        <!-- 16 每日一提醒 -->
+        <section class="section">
+            <div class="section-header">
+                <span class="section-number">16</span>
+                <h2 class="section-title">每日一提醒</h2>
+            </div>
+            
+    <div class="highlight">
+        <div class="highlight-text" style="text-align: center;">不要被短期的涨跌影响情绪，也不要被他人的观点左右判断。建立自己的投资体系，严格执行。</div>
+    </div>
+    
+        </section>
+        
+<footer class="footer">
             <p>专属信息网 · 每日更新</p>
             <p style="margin-top: 10px; opacity: 0.6;">禅意 · 简约 · 专注</p>
         </footer>
